@@ -123,7 +123,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold">Email</h4>
-                                    <p className="text-[#6B7280]">hello@purescan.io</p>
+                                    <p className="text-[#6B7280]">support@purescan.io</p>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +158,7 @@ export default function ContactPage() {
                                 Interested in partnerships, press, or investment opportunities?
                             </p>
                             <p className="text-emerald-600 font-semibold">
-                                business@purescan.io
+                                support@purescan.io
                             </p>
                         </div>
                     </div>
