@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     title: "PureScan - Know What's In Your Food",
     description: "The world's most advanced ingredient scanner. Instant AI-powered toxin detection and healthier alternatives.",
   },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+  },
 };
 
 export default function RootLayout({
