@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -9,7 +8,47 @@ import Footer from './components/Footer';
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    console.log("Waitlist: Submitting...");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://formspree.io/f/mvzzgoap", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+
+      const result = await response.json();
+      console.log("Waitlist: Response", result);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset();
+      } else {
+        alert(result.error || "Formspree Error: Please check your form settings.");
+      }
+    } catch (err) {
+      console.error("Waitlist: Error", err);
+      alert("Network error: Please check your internet connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -360,19 +399,35 @@ export default function LandingPage() {
                 Join our waitlist and get early access when PureScan launches in January 2026.
               </p>
 
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-2xl bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-white/40 transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-4 rounded-2xl bg-white text-emerald-600 font-bold hover:bg-white/90 transition-all hover:shadow-lg"
+              {/* Signup Form */}
+              {!isSubmitted ? (
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
                 >
-                  Notify Me
-                </button>
-              </form>
+                  <input
+                    id="waitlist-email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                    className="flex-1 px-6 py-4 rounded-2xl bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-white/40 transition-colors"
+                    disabled={isSubmitting}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="px-8 py-4 rounded-2xl bg-white text-emerald-600 font-bold hover:bg-white/90 transition-all hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Joining...' : 'Notify Me'}
+                  </button>
+                </form>
+              ) : (
+                <div className="bg-white/20 backdrop-blur rounded-2xl p-6 max-w-md mx-auto animate-fade-up">
+                  <p className="text-xl font-bold text-white mb-2">🎉 You&apos;re on the list!</p>
+                  <p className="text-white/80">We&apos;ll let you know as soon as we launch.</p>
+                </div>
+              )}
 
               <p className="text-sm text-white/60 mt-6">
                 No spam, ever. Unsubscribe anytime.

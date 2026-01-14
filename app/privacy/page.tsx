@@ -24,7 +24,7 @@ export default function PrivacyPage() {
                         <div className="card-premium p-8">
                             <h2 className="text-xl font-bold mb-4">1. Introduction</h2>
                             <p className="text-[#6B7280] leading-relaxed">
-                                PureScan Biotech Ltd. (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use the PureScan mobile application.
+                                PureScan (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use the PureScan mobile application.
                             </p>
                         </div>
 

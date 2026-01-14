@@ -79,7 +79,7 @@ export default function TermsPage() {
                         <div className="card-premium p-8">
                             <h2 className="text-xl font-bold mb-4">6. Intellectual Property</h2>
                             <p className="text-[#6B7280] leading-relaxed">
-                                All content, features, and functionality of PureScan, including but not limited to the ingredient database, scoring algorithms, and user interface, are owned by PureScan Biotech Ltd. and are protected by international copyright, trademark, and other intellectual property laws.
+                                All content, features, and functionality of PureScan, including but not limited to the ingredient database, scoring algorithms, and user interface, are owned by PureScan and are protected by international copyright, trademark, and other intellectual property laws.
                             </p>
                         </div>
 
@@ -93,7 +93,7 @@ export default function TermsPage() {
                         <div className="card-premium p-8">
                             <h2 className="text-xl font-bold mb-4">8. Limitation of Liability</h2>
                             <p className="text-[#6B7280] leading-relaxed">
-                                To the maximum extent permitted by law, PureScan Biotech Ltd. shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the app or reliance on information provided by the app.
+                                To the maximum extent permitted by law, PureScan shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the app or reliance on information provided by the app.
                             </p>
                         </div>
 
