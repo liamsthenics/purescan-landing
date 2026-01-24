@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import RiskCalculator from './components/RiskCalculator';
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
@@ -70,45 +71,6 @@ export default function LandingPage() {
     };
   }, []);
 
-  const features = [
-    {
-      icon: '📸',
-      title: 'Instant AI Scanning',
-      desc: 'Point your camera at any ingredient list. Our AI reads and analyzes everything in seconds.',
-      color: 'emerald'
-    },
-    {
-      icon: '⚡',
-      title: 'Real-Time Alerts',
-      desc: 'Get immediate warnings about harmful additives, allergens, and concerning chemicals.',
-      color: 'orange'
-    },
-    {
-      icon: '🧬',
-      title: 'Deep Analysis',
-      desc: 'Understand exactly what each ingredient is, why it\'s used, and what research says.',
-      color: 'teal'
-    },
-    {
-      icon: '🌿',
-      title: 'Cleaner Choices',
-      desc: 'Discover healthier alternatives based on your preferences and dietary needs.',
-      color: 'green'
-    },
-    {
-      icon: '📴',
-      title: 'Works Offline',
-      desc: 'Core scanning works without internet. Analyze products anywhere, anytime.',
-      color: 'blue'
-    },
-    {
-      icon: '🔒',
-      title: 'Privacy First',
-      desc: 'Your data stays on your device. We never sell or share your information.',
-      color: 'purple'
-    },
-  ];
-
   const problems = [
     { stat: '400+', label: 'Harmful additives in common foods' },
     { stat: '70%', label: 'Of packaged foods contain hidden ingredients' },
@@ -146,14 +108,14 @@ export default function LandingPage() {
             </div>
 
             <h1 className="text-display text-5xl md:text-6xl lg:text-7xl">
-              Know exactly
+              Stop Guessing.
               <br />
-              <span className="text-gradient-hero">what you eat.</span>
+              <span className="text-gradient-hero">Start Knowing.</span>
             </h1>
 
             <p className="text-xl text-[#6B7280] leading-relaxed max-w-lg">
-              Stop guessing about ingredients. PureScan uses AI to instantly decode any product label,
-              flagging harmful additives and helping you make informed choices.
+              Instantly decode food labels and protect your family from hidden toxins with AI-powered scanning.
+              PureScan makes health transparency second nature.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -162,7 +124,7 @@ export default function LandingPage() {
                 className="btn-primary text-center text-lg group"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  Join the Waitlist
+                  Get Early Access
                   <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -186,87 +148,24 @@ export default function LandingPage() {
               }}
             >
               {/* Phone Frame */}
-              <div className="relative w-[320px] h-[650px] mx-auto bg-white rounded-[50px] shadow-premium p-3">
+              <div className="relative w-[320px] h-[650px] mx-auto bg-black rounded-[50px] shadow-premium p-3">
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
 
                 {/* Screen Content */}
-                <div className="w-full h-full bg-gradient-to-b from-[#F0FDF4] to-[#ECFDF5] rounded-[40px] overflow-hidden relative">
-                  {/* Status Bar */}
-                  <div className="flex justify-between items-center px-8 pt-10 pb-4">
-                    <span className="text-sm font-semibold text-gray-600">9:41</span>
-                    <div className="flex gap-1">
-                      <div className="w-4 h-4 rounded-full bg-emerald-500" />
-                    </div>
-                  </div>
-
-                  {/* App Content */}
-                  <div className="px-6 space-y-6">
-                    <div className="text-center">
-                      <p className="text-sm text-gray-500 uppercase tracking-wider">Health Score</p>
-                    </div>
-
-                    {/* Score Ring */}
-                    <div className="relative w-48 h-48 mx-auto">
-                      <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                        <circle
-                          cx="50" cy="50" r="42"
-                          fill="none"
-                          stroke="#E5E7EB"
-                          strokeWidth="8"
-                        />
-                        <circle
-                          cx="50" cy="50" r="42"
-                          fill="none"
-                          stroke="url(#scoreGradient)"
-                          strokeWidth="8"
-                          strokeLinecap="round"
-                          strokeDasharray="264"
-                          strokeDashoffset="40"
-                          className="animate-pulse"
-                        />
-                        <defs>
-                          <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#10B981" />
-                            <stop offset="100%" stopColor="#0D9488" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="text-5xl font-black text-emerald-600">85</span>
-                        <span className="text-sm text-gray-500">Great Choice</span>
-                      </div>
-                    </div>
-
-                    {/* Ingredient Cards */}
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
-                          <span className="text-emerald-600 text-lg">✓</span>
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-semibold text-sm">Organic Cane Sugar</p>
-                          <p className="text-xs text-gray-400">Natural sweetener</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm opacity-80">
-                        <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
-                          <span className="text-orange-600 text-lg">!</span>
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-semibold text-sm">Natural Flavors</p>
-                          <p className="text-xs text-gray-400">May vary in source</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="w-full h-full bg-white rounded-[40px] overflow-hidden relative">
+                  <img
+                    src="/screenshots/scan.png"
+                    alt="PureScan App"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 w-20 h-20 bg-white rounded-2xl shadow-premium flex items-center justify-center animate-float">
+              <div className="absolute -top-6 -right-6 w-20 h-20 bg-white/80 backdrop-blur rounded-2xl shadow-premium flex items-center justify-center animate-float">
                 <span className="text-3xl">🌿</span>
               </div>
-              <div className="absolute -bottom-4 -left-8 w-24 h-24 bg-white rounded-2xl shadow-premium flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
+              <div className="absolute -bottom-4 -left-8 w-24 h-24 bg-white/80 backdrop-blur rounded-2xl shadow-premium flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
                 <span className="text-4xl">📸</span>
               </div>
             </div>
@@ -281,61 +180,87 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem Statement */}
-      <section className="py-24 px-6">
+      {/* Problem Statement: The Villain */}
+      <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+            <span className="badge-premium mb-4 inline-block">The Problem</span>
             <h2 className="text-display text-4xl md:text-5xl mb-6">
-              The problem with
+              Confusing labels are
               <br />
-              <span className="text-gradient">modern food labels</span>
+              <span className="text-[#EF4444]">the ultimate villain.</span>
             </h2>
             <p className="text-xl text-[#6B7280] max-w-2xl mx-auto">
-              Food labels are deliberately confusing. Hidden chemicals, misleading names,
-              and tiny print make it nearly impossible to know what you&apos;re really eating.
+              Food companies hide harmful additives behind complex names and tiny print.
+              PureScan is the sidekick you need to unmask the truth.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {problems.map((p, i) => (
-              <div
-                key={i}
-                className="text-center p-8 card-premium opacity-0 animate-fade-up"
-                style={{ animationDelay: `${0.2 + i * 0.1}s`, animationFillMode: 'forwards' }}
-              >
-                <div className="text-5xl md:text-6xl font-black text-gradient mb-4">{p.stat}</div>
-                <p className="text-[#6B7280]">{p.label}</p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              {problems.map((p, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-6 p-6 card-premium opacity-0 animate-fade-up"
+                  style={{ animationDelay: `${0.2 + i * 0.1}s`, animationFillMode: 'forwards' }}
+                >
+                  <div className="text-4xl font-black text-gradient">{p.stat}</div>
+                  <p className="text-lg font-semibold text-[#1A1A1A]">{p.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-red-500/10 blur-3xl rounded-full group-hover:bg-red-500/20 transition-all" />
+              <div className="relative rounded-3xl overflow-hidden shadow-premium border border-white/20">
+                <img src="/screenshots/overview.jpg" alt="Health Risk Overview" className="w-full" />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Bento Grid */}
-      <section id="features" className="py-24 px-6 bg-white">
+      {/* The Guide: Resolution Features */}
+      <section id="features" className="py-24 px-6 bg-white/50 backdrop-blur-sm relative">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="badge-premium mb-4 inline-block">Features</span>
+          <div className="text-center mb-16 underline-emerald">
+            <span className="badge-premium mb-4 inline-block">Your Guide</span>
             <h2 className="text-display text-4xl md:text-5xl mb-6">
-              Everything you need to
+              Clarity at
               <br />
-              <span className="text-gradient">eat with confidence</span>
+              <span className="text-gradient">your fingertips.</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <div
-                key={i}
-                className="group p-8 rounded-3xl bg-[#FAFAF8] border border-gray-100 hover:border-emerald-200 hover:shadow-premium-hover transition-all duration-500"
-              >
-                <div className={`w-14 h-14 rounded-2xl bg-${f.color}-100 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform`}>
-                  {f.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{f.title}</h3>
-                <p className="text-[#6B7280] leading-relaxed">{f.desc}</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* AI Assistant */}
+            <div className="group space-y-6 p-8 rounded-[32px] bg-[#FAFAF8] border border-gray-100 hover:border-emerald-200 transition-all duration-500">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-xl">💬</div>
+                <h3 className="text-2xl font-bold">Your Personal Food Scientist</h3>
               </div>
-            ))}
+              <p className="text-[#6B7280] leading-relaxed">
+                Got questions about an additive? Ask the AI deep-dive assistant.
+                Get science-backed explanations in plain English.
+              </p>
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100 mt-4 group-hover:scale-[1.02] transition-transform">
+                <img src="/screenshots/chat.png" alt="AI Chat Experience" className="w-full" />
+              </div>
+            </div>
+
+            {/* Comparison */}
+            <div className="group space-y-6 p-8 rounded-[32px] bg-[#FAFAF8] border border-gray-100 hover:border-emerald-200 transition-all duration-500">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-teal-100 flex items-center justify-center text-xl">⚖️</div>
+                <h3 className="text-2xl font-bold">Find Healthier Alternatives</h3>
+              </div>
+              <p className="text-[#6B7280] leading-relaxed">
+                Compare products side-by-side. Our database suggests cleaner versions
+                of your favorite snacks instantly.
+              </p>
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100 mt-4 group-hover:scale-[1.02] transition-transform">
+                <img src="/screenshots/comparison.png" alt="Product Comparison" className="w-full" />
+              </div>
+            </div>
           </div>
 
           <div className="text-center mt-12">
@@ -349,33 +274,53 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="badge-premium mb-4 inline-block">How It Works</span>
+      {/* Achievements Section: Gamification */}
+      <section className="py-24 px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1 relative group">
+            <div className="absolute -inset-4 bg-emerald-500/10 blur-3xl rounded-full group-hover:bg-emerald-500/20 transition-all" />
+            <div className="relative rounded-[40px] overflow-hidden shadow-premium border-8 border-white">
+              <img src="/screenshots/achievements.png" alt="PureScan Achievements" className="w-full" />
+            </div>
+          </div>
+          <div className="order-1 lg:order-2 space-y-8">
+            <span className="badge-premium">Gamification</span>
             <h2 className="text-display text-4xl md:text-5xl">
-              Scan. Learn. Choose.
+              Turn health into
+              <br />
+              <span className="text-gradient">a daily habit.</span>
             </h2>
+            <p className="text-xl text-[#6B7280]">
+              Earning badges while you scan! PureScan gamifies your journey to a toxin-free life,
+              keeping you motivated and informed every step of the way.
+            </p>
+            <ul className="space-y-4">
+              {['Unlock 30+ unique badges', 'Track your scanning streaks', 'Level up your health knowledge'].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-lg font-medium">
+                  <span className="text-emerald-500">✓</span> {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Tool: Risk Calculator (SEO Hack) */}
+      <section className="py-24 px-6 bg-emerald-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-30">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-400 blur-[150px] -translate-y-1/2 translate-x-1/2" />
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-display text-4xl md:text-5xl mb-6">Toxin Risk Calculator</h2>
+            <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
+              Worried about a specific ingredient? Type it in below to see if it&apos;s a red flag.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { step: '01', title: 'Point & Scan', desc: 'Open the app and point your camera at any ingredient list. Our AI does the rest.', icon: '📱' },
-              { step: '02', title: 'Instant Analysis', desc: 'Get a complete breakdown of every ingredient with health ratings and warnings.', icon: '🔍' },
-              { step: '03', title: 'Make Better Choices', desc: 'Understand what you\'re eating and discover cleaner alternatives.', icon: '✨' },
-            ].map((item, i) => (
-              <div key={i} className="relative text-center group">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 text-4xl mb-6 group-hover:scale-110 transition-transform">
-                  {item.icon}
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full gradient-primary text-white text-sm font-bold flex items-center justify-center">
-                  {item.step}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-[#6B7280]">{item.desc}</p>
-              </div>
-            ))}
+          <div className="card-glass p-8 md:p-12 text-[#1A1A1A]">
+            <RiskCalculator />
           </div>
         </div>
       </section>
