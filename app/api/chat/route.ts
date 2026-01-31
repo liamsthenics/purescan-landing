@@ -13,7 +13,9 @@ const RESET_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
 
 export async function POST(request: Request) {
     const userId = request.headers.get('X-User-ID');
-    const userTier = (request.headers.get('X-User-Tier') || 'free') as 'free' | 'paid';
+    const rawTier = request.headers.get('X-User-Tier') || 'free';
+    // Map premium subscription types to 'paid' tier for rate limiting
+    const userTier: 'free' | 'paid' = rawTier.includes('premium') ? 'paid' : rawTier === 'paid' ? 'paid' : 'free';
     const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
