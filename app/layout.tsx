@@ -1,26 +1,39 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "PureScan - Know What's In Your Food | AI Ingredient Scanner",
-  description: "The world's most advanced ingredient scanner. Scan any product to detect toxins, seed oils, and harmful additives. Get instant AI-powered analysis and healthier alternatives.",
-  keywords: "ingredient scanner, food scanner, toxin detection, seed oils, healthy eating, food app, ingredient analyzer",
+  title: "PureScan — Know What's Really In Your Food",
+  description: "Scan any product. See a clear health score. Understand every ingredient instantly. PureScan brings ingredient transparency to your fingertips.",
+  keywords: "ingredient scanner, food scanner, health score, ingredient analysis, healthy eating, food transparency, product scanner",
   openGraph: {
-    title: "PureScan - Know What's In Your Food",
-    description: "The world's most advanced ingredient scanner. Instant AI-powered toxin detection and healthier alternatives.",
+    title: "PureScan — Know What's Really In Your Food",
+    description: "Scan any product. See a clear health score. Understand every ingredient instantly.",
     type: "website",
     url: "https://purescan.io",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PureScan - Know What's In Your Food",
-    description: "The world's most advanced ingredient scanner. Instant AI-powered toxin detection and healthier alternatives.",
+    title: "PureScan — Know What's Really In Your Food",
+    description: "Scan any product. See a clear health score. Understand every ingredient instantly.",
   },
   icons: {
     icon: "/icon.png",
@@ -35,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${fraunces.variable} ${outfit.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

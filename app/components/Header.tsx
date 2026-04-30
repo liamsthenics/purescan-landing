@@ -22,10 +22,17 @@ export default function Header() {
 
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
-                ? 'bg-white/80 backdrop-blur-xl border-b border-gray-100 py-4'
-                : 'bg-transparent py-6'
-            }`}>
-            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                ? 'py-3'
+                : 'py-5'
+            }`}
+            style={{
+                background: scrolled ? 'rgba(249, 245, 239, 0.88)' : 'transparent',
+                backdropFilter: scrolled ? 'blur(24px)' : 'none',
+                WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
+                borderBottom: scrolled ? '1px solid rgba(21, 27, 24, 0.06)' : '1px solid transparent',
+            }}
+        >
+            <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-105">
                         <Image
@@ -33,10 +40,11 @@ export default function Header() {
                             alt="PureScan Logo"
                             width={40}
                             height={40}
-                            className="rounded-xl shadow-sm"
+                            className="rounded-xl"
+                            style={{ boxShadow: 'var(--shadow-card)' }}
                         />
                     </div>
-                    <span className="text-xl font-black tracking-tight text-[#1A1A1A]">
+                    <span className="text-display text-xl" style={{ fontWeight: 500 }}>
                         PureScan
                     </span>
                 </Link>
@@ -47,10 +55,14 @@ export default function Header() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-[#6B7280] hover:text-[#1A1A1A] font-medium transition-colors relative group"
+                            className="text-ui text-sm font-medium transition-colors relative group"
+                            style={{ color: 'var(--muted)' }}
                         >
-                            {link.label}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all group-hover:w-full" />
+                            <span className="group-hover:text-[var(--ink)] transition-colors">{link.label}</span>
+                            <span
+                                className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full transition-all group-hover:w-full"
+                                style={{ background: 'var(--green)' }}
+                            />
                         </Link>
                     ))}
                 </div>
@@ -58,7 +70,8 @@ export default function Header() {
                 <div className="flex items-center gap-4">
                     <Link
                         href="#waitlist"
-                        className="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all hover:shadow-glow hover:scale-105"
+                        className="hidden sm:inline-flex btn-primary text-sm"
+                        style={{ padding: '10px 22px', fontSize: '13px' }}
                     >
                         Join Waitlist
                     </Link>
@@ -69,22 +82,30 @@ export default function Header() {
                         className="md:hidden flex flex-col gap-1.5 p-2"
                         aria-label="Toggle menu"
                     >
-                        <span className={`w-6 h-0.5 bg-[#1A1A1A] transition-all ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                        <span className={`w-6 h-0.5 bg-[#1A1A1A] transition-all ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-                        <span className={`w-6 h-0.5 bg-[#1A1A1A] transition-all ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                        <span className={`w-5 h-[2px] rounded-full transition-all duration-300`} style={{ background: 'var(--ink)', transform: mobileMenuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
+                        <span className={`w-5 h-[2px] rounded-full transition-all duration-300`} style={{ background: 'var(--ink)', opacity: mobileMenuOpen ? 0 : 1 }} />
+                        <span className={`w-5 h-[2px] rounded-full transition-all duration-300`} style={{ background: 'var(--ink)', transform: mobileMenuOpen ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }} />
                     </button>
                 </div>
             </div>
 
             {/* Mobile Menu */}
-            <div className={`md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-                }`}>
+            <div
+                className={`md:hidden absolute top-full left-0 w-full transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                style={{
+                    background: 'rgba(249, 245, 239, 0.95)',
+                    backdropFilter: 'blur(24px)',
+                    WebkitBackdropFilter: 'blur(24px)',
+                    borderBottom: '1px solid var(--line)',
+                }}
+            >
                 <div className="px-6 py-6 space-y-4">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="block text-lg font-medium text-[#1A1A1A] hover:text-emerald-600 transition-colors"
+                            className="block text-lg font-medium transition-colors"
+                            style={{ color: 'var(--ink)', fontFamily: 'var(--font-outfit)' }}
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             {link.label}
@@ -92,7 +113,7 @@ export default function Header() {
                     ))}
                     <Link
                         href="#waitlist"
-                        className="block w-full text-center bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-3 rounded-xl font-semibold transition-all"
+                        className="block w-full text-center btn-primary"
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         Join Waitlist

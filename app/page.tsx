@@ -1,423 +1,353 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
-import Link from 'next/link';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import RiskCalculator from './components/RiskCalculator';
+import React, { useRef, useEffect, useState, useCallback } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-export default function LandingPage() {
-  const [scrollY, setScrollY] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
+// ─── Intersection Observer Hook ───
+function useInView(options = {}) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [inView, setInView] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) { setInView(true); obs.disconnect(); }
+        }, { threshold: 0.15, ...options });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return { ref, inView };
+}
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (isSubmitting) return;
+// ─── Phone Mockup ───
+function PhoneMockup({ src, alt, className = "", delay = 0 }: { src: string; alt: string; className?: string; delay?: number }) {
+    return (
+        <div
+            className={`relative animate-push ${className}`}
+            style={{
+                animationDelay: `${delay}ms`,
+                width: "280px",
+                filter: "drop-shadow(0 24px 48px rgba(21,27,24,0.12))",
+            }}
+        >
+            <div className="relative overflow-hidden rounded-[36px] bg-white" style={{ boxShadow: "var(--shadow-pop)" }}>
+                <Image src={src} alt={alt} width={280} height={600} className="w-full h-auto" priority />
+            </div>
+        </div>
+    );
+}
 
-    setIsSubmitting(true);
-    console.log("Waitlist: Submitting...");
+// ─── Feature Card ───
+function FeatureCard({
+    icon, title, description, delay = 0
+}: { icon: React.ReactNode; title: string; description: string; delay?: number }) {
+    return (
+        <div className="card-premium p-8 group" style={{ animationDelay: `${delay}ms` }}>
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+                style={{ background: "var(--green-bg)" }}>
+                {icon}
+            </div>
+            <h3 className="text-display text-xl mb-3" style={{ color: "var(--ink)" }}>{title}</h3>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{description}</p>
+        </div>
+    );
+}
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+// ─── Stat Bubble ───
+function StatBubble({ value, label }: { value: string; label: string }) {
+    return (
+        <div className="text-center">
+            <div className="text-display text-3xl md:text-4xl text-gradient-green mb-2">{value}</div>
+            <div className="text-xs font-medium" style={{ color: "var(--muted)" }}>{label}</div>
+        </div>
+    );
+}
 
-    try {
-      const response = await fetch("https://formspree.io/f/mvzzgoap", {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
+// ─── Waitlist Form ───
+function WaitlistForm() {
+    const [email, setEmail] = useState("");
+    const [submitted, setSubmitted] = useState(false);
 
-      const result = await response.json();
-      console.log("Waitlist: Response", result);
+    const handleSubmit = useCallback((e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email.trim()) return;
+        setSubmitted(true);
+    }, [email]);
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        form.reset();
-      } else {
-        alert(result.error || "Formspree Error: Please check your form settings.");
-      }
-    } catch (err) {
-      console.error("Waitlist: Error", err);
-      alert("Network error: Please check your internet connection.");
-    } finally {
-      setIsSubmitting(false);
+    if (submitted) {
+        return (
+            <div className="animate-scale-in text-center">
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: "var(--green-bg)" }}>
+                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="var(--green)"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </div>
+                <h3 className="text-display text-2xl mb-2">You&apos;re on the list.</h3>
+                <p className="text-sm" style={{ color: "var(--muted)" }}>We&apos;ll email you as soon as PureScan launches.</p>
+            </div>
+        );
     }
-  }
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e: MouseEvent) => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: (e.clientX - rect.left - rect.width / 2) / 50,
-          y: (e.clientY - rect.top - rect.height / 2) / 50,
-        });
-      }
-    };
+    return (
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+            <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+                className="flex-1 px-6 py-4 rounded-full text-sm focus:outline-none transition-all duration-300"
+                style={{
+                    background: "var(--surface)",
+                    border: "1px solid var(--line)",
+                    color: "var(--ink)",
+                    boxShadow: "var(--shadow-card)",
+                }}
+                onFocus={(e) => e.currentTarget.style.borderColor = "var(--green)"}
+                onBlur={(e) => e.currentTarget.style.borderColor = "var(--line)"}
+            />
+            <button type="submit" className="btn-green whitespace-nowrap">
+                Join Waitlist
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </button>
+        </form>
+    );
+}
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
 
-  const problems = [
-    { stat: '400+', label: 'Harmful additives in common foods' },
-    { stat: '70%', label: 'Of packaged foods contain hidden ingredients' },
-    { stat: '3 sec', label: 'To scan and understand any product' },
-  ];
+export default function Home() {
+    const hero = useInView();
+    const features = useInView();
+    const howItWorks = useInView();
+    const screenshots = useInView();
+    const cta = useInView();
 
-  return (
-    <div className="min-h-screen bg-[#FAFAF8] text-[#1A1A1A] font-sans overflow-x-hidden">
-      {/* Gradient Mesh Background */}
-      <div className="fixed inset-0 gradient-mesh pointer-events-none -z-10" />
+    return (
+        <main style={{ background: "var(--bg)" }}>
+            <Header />
 
-      {/* Floating Blobs */}
-      <div
-        className="fixed top-20 right-[10%] w-[500px] h-[500px] bg-emerald-400/20 blob blur-[100px] pointer-events-none -z-10"
-        style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
-      />
-      <div
-        className="fixed bottom-20 left-[5%] w-[400px] h-[400px] bg-orange-400/15 blob-2 blur-[80px] pointer-events-none -z-10"
-        style={{ transform: `translate(${scrollY * -0.08}px, ${scrollY * 0.03}px)` }}
-      />
-
-      <Header />
-
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 pb-20 px-6 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-8 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <div className="badge-premium inline-flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              Coming January 2026
-            </div>
-
-            <h1 className="text-display text-5xl md:text-6xl lg:text-7xl">
-              Stop Guessing.
-              <br />
-              <span className="text-gradient-hero">Start Knowing.</span>
-            </h1>
-
-            <p className="text-xl text-[#6B7280] leading-relaxed max-w-lg">
-              Instantly decode food labels and protect your family from hidden toxins with AI-powered scanning.
-              PureScan makes health transparency second nature.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a
-                href="#waitlist"
-                className="btn-primary text-center text-lg group"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Get Early Access
-                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </a>
-              <Link href="/features" className="btn-secondary text-center text-lg">
-                Explore Features
-              </Link>
-            </div>
-          </div>
-
-          {/* Right - 3D Phone Mockup */}
-          <div
-            className="relative perspective-1000 hidden lg:block opacity-0 animate-scale-in"
-            style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
-          >
-            <div
-              className="preserve-3d phone-mockup"
-              style={{
-                transform: `rotateY(${mousePosition.x}deg) rotateX(${-mousePosition.y}deg)`
-              }}
+            {/* ────────── HERO ────────── */}
+            <section
+                ref={hero.ref}
+                className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh"
+                id="hero"
             >
-              {/* Phone Frame */}
-              <div className="relative w-[320px] h-[650px] mx-auto bg-black rounded-[50px] shadow-premium p-3">
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
+                {/* Floating accent blobs */}
+                <div className="absolute w-[500px] h-[500px] top-[-100px] right-[-100px] opacity-[0.04] blob animate-float" style={{ background: "var(--green)" }} />
+                <div className="absolute w-[400px] h-[400px] bottom-[-80px] left-[-80px] opacity-[0.03] blob-2 animate-float delay-300" style={{ background: "var(--tan)" }} />
 
-                {/* Screen Content */}
-                <div className="w-full h-full bg-white rounded-[40px] overflow-hidden relative">
-                  <img
-                    src="/screenshots/scan.png"
-                    alt="PureScan App"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-16 flex flex-col lg:flex-row items-center gap-16">
+                    {/* Left — Copy */}
+                    <div className={`flex-1 text-center lg:text-left ${hero.inView ? "animate-push" : "opacity-0"}`}>
+                        <span className="badge-premium inline-block mb-6">Coming May 2026</span>
+
+                        <h1 className="text-display text-5xl md:text-6xl lg:text-7xl mb-6 leading-[1.02]" style={{ color: "var(--ink)" }}>
+                            Know what&apos;s{" "}
+                            <span className="text-display-italic text-gradient-green">really</span>
+                            <br />in your food.
+                        </h1>
+
+                        <p className="text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-10" style={{ color: "var(--muted)" }}>
+                            Scan any product. See a clear health score. Understand every ingredient instantly — no chemistry degree needed.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <Link href="#waitlist" className="btn-primary text-base">
+                                Join the Waitlist
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                            </Link>
+                            <Link href="/features" className="btn-secondary text-base">
+                                See Features
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Right — Phone Mockup */}
+                    <div className={`flex-1 relative flex justify-center items-center ${hero.inView ? "animate-push delay-200" : "opacity-0"}`}>
+                        <div className="relative z-10 animate-float" style={{ animationDuration: "5s" }}>
+                            <PhoneMockup src="/screenshots/hero-home.png" alt="PureScan Home" delay={200} />
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 w-20 h-20 bg-white/80 backdrop-blur rounded-2xl shadow-premium flex items-center justify-center animate-float">
-                <span className="text-3xl">🌿</span>
-              </div>
-              <div className="absolute -bottom-4 -left-8 w-24 h-24 bg-white/80 backdrop-blur rounded-2xl shadow-premium flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
-                <span className="text-4xl">📸</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-subtle">
-          <div className="w-6 h-10 rounded-full border-2 border-gray-300 flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-gray-400 rounded-full animate-pulse" />
-          </div>
-        </div>
-      </section>
-
-      {/* Problem Statement: The Villain */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <span className="badge-premium mb-4 inline-block">The Problem</span>
-            <h2 className="text-display text-4xl md:text-5xl mb-6">
-              Confusing labels are
-              <br />
-              <span className="text-[#EF4444]">the ultimate villain.</span>
-            </h2>
-            <p className="text-xl text-[#6B7280] max-w-2xl mx-auto">
-              Food companies hide harmful additives behind complex names and tiny print.
-              PureScan is the sidekick you need to unmask the truth.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              {problems.map((p, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-6 p-6 card-premium opacity-0 animate-fade-up"
-                  style={{ animationDelay: `${0.2 + i * 0.1}s`, animationFillMode: 'forwards' }}
-                >
-                  <div className="text-4xl font-black text-gradient">{p.stat}</div>
-                  <p className="text-lg font-semibold text-[#1A1A1A]">{p.label}</p>
+                {/* Scroll hint */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-subtle">
+                    <div className="w-7 h-12 rounded-full border-2 flex justify-center pt-2" style={{ borderColor: "var(--line)" }}>
+                        <div className="w-1 h-3 rounded-full" style={{ background: "var(--muted-2)" }} />
+                    </div>
                 </div>
-              ))}
-            </div>
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-red-500/10 blur-3xl rounded-full group-hover:bg-red-500/20 transition-all" />
-              <div className="relative rounded-3xl overflow-hidden shadow-premium border border-white/20">
-                <img src="/screenshots/overview.jpg" alt="Health Risk Overview" className="w-full" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* The Guide: Resolution Features */}
-      <section id="features" className="py-24 px-6 bg-white/50 backdrop-blur-sm relative">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 underline-emerald">
-            <span className="badge-premium mb-4 inline-block">Your Guide</span>
-            <h2 className="text-display text-4xl md:text-5xl mb-6">
-              Clarity at
-              <br />
-              <span className="text-gradient">your fingertips.</span>
-            </h2>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* AI Assistant */}
-            <div className="group space-y-6 p-8 rounded-[32px] bg-[#FAFAF8] border border-gray-100 hover:border-emerald-200 transition-all duration-500">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-xl">💬</div>
-                <h3 className="text-2xl font-bold">Your Personal Food Scientist</h3>
-              </div>
-              <p className="text-[#6B7280] leading-relaxed">
-                Got questions about an additive? Ask the AI deep-dive assistant.
-                Get science-backed explanations in plain English.
-              </p>
-              <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100 mt-4 group-hover:scale-[1.02] transition-transform">
-                <img src="/screenshots/chat.png" alt="AI Chat Experience" className="w-full" />
-              </div>
-            </div>
+            {/* ────────── FEATURES ────────── */}
+            <section ref={features.ref} className="py-28" id="features">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className={`text-center mb-16 ${features.inView ? "animate-rise" : "opacity-0"}`}>
+                        <span className="ps-eyebrow block mb-4">Why PureScan</span>
+                        <h2 className="text-display text-4xl md:text-5xl mb-4" style={{ color: "var(--ink)" }}>
+                            Everything you need,{" "}
+                            <span className="text-display-italic">nothing</span> you don&apos;t.
+                        </h2>
+                        <p className="text-base max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
+                            Designed to give you clarity, not complexity. Scan, understand, decide — instantly.
+                        </p>
+                    </div>
 
-            {/* Comparison */}
-            <div className="group space-y-6 p-8 rounded-[32px] bg-[#FAFAF8] border border-gray-100 hover:border-emerald-200 transition-all duration-500">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-teal-100 flex items-center justify-center text-xl">⚖️</div>
-                <h3 className="text-2xl font-bold">Find Healthier Alternatives</h3>
-              </div>
-              <p className="text-[#6B7280] leading-relaxed">
-                Compare products side-by-side. Our database suggests cleaner versions
-                of your favorite snacks instantly.
-              </p>
-              <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100 mt-4 group-hover:scale-[1.02] transition-transform">
-                <img src="/screenshots/comparison.png" alt="Product Comparison" className="w-full" />
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/features" className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:gap-3 transition-all">
-              View all features
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements Section: Gamification */}
-      <section className="py-24 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div className="order-2 lg:order-1 relative group">
-            <div className="absolute -inset-4 bg-emerald-500/10 blur-3xl rounded-full group-hover:bg-emerald-500/20 transition-all" />
-            <div className="relative rounded-[40px] overflow-hidden shadow-premium border-8 border-white">
-              <img src="/screenshots/achievements.png" alt="PureScan Achievements" className="w-full" />
-            </div>
-          </div>
-          <div className="order-1 lg:order-2 space-y-8">
-            <span className="badge-premium">Gamification</span>
-            <h2 className="text-display text-4xl md:text-5xl">
-              Turn health into
-              <br />
-              <span className="text-gradient">a daily habit.</span>
-            </h2>
-            <p className="text-xl text-[#6B7280]">
-              Earning badges while you scan! PureScan gamifies your journey to a toxin-free life,
-              keeping you motivated and informed every step of the way.
-            </p>
-            <ul className="space-y-4">
-              {['Unlock 30+ unique badges', 'Track your scanning streaks', 'Level up your health knowledge'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-lg font-medium">
-                  <span className="text-emerald-500">✓</span> {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Tool: Risk Calculator (SEO Hack) */}
-      <section className="py-24 px-6 bg-emerald-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-30">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-400 blur-[150px] -translate-y-1/2 translate-x-1/2" />
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-display text-4xl md:text-5xl mb-6">Toxin Risk Calculator</h2>
-            <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
-              Worried about a specific ingredient? Type it in below to see if it&apos;s a red flag.
-            </p>
-          </div>
-
-          <div className="card-glass p-8 md:p-12 text-[#1A1A1A]">
-            <RiskCalculator />
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section id="waitlist" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative p-12 md:p-16 rounded-[40px] bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-center overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-10 left-10 w-32 h-32 rounded-full border-2 border-white" />
-              <div className="absolute bottom-10 right-10 w-48 h-48 rounded-full border-2 border-white" />
-              <div className="absolute top-1/2 left-1/4 w-20 h-20 rounded-full bg-white/20" />
-            </div>
-
-            <div className="relative z-10">
-              <h2 className="text-display text-4xl md:text-5xl mb-6">
-                Be the first to know
-              </h2>
-              <p className="text-xl text-white/80 mb-10 max-w-xl mx-auto">
-                Join our waitlist and get early access when PureScan launches in January 2026.
-              </p>
-
-              {/* Signup Form */}
-              {!isSubmitted ? (
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-                >
-                  <input
-                    id="waitlist-email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    className="flex-1 px-6 py-4 rounded-2xl bg-white/10 backdrop-blur border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-white/40 transition-colors"
-                    disabled={isSubmitting}
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="px-8 py-4 rounded-2xl bg-white text-emerald-600 font-bold hover:bg-white/90 transition-all hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Joining...' : 'Notify Me'}
-                  </button>
-                </form>
-              ) : (
-                <div className="bg-white/20 backdrop-blur rounded-2xl p-6 max-w-md mx-auto animate-fade-up">
-                  <p className="text-xl font-bold text-white mb-2">🎉 You&apos;re on the list!</p>
-                  <p className="text-white/80">We&apos;ll let you know as soon as we launch.</p>
+                    <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 ${features.inView ? "animate-rise" : "opacity-0"}`}>
+                        <FeatureCard
+                            icon={<svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5M20.25 16.5V18A2.25 2.25 0 0 1 18 20.25h-1.5M3.75 16.5V18A2.25 2.25 0 0 0 6 20.25h1.5M12 12h.008v.008H12V12Zm0-3h.008v.008H12V9Zm0 6h.008v.008H12V15Z" /></svg>}
+                            title="Instant Barcode Scan"
+                            description="Point your camera at any barcode. We'll pull full ingredient data from our database of 50,000+ products instantly."
+                            delay={100}
+                        />
+                        <FeatureCard
+                            icon={<svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" /></svg>}
+                            title="Clear Health Score"
+                            description="A single 0-100 score tells you exactly where a product stands. No ambiguity, no hidden data — just a number you can trust."
+                            delay={200}
+                        />
+                        <FeatureCard
+                            icon={<svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" /></svg>}
+                            title="Ingredient Breakdown"
+                            description="Every ingredient is triaged into Skip, Watch, or Fine — with plain-English explanations of what they do and why they matter."
+                            delay={300}
+                        />
+                        <FeatureCard
+                            icon={<svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>}
+                            title="Better Options"
+                            description="Found something concerning? We'll show you healthier alternatives you can actually buy — verified with real nutrition data."
+                            delay={100}
+                        />
+                        <FeatureCard
+                            icon={<svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" /></svg>}
+                            title="Weekly Insights"
+                            description="Track what you've been eating over time. See flagged ingredient trends, diet breakdowns, and personal health goals."
+                            delay={200}
+                        />
+                        <FeatureCard
+                            icon={<svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>}
+                            title="Ask AI"
+                            description="Not sure about an ingredient? Tap 'Ask AI' for an evidence-based deep dive with study references."
+                            delay={300}
+                        />
+                    </div>
                 </div>
-              )}
+            </section>
 
-              <p className="text-sm text-white/60 mt-6">
-                No spam, ever. Unsubscribe anytime.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* ────────── HOW IT WORKS ────────── */}
+            <section ref={howItWorks.ref} className="py-28" style={{ background: "var(--ink)" }} id="how-it-works">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className={`text-center mb-20 ${howItWorks.inView ? "animate-rise" : "opacity-0"}`}>
+                        <span className="ps-eyebrow block mb-4" style={{ color: "var(--muted-2)" }}>How It Works</span>
+                        <h2 className="text-display text-4xl md:text-5xl mb-4" style={{ color: "var(--bg)" }}>
+                            Three steps to{" "}
+                            <span className="text-display-italic text-gradient-green">clarity.</span>
+                        </h2>
+                        <p className="text-base max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
+                            No signup walls. No subscription needed. Just scan and go.
+                        </p>
+                    </div>
 
-      {/* FAQ Preview */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-display text-4xl mb-4">Questions?</h2>
-            <p className="text-[#6B7280]">Here are some common ones.</p>
-          </div>
+                    <div className={`grid md:grid-cols-3 gap-10 ${howItWorks.inView ? "animate-rise delay-200" : "opacity-0"}`}>
+                        {[
+                            { step: "01", title: "Scan it", desc: "Point your camera at a barcode, or snap a photo of the ingredients label.", icon: "viewfinder" },
+                            { step: "02", title: "Read the score", desc: "Get an instant health score from 0-100 with ingredient flags highlighted.", icon: "chart.bar" },
+                            { step: "03", title: "Make a call", desc: "See what's flagged, check better options, and decide with confidence.", icon: "checkmark.circle" },
+                        ].map((item, i) => (
+                            <div key={i} className="relative group">
+                                <div className="mb-8">
+                                    <span className="text-mono text-sm font-bold" style={{ color: "var(--green)" }}>
+                                        {item.step}
+                                    </span>
+                                </div>
+                                <h3 className="text-display text-2xl md:text-3xl mb-4" style={{ color: "var(--bg)" }}>
+                                    {item.title}
+                                </h3>
+                                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                                    {item.desc}
+                                </p>
+                                {/* Connector line */}
+                                {i < 2 && (
+                                    <div className="hidden md:block absolute top-6 right-0 translate-x-1/2 w-[60%] h-[1px]" style={{ background: "rgba(249, 245, 239, 0.08)" }} />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-          <div className="space-y-4">
-            {[
-              { q: 'How does the scanning work?', a: 'Our AI uses advanced OCR technology to read ingredient labels from your camera. Just point, focus, and get instant results.' },
-              { q: 'Is my data private?', a: 'Absolutely. All scanning happens locally on your device. We never store or share your scans.' },
-              { q: 'Will it work on any product?', a: 'Yes! PureScan can analyze any product with an ingredient list, regardless of brand or country.' },
-            ].map((faq, i) => (
-              <details key={i} className="group p-6 rounded-2xl bg-[#FAFAF8] border border-gray-100">
-                <summary className="font-bold text-lg cursor-pointer list-none flex items-center justify-between">
-                  {faq.q}
-                  <span className="text-2xl text-emerald-500 group-open:rotate-45 transition-transform">+</span>
-                </summary>
-                <p className="mt-4 text-[#6B7280] leading-relaxed">{faq.a}</p>
-              </details>
-            ))}
-          </div>
+            {/* ────────── SCREENSHOT SHOWCASE ────────── */}
+            <section ref={screenshots.ref} className="py-28 overflow-hidden" id="screenshots">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className={`text-center mb-16 ${screenshots.inView ? "animate-rise" : "opacity-0"}`}>
+                        <span className="ps-eyebrow block mb-4">The App</span>
+                        <h2 className="text-display text-4xl md:text-5xl mb-4" style={{ color: "var(--ink)" }}>
+                            Designed for{" "}
+                            <span className="text-display-italic">calm</span> decisions.
+                        </h2>
+                        <p className="text-base max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
+                            Every pixel crafted to give you clarity without stress.
+                        </p>
+                    </div>
 
-          <div className="text-center mt-8">
-            <Link href="/faq" className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:gap-3 transition-all">
-              View all FAQs
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
+                    <div className={`flex justify-center gap-6 md:gap-10 ${screenshots.inView ? "" : "opacity-0"}`}>
+                        <PhoneMockup src="/screenshots/results-summary.png" alt="Results Summary" className="hidden sm:block" delay={100} />
+                        <PhoneMockup src="/screenshots/results-full.png" alt="Results Full" delay={200} />
+                        <PhoneMockup src="/screenshots/results-ingredients.png" alt="Ingredients" className="hidden sm:block" delay={300} />
+                    </div>
 
-      <Footer />
-    </div>
-  );
+                    {/* Second row — Insights */}
+                    <div className={`flex justify-center gap-6 md:gap-10 mt-10 ${screenshots.inView ? "" : "opacity-0"}`}>
+                        <PhoneMockup src="/screenshots/insights-top.png" alt="Insights Overview" className="hidden sm:block" delay={400} />
+                        <PhoneMockup src="/screenshots/insights-bottom.png" alt="Insights Goals" delay={500} />
+                    </div>
+                </div>
+            </section>
+
+            {/* ────────── PHILOSOPHY ────────── */}
+            <section className="py-28" style={{ background: "var(--surface)" }}>
+                <div className="max-w-4xl mx-auto px-6 text-center">
+                    <span className="ps-eyebrow block mb-4">Our Philosophy</span>
+                    <h2 className="text-display text-3xl md:text-5xl leading-tight mb-8" style={{ color: "var(--ink)" }}>
+                        &ldquo;We believe you deserve to know what you&apos;re putting in your body — without needing a PhD to understand it.&rdquo;
+                    </h2>
+                    <div className="flex items-center justify-center gap-3">
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "var(--green-bg)" }}>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--green-d)"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" /></svg>
+                        </div>
+                        <span className="text-sm font-medium" style={{ color: "var(--muted)" }}>
+                            The PureScan Team
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            {/* ────────── WAITLIST CTA ────────── */}
+            <section ref={cta.ref} className="py-28 relative overflow-hidden gradient-mesh" id="waitlist">
+                <div className={`max-w-3xl mx-auto px-6 text-center relative z-10 ${cta.inView ? "animate-push" : "opacity-0"}`}>
+                    <div className="w-16 h-16 rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-glow-green"
+                        style={{ background: "var(--green)" }}>
+                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#0F1A13"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" /></svg>
+                    </div>
+
+                    <h2 className="text-display text-4xl md:text-5xl mb-4" style={{ color: "var(--ink)" }}>
+                        Be the first to{" "}
+                        <span className="text-display-italic text-gradient-green">know.</span>
+                    </h2>
+                    <p className="text-base mb-10 max-w-lg mx-auto" style={{ color: "var(--muted)" }}>
+                        Join the waitlist and we&apos;ll let you know the moment PureScan goes live on the App Store.
+                    </p>
+
+                    <WaitlistForm />
+
+                    <p className="text-xs mt-6" style={{ color: "var(--muted-2)" }}>
+                        No spam, ever. We&apos;ll only email you about launch.
+                    </p>
+                </div>
+            </section>
+
+            <Footer />
+        </main>
+    );
 }

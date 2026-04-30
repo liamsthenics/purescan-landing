@@ -1,168 +1,131 @@
 "use client";
 
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React, { useState } from "react";
+import Link from "next/link";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const faqs = [
     {
-        category: 'General',
-        questions: [
-            {
-                question: 'What is PureScan?',
-                answer: 'PureScan is an AI-powered mobile app that scans food ingredient labels and provides instant analysis. It identifies harmful additives, seed oils, and concerning chemicals, helping you make informed decisions about what you eat.'
-            },
-            {
-                question: 'When will PureScan be available?',
-                answer: 'PureScan is launching in January 2026. Join our waitlist to be notified as soon as it\'s available and get early access.'
-            },
-            {
-                question: 'Will PureScan be free?',
-                answer: 'Yes! PureScan will offer a generous free tier with unlimited scans and basic ingredient analysis. We\'ll also offer a Premium subscription for users who want advanced features like personalized recommendations and detailed reports.'
-            },
-        ]
+        q: "How does PureScan score products?",
+        a: "Every product gets a score from 0-100 based on four dimensions: Additives (flagged ingredients), Processing (NOVA group), Nutrition (NutriScore + macros), and Sourcing (organic, natural origins). We cross-reference our own curated database of 200+ flagged additives against WHO, EFSA, FDA, and IARC data.",
     },
     {
-        category: 'Scanning',
-        questions: [
-            {
-                question: 'How accurate is the scanning?',
-                answer: 'Our AI achieves 95%+ accuracy on clear ingredient labels with good lighting. The technology works best with well-lit, focused images. If a scan doesn\'t look right, you can easily rescan or manually adjust the text.'
-            },
-            {
-                question: 'Does it work offline?',
-                answer: 'Yes! Our core ingredient database is stored locally on your device, so you can scan products without an internet connection. Some features may require connectivity, but basic scanning works completely offline.'
-            },
-            {
-                question: 'What products can I scan?',
-                answer: 'You can scan any product with an ingredient list - packaged foods, beverages, supplements, cosmetics, and more. PureScan works with products from any brand or country.'
-            },
-        ]
+        q: "Is PureScan free to use?",
+        a: "PureScan will launch with a generous free tier that gives you unlimited barcode scans and ingredient breakdowns. Premium features like AI chat, advanced insights, and healthier swap suggestions will be part of an optional subscription.",
     },
     {
-        category: 'Ingredients',
-        questions: [
-            {
-                question: 'What makes an ingredient "harmful"?',
-                answer: 'We flag ingredients based on scientific research, regulatory classifications, and health organization guidelines. Our database includes known carcinogens, endocrine disruptors, allergens, and inflammatory compounds. We always provide sources so you can learn more.'
-            },
-            {
-                question: 'What about seed oils?',
-                answer: 'PureScan automatically detects industrial seed oils (canola, soybean, vegetable, corn, sunflower, safflower, cottonseed, grapeseed, and rice bran oil). These are flagged for users who prefer to avoid them based on their health goals.'
-            },
-            {
-                question: 'How often is the database updated?',
-                answer: 'We continuously update our ingredient database as new research becomes available. Updates are pushed automatically when you\'re connected to the internet.'
-            },
-        ]
+        q: "What databases does PureScan use?",
+        a: "We combine data from Open Food Facts (the world's largest open food database), our proprietary toxicity registry, and real-time AI analysis. Every flagged ingredient is backed by references from FDA, EFSA, WHO, and peer-reviewed studies.",
     },
     {
-        category: 'Privacy',
-        questions: [
-            {
-                question: 'Is my data private?',
-                answer: 'Absolutely. Your scans are processed locally on your device whenever possible. We never sell your data to third parties, and you can delete your data at any time.'
-            },
-            {
-                question: 'Do you store my scan history?',
-                answer: 'Scan history is stored locally on your device by default. If you create an account, you can optionally sync your history across devices, but this is entirely optional.'
-            },
-        ]
+        q: "Can I scan ingredients labels directly?",
+        a: "Yes. If a barcode isn't available, you can take a photo of the ingredients list. PureScan uses on-device OCR to read the text, then analyses every ingredient the same way it would from a barcode scan.",
+    },
+    {
+        q: "Is this medical advice?",
+        a: "No. PureScan is an informational tool designed to help you understand product ingredients. We are not doctors and our scores are not medical diagnoses. Always consult a healthcare professional for specific dietary needs or medical concerns.",
+    },
+    {
+        q: "When will PureScan launch?",
+        a: "PureScan is coming to the App Store in May 2026. Join our waitlist to be notified the moment it goes live.",
+    },
+    {
+        q: "Which platforms will PureScan support?",
+        a: "We're launching on iOS first (iPhone). Android support is on our roadmap and will follow shortly after launch.",
+    },
+    {
+        q: "How is PureScan different from other food scanning apps?",
+        a: "Most food apps focus on calories or NutriScore. PureScan goes deeper — we analyse every individual ingredient for health concerns, flag specific additives like seed oils, artificial colours, and emulsifiers, and offer evidence-based healthier alternatives. Our Premium Wellness design makes complex data feel calm and intuitive.",
+    },
+    {
+        q: "Can I search for products without scanning?",
+        a: "Yes. PureScan has a built-in search feature where you can look up products by name. You can also compare two products side by side to help you decide.",
+    },
+    {
+        q: "How do I report incorrect data?",
+        a: "If you find incorrect product data, you can flag it directly in the app. We also accept ingredient label photos from users to help improve our database.",
     },
 ];
 
-export default function FAQPage() {
-    const [openIndex, setOpenIndex] = useState<string | null>('General-0');
+function FAQItem({ q, a }: { q: string; a: string }) {
+    const [open, setOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-[#FAFAF8] text-[#1A1A1A] font-sans">
-            {/* Gradient Background */}
-            <div className="fixed inset-0 gradient-mesh pointer-events-none -z-10" />
+        <div className="border-b" style={{ borderColor: "var(--line)" }}>
+            <button
+                onClick={() => setOpen(!open)}
+                className="w-full flex items-start justify-between gap-4 py-7 text-left group"
+            >
+                <h3 className="text-display text-lg md:text-xl pr-4" style={{ color: "var(--ink)", fontWeight: 400 }}>
+                    {q}
+                </h3>
+                <div className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                    style={{
+                        background: open ? "var(--green-bg)" : "var(--surface-2)",
+                        transform: open ? "rotate(45deg)" : "rotate(0deg)",
+                    }}>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke={open ? "var(--green-d)" : "var(--muted)"}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </div>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 pb-7" : "max-h-0"}`}>
+                <p className="text-sm leading-relaxed pr-12" style={{ color: "var(--muted)" }}>
+                    {a}
+                </p>
+            </div>
+        </div>
+    );
+}
 
+export default function FAQPage() {
+    return (
+        <main style={{ background: "var(--bg)" }}>
             <Header />
 
-            {/* Hero Section */}
-            <section className="pt-40 pb-20 px-6">
-                <div className="max-w-4xl mx-auto text-center">
+            {/* Hero */}
+            <section className="pt-40 pb-16 text-center gradient-mesh">
+                <div className="max-w-4xl mx-auto px-6">
                     <span className="badge-premium inline-block mb-6">FAQ</span>
-                    <h1 className="text-display text-5xl md:text-6xl mb-6">
-                        Frequently asked
-                        <br />
-                        <span className="text-gradient">questions</span>
+                    <h1 className="text-display text-5xl md:text-6xl mb-6" style={{ color: "var(--ink)" }}>
+                        Questions?{" "}
+                        <span className="text-display-italic text-gradient-green">Answered.</span>
                     </h1>
-                    <p className="text-xl text-[#6B7280] max-w-2xl mx-auto">
+                    <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
                         Everything you need to know about PureScan.
-                        Can&apos;t find what you&apos;re looking for? <a href="/contact" className="text-emerald-600 hover:underline">Contact us</a>.
                     </p>
                 </div>
             </section>
 
-            {/* FAQ Sections */}
-            <section className="py-20 px-6">
-                <div className="max-w-3xl mx-auto space-y-12">
-                    {faqs.map((section) => (
-                        <div key={section.category}>
-                            <h2 className="text-2xl font-bold mb-6">{section.category}</h2>
-                            <div className="space-y-4">
-                                {section.questions.map((faq, index) => {
-                                    const key = `${section.category}-${index}`;
-                                    return (
-                                        <div
-                                            key={index}
-                                            className={`rounded-2xl border transition-all duration-300 ${openIndex === key
-                                                    ? 'bg-white border-emerald-200 shadow-premium'
-                                                    : 'bg-white border-gray-100 hover:border-gray-200'
-                                                }`}
-                                        >
-                                            <button
-                                                onClick={() => setOpenIndex(openIndex === key ? null : key)}
-                                                className="w-full px-6 py-5 flex items-center justify-between text-left"
-                                            >
-                                                <span className="font-semibold text-lg pr-4">{faq.question}</span>
-                                                <span className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${openIndex === key
-                                                        ? 'bg-emerald-500 text-white rotate-45'
-                                                        : 'bg-gray-100 text-gray-500'
-                                                    }`}>
-                                                    +
-                                                </span>
-                                            </button>
-                                            <div className={`overflow-hidden transition-all duration-300 ${openIndex === key ? 'max-h-96' : 'max-h-0'
-                                                }`}>
-                                                <p className="px-6 pb-6 text-[#6B7280] leading-relaxed">
-                                                    {faq.answer}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            {/* FAQ List */}
+            <section className="max-w-3xl mx-auto px-6 py-20">
+                {faqs.map((faq, i) => (
+                    <FAQItem key={i} q={faq.q} a={faq.a} />
+                ))}
             </section>
 
-            {/* Still Have Questions */}
-            <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto text-center p-12 rounded-[32px] bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
-                    <h2 className="text-display text-3xl md:text-4xl mb-4">
+            {/* CTA */}
+            <section className="py-20 text-center" style={{ background: "var(--surface)" }}>
+                <div className="max-w-3xl mx-auto px-6">
+                    <h2 className="text-display text-3xl md:text-4xl mb-4" style={{ color: "var(--ink)" }}>
                         Still have questions?
                     </h2>
-                    <p className="text-white/80 mb-8">
-                        Our team is here to help.
+                    <p className="text-base mb-8" style={{ color: "var(--muted)" }}>
+                        Drop us a line and we&apos;ll get back to you.
                     </p>
-                    <a
-                        href="/contact"
-                        className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-4 rounded-2xl font-bold hover:bg-white/90 transition-all"
-                    >
-                        Contact Support
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </a>
+                    <div className="flex gap-4 justify-center">
+                        <a href="mailto:hello@purescan.io" className="btn-primary text-sm">
+                            Contact Us
+                        </a>
+                        <Link href="/#waitlist" className="btn-secondary text-sm">
+                            Join Waitlist
+                        </Link>
+                    </div>
                 </div>
             </section>
 
             <Footer />
-        </div>
+        </main>
     );
 }
