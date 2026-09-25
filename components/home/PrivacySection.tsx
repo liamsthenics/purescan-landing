@@ -4,7 +4,7 @@ const POINTS = [
   { title: "No account", body: "Open the app and scan. There’s nothing to sign up for." },
   {
     title: "On your phone",
-    body: "Your scan history, allergens, diet and avoid list are stored only on your device.",
+    body: "Your scan history, allergens, diet and watch list are stored only on your device.",
   },
   {
     title: "Just the barcode",

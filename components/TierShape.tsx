@@ -1,7 +1,7 @@
 import { tierInfo, type Tier } from "@/lib/tiers";
 
 // Tiers use a shape and a word so colour is never the only signal:
-// Avoid ◆, Limit ▲, Minor ●, No known concerns ○.
+// High ◆, Moderate ▲, Low ●, No known concern ○.
 
 interface TierShapeProps {
   tier: Tier;
@@ -27,7 +27,10 @@ interface TierChipProps {
   className?: string;
 }
 
-/** "▲ Limit" chip on a 10% tint of the tier colour. */
+/**
+ * "▲ Moderate concern" chip on a 10% tint of the tier colour. The web uses the full
+ * tier name because visitors often land on a page without the app's context.
+ */
 export function TierChip({ tier, className }: TierChipProps) {
   const { label, colorVar } = tierInfo(tier);
   return (

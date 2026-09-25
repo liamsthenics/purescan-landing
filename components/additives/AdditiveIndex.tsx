@@ -92,7 +92,7 @@ export function AdditiveIndex({ additives }: AdditiveIndexProps) {
           spellCheck={false}
           className="h-12 w-full rounded-2xl bg-surface px-4 text-[16px] text-ink hairline-ring placeholder:text-secondary focus:outline-2 focus:outline-brand"
         />
-        <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by rating">
+        <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by concern tier">
           <FilterChip
             label="All"
             count={matchingQuery.length}
@@ -102,7 +102,7 @@ export function AdditiveIndex({ additives }: AdditiveIndexProps) {
           {TIERS.map((info) => (
             <FilterChip
               key={info.tier}
-              label={info.label}
+              label={info.chipLabel}
               count={countFor(info.tier)}
               tier={info.tier}
               isSelected={tierFilter === info.tier}

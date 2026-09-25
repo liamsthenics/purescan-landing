@@ -130,7 +130,12 @@
   color: var(--secondary);
 }
 
-.heldDown {
+/* Keeps each fact ("Ultra-processed") on one line; the line breaks between facts. */
+.whyFact {
+  white-space: nowrap;
+}
+
+.capNote {
   margin-top: calc(16 * var(--pt));
   padding: calc(10 * var(--pt)) calc(12 * var(--pt));
   border-radius: calc(12 * var(--pt));
@@ -140,7 +145,7 @@
   text-align: left;
 }
 
-.heldDown strong {
+.capNote strong {
   font-weight: 600;
   color: var(--poor);
 }

@@ -6,11 +6,11 @@ export function scoreEffect(tier: Tier): string {
   const penalty = INGREDIENT_PENALTIES[tier];
   switch (tier) {
     case "high":
-      return `An ingredient rated Avoid removes ${penalty} points from the additives and ingredients part of the score, and holds a product’s whole score to ${capRule("avoidIngredient").max} or below.`;
+      return `An ingredient of high concern removes ${penalty} points from the additives and ingredients part of the score, and caps a product’s whole score at ${capRule("highConcernIngredient").max}.`;
     case "moderate":
-      return `An ingredient rated Limit removes ${penalty} points from the additives and ingredients part of the score. One Limit ingredient caps a score at ${capRule("limitIngredient").max}, two at ${capRule("twoLimitIngredients").max}, and three or more at ${capRule("severalLimitIngredients").max}.`;
+      return `An ingredient of moderate concern removes ${penalty} points from the additives and ingredients part of the score. One caps a score at ${capRule("moderateIngredient").max}, two at ${capRule("twoModerateIngredients").max}, and three or more at ${capRule("severalModerateIngredients").max}.`;
     case "low":
-      return `An ingredient rated Minor removes ${penalty} points from the additives and ingredients part of the score. Minor ratings never cap a score.`;
+      return `An ingredient of low concern removes ${penalty} points from the additives and ingredients part of the score. Low concern ratings never cap a score.`;
     case "none":
       return "With no known concerns, it doesn’t lower a product’s score.";
   }

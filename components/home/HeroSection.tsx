@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FIZZBROOK_COLA } from "@/lib/examples";
+import { SITE_TAGLINE, SITE_TAGLINE_FOLLOW_UP } from "@/lib/site";
 import { AppStoreButton } from "../AppStoreButton";
 import { BrandMark } from "../BrandMark";
 import { ArrowRightIcon, CheckIcon } from "../icons";
@@ -13,12 +14,12 @@ export function HeroSection() {
       <div className="container-page grid items-center gap-16 pb-20 pt-12 md:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:pb-28">
         <div>
           <p className="section-label">A food scanner for UK shoppers</p>
-          <h1 id="hero-heading" className="type-display mt-5 max-w-[11ch]">
-            Know what’s really in your food.
+          <h1 id="hero-heading" className="type-display mt-5 max-w-[13ch]">
+            {SITE_TAGLINE.replace("'", "’")}
           </h1>
           <p className="type-lede mt-7 max-w-[33rem]">
-            Scan a barcode for one honest score from 0 to 100, with every additive rated and sourced, UK
-            traffic-light nutrition, and a healthier swap when there is one.
+            Scan a barcode for one score from 0 to 100, every additive with its evidence and sources, and UK
+            traffic-light nutrition. <span className="text-ink">{SITE_TAGLINE_FOLLOW_UP}</span>
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-5">
             <AppStoreButton />

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList } from "@/components/FaqList";
 import { AdditivesSection } from "@/components/home/AdditivesSection";
+import { AlternativesSection } from "@/components/home/AlternativesSection";
+import { AskSection } from "@/components/home/AskSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { NutritionSection } from "@/components/home/NutritionSection";
 import { PricingSection } from "@/components/home/PricingSection";
 import { PrivacySection } from "@/components/home/PrivacySection";
 import { ScoreSection } from "@/components/home/ScoreSection";
 import { ShareSection } from "@/components/home/ShareSection";
-import { SwapsSection } from "@/components/home/SwapsSection";
 import { JsonLd } from "@/components/JsonLd";
 import { SectionIntro } from "@/components/SectionIntro";
 import { HOME_FAQ, faqJsonLd } from "@/lib/faq";
@@ -65,7 +66,8 @@ export default function HomePage() {
       <ScoreSection />
       <AdditivesSection />
       <NutritionSection />
-      <SwapsSection />
+      <AlternativesSection />
+      <AskSection />
       <ShareSection />
       <PrivacySection />
       <PricingSection />

@@ -1,5 +1,6 @@
 import { FIZZBROOK_COLA } from "@/lib/examples";
 import { SOFT_CAP_FLOOR, WEIGHTS, scoreProduct, softCap } from "@/lib/scoring";
+import { capNoteFor } from "@/lib/result-copy";
 import { verdictFor } from "@/lib/verdict";
 import { ScoreGauge } from "../ScoreGauge";
 
@@ -14,11 +15,12 @@ export function WorkedExample() {
   const cap = result.cap;
   const nutrition = result.nutrition ?? 0;
   const processing = result.processing ?? 0;
+  const note = capNoteFor(product);
 
   const steps = [
     {
       label: "Additives & ingredients",
-      detail: `Three rated Limit: 100 − 3 × 20`,
+      detail: "Three of moderate concern: 100 − 3 × 20",
       value: String(result.ingredients),
     },
     { label: "Nutrition", detail: "Sugars High for a drink: 100 − 60", value: String(nutrition) },
@@ -67,7 +69,7 @@ export function WorkedExample() {
       <p className="mt-4 text-[15px] text-ink">
         Score <strong className="font-semibold tabular-nums">{result.score}</strong>, {verdictFor(result.score).title}:
         “{verdictFor(result.score).headline}”.
-        {cap && <span className="text-secondary"> Held down: {cap.heldDown}.</span>}
+        {note && <span className="text-secondary"> {note}.</span>}
       </p>
     </div>
   );

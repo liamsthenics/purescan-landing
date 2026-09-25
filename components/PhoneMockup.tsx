@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { ExampleProduct } from "@/lib/examples";
-import { formatGrams, heldDownNote, nutrientReadings, whyLine } from "@/lib/result-copy";
+import { capNoteParts, formatGrams, nutrientReadings, whyLine, whyLineFacts } from "@/lib/result-copy";
 import { scoreProduct } from "@/lib/scoring";
 import { tierInfo } from "@/lib/tiers";
 import { verdictFor } from "@/lib/verdict";
@@ -44,7 +44,7 @@ function StatusIcons() {
 export function PhoneMockup({ product, width, className }: PhoneMockupProps) {
   const { score } = scoreProduct(product.facts);
   const verdict = verdictFor(score);
-  const note = heldDownNote(product);
+  const capNote = capNoteParts(product);
   const readings = nutrientReadings(product);
   const description = `The PureScan result screen for ${product.name}, a fictional product: score ${score} out of 100, ${verdict.title}. ${whyLine(product)}.`;
 
@@ -82,16 +82,23 @@ export function PhoneMockup({ product, width, className }: PhoneMockupProps) {
             <div className={styles.verdictBlock}>
               <ScoreGauge score={score} size="hero" width={`calc(132 * ${PT})`} />
               <p className={styles.verdictHeadline}>{verdict.headline}</p>
-              <p className={styles.whyLine}>{whyLine(product)}</p>
-              {note && (
-                <p className={styles.heldDown}>
-                  <strong>Held down:</strong> {note.replace(/^Held down: /, "")}
+              <p className={styles.whyLine}>
+                {whyLineFacts(product).map((fact, index) => (
+                  <span key={fact} className={styles.whyFact}>
+                    {index > 0 && " · "}
+                    {fact}
+                  </span>
+                ))}
+              </p>
+              {capNote && (
+                <p className={styles.capNote}>
+                  <strong>{capNote.label}:</strong> {capNote.reason}
                 </p>
               )}
             </div>
 
             <p className={styles.sectionLabel}>
-              <span>What to know</span>
+              <span>What’s inside</span>
               <span className={styles.sectionTrailing}>{product.findings.length} flagged</span>
             </p>
             <div className={styles.card}>
@@ -110,7 +117,7 @@ export function PhoneMockup({ product, width, className }: PhoneMockupProps) {
                     </span>
                   </span>
                   <span className={styles.rowTrailing}>
-                    {tierInfo(finding.tier).label}
+                    {tierInfo(finding.tier).chipLabel}
                     <ChevronRightIcon className={styles.chevron} />
                   </span>
                 </div>

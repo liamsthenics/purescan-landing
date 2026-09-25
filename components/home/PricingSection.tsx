@@ -8,14 +8,15 @@ const FREE_FEATURES = [
   "Unlimited scans",
   "Full scores and findings",
   "Allergen and diet alerts",
-  "Your first healthier swap",
+  "Your first higher-scoring alternative",
   `Your latest ${FREE_HISTORY_LIMIT} scans`,
 ];
 
 const PREMIUM_FEATURES = [
   "Everything in Free",
-  "Every healthier swap",
-  "Alerts for your avoid list",
+  "Ask PureScan about any product or ingredient",
+  "Every higher-scoring alternative",
+  "Alerts for your watch list",
   "This-vs-That compare",
   "Your full scan history",
 ];
@@ -38,7 +39,7 @@ export function PricingSection() {
     <section id="pricing" aria-labelledby="pricing-heading" className="border-t border-separator py-20 md:py-28">
       <div className="container-page">
         <SectionIntro label="Pricing" title="Free to scan. Premium for more." headingId="pricing-heading" align="center">
-          <p>Every scan and every score is free. Premium adds more ways to act on what you find.</p>
+          <p>Every scan and every score is free. Premium adds more ways to dig into what you find.</p>
         </SectionIntro>
 
         <div className="mx-auto mt-14 grid max-w-4xl gap-5 md:grid-cols-2">

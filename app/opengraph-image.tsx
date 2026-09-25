@@ -2,11 +2,11 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { gaugeArcPath } from "@/lib/gauge";
-import { SITE_TAGLINE } from "@/lib/site";
+import { SHARE_IMAGE_ALT, SITE_TAGLINE, SITE_TAGLINE_FOLLOW_UP } from "@/lib/site";
 
 // The shared Open Graph image: brand mark, wordmark, headline and a score gauge.
 
-export const alt = "PureScan: know what's really in your food. One honest score for UK food.";
+export const alt = SHARE_IMAGE_ALT;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -84,11 +84,11 @@ export default async function OpenGraphImage() {
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 94, lineHeight: 0.98, letterSpacing: "-0.02em", maxWidth: 640 }}>
+            <div style={{ fontSize: 84, lineHeight: 0.98, letterSpacing: "-0.02em", maxWidth: 660 }}>
               {SITE_TAGLINE.replace("'", "’")}
             </div>
             <div style={{ marginTop: 26, fontSize: 34, color: SECONDARY, lineHeight: 1.2 }}>
-              One honest score for UK food, with sources.
+              {SITE_TAGLINE_FOLLOW_UP}
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ import { VERDICTS, verdictColorVar } from "@/lib/verdict";
 export const metadata: Metadata = pageMetadata({
   title: "How we score food",
   description:
-    "The full PureScan method: how additives, UK traffic-light nutrition and NOVA processing combine into one 0–100 score, the caps that hold a score down, and our sources.",
+    "The full PureScan method: how additives, UK traffic-light nutrition and NOVA processing combine into one 0–100 score, the caps that limit a score, and our sources.",
   path: "/how-we-score",
 });
 
@@ -50,7 +50,7 @@ function Formula() {
       </p>
       <p className="mt-4 text-[15px] leading-relaxed text-secondary">
         Each part is scored from 0 to 100. If a part can’t be worked out, it’s left out and the others are
-        re-weighted, then the strictest cap that applies holds the result down.
+        re-weighted, then the strictest cap that applies sets the maximum.
       </p>
     </div>
   );
@@ -141,7 +141,7 @@ function SourcesList() {
 }
 
 export default function HowWeScorePage() {
-  const avoidCap = capRule("avoidIngredient").max;
+  const highConcernCap = capRule("highConcernIngredient").max;
   return (
     <div className="container-page">
       <header className="max-w-3xl pb-14 pt-14 md:pb-20 md:pt-20">
@@ -166,12 +166,12 @@ export default function HowWeScorePage() {
       <MethodSection id="ingredients" number="02" title={`Additives & ingredients · ${percent(WEIGHTS.ingredients)}`}>
         <p>
           This part starts at 100. Every additive and flagged ingredient is checked against our knowledge base and
-          removes points by its rating, down to a minimum of 0.
+          removes points by its concern tier, down to a minimum of 0.
         </p>
         <TierPenalties />
         <p>
-          Ratings are built from decisions by bodies such as EFSA, the WHO, IARC and the FDA, and from peer-reviewed
-          research. Each flagged additive lists its reasons and sources.{" "}
+          Concern tiers are built from decisions by bodies such as EFSA, the WHO, IARC, the UK Food Standards Agency
+          and the FDA, and from peer-reviewed research. Each flagged additive lists its reasons and sources.{" "}
           <Link href="/additives" className="text-link">
             Browse every additive
           </Link>
@@ -212,9 +212,8 @@ export default function HowWeScorePage() {
 
       <MethodSection id="caps" number="05" title="Caps">
         <p>
-          A product can’t average its way out of a serious problem. If one of these applies, the score is held down
-          to about the maximum shown. Only the lowest cap that applies counts, and the app tells you which one it
-          was.
+          A product can’t average its way out of a serious problem. If one of these applies, the score is capped at
+          about the maximum shown. Only the lowest cap that applies counts, and the app tells you which one it was.
         </p>
         <CapsTable />
         <p>
@@ -224,7 +223,7 @@ export default function HowWeScorePage() {
           ingredients (NOVA 1 and 2), such as nuts, plain yoghurt or butter, never trigger a cap.
         </p>
         <p>
-          An ingredient rated Avoid holds any product to {avoidCap} or below, whatever else is in it. There are{" "}
+          An ingredient of high concern caps any product at {highConcernCap}, whatever else is in it. There are{" "}
           {CAPS.length} caps in all.
         </p>
       </MethodSection>
@@ -243,13 +242,16 @@ export default function HowWeScorePage() {
       </MethodSection>
 
       <MethodSection id="verdicts" number="07" title="Verdicts">
-        <p>Every score falls into one of four bands, each with a fixed headline.</p>
+        <p>
+          Every score falls into one of four bands, each with a fixed headline. A verdict rates the product, not the
+          person, and what you do with it is up to you.
+        </p>
         <VerdictBands />
       </MethodSection>
 
       <MethodSection id="personal" number="08" title="What never changes a score">
         <p>
-          Your allergens, diet and avoid list add personal alerts to a result, but they never change the score. That
+          Your allergens, diet and watch list add personal alerts to a result, but they never change the score. That
           way a score means the same thing to everyone, and you can compare notes with anyone.
         </p>
         <p>

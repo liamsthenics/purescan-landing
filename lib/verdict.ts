@@ -6,17 +6,17 @@ export interface VerdictInfo {
   verdict: Verdict;
   /** Word shown under the gauge, e.g. "Poor". */
   title: string;
-  /** Fixed headline shown on the result screen. */
+  /** Fixed headline shown on the result screen: a rating of the product, not advice. */
   headline: string;
   minScore: number;
   maxScore: number;
 }
 
 export const VERDICTS: readonly VerdictInfo[] = [
-  { verdict: "great", title: "Great", headline: "A great choice", minScore: 75, maxScore: 100 },
-  { verdict: "okay", title: "Okay", headline: "Fine now and then", minScore: 50, maxScore: 74 },
-  { verdict: "poor", title: "Poor", headline: "Best kept occasional", minScore: 25, maxScore: 49 },
-  { verdict: "bad", title: "Bad", headline: "Best avoided", minScore: 0, maxScore: 24 },
+  { verdict: "great", title: "Great", headline: "Scores highly", minScore: 75, maxScore: 100 },
+  { verdict: "okay", title: "Okay", headline: "A mixed picture", minScore: 50, maxScore: 74 },
+  { verdict: "poor", title: "Poor", headline: "Scores low", minScore: 25, maxScore: 49 },
+  { verdict: "bad", title: "Bad", headline: "Scores very low", minScore: 0, maxScore: 24 },
 ];
 
 export function verdictFor(score: number): VerdictInfo {

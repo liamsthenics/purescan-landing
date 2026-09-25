@@ -32,9 +32,9 @@ function truncate(text: string, maxLength: number): string {
 function describe(additive: Additive): string {
   if (additive.tier === "none") {
     const role = additive.functions.length > 0 ? ` (${formatFunctions(additive.functions).toLowerCase()})` : "";
-    return `${additive.code} ${additive.name}${role}: what it is, how PureScan rates it and the EFSA evaluation. No known concerns at permitted levels.`;
+    return `${additive.code} ${additive.name}${role}: what it is, what the evidence says and the EFSA evaluation. No known concerns at permitted levels.`;
   }
-  return truncate(`Rated ${tierInfo(additive.tier).label} by PureScan. ${additive.summary ?? ""}`, DESCRIPTION_MAX_LENGTH);
+  return truncate(`${tierInfo(additive.tier).label} in PureScan. ${additive.summary ?? ""}`, DESCRIPTION_MAX_LENGTH);
 }
 
 export async function generateMetadata({ params }: PageProps<"/additives/[slug]">): Promise<Metadata> {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps<"/additives/[slug]"
   const additive = getAdditiveBySlug(slug);
   if (!additive) return {};
   return pageMetadata({
-    title: `${additive.code} ${additive.name}: what it is and whether it's safe`,
+    title: `${additive.code} ${additive.name}: what it is and what the evidence says`,
     description: describe(additive),
     path: `/additives/${additive.slug}`,
   });
@@ -65,7 +65,7 @@ function FlaggedDetails({ additive }: { additive: Additive }) {
       {additive.reasons.length > 0 && (
         <section aria-labelledby="why-heading" className="mt-12">
           <h2 id="why-heading" className="section-label mb-5">
-            Why it’s flagged
+            What the evidence says
           </h2>
           <ReasonList reasons={additive.reasons} />
         </section>

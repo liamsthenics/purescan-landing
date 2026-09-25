@@ -2,7 +2,7 @@ interface ReasonListProps {
   reasons: readonly string[];
 }
 
-/** Numbered "Why it's flagged" list. */
+/** Numbered "What the evidence says" list. */
 export function ReasonList({ reasons }: ReasonListProps) {
   return (
     <ol className="space-y-3">

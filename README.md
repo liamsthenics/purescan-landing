@@ -1,6 +1,6 @@
 # purescan.io
 
-Marketing site for PureScan, the UK food scanner for iPhone. Next.js (app router), React 19, Tailwind 4, TypeScript. Every page is statically generated.
+Marketing site and API for PureScan, the UK food scanner for iPhone. Next.js (app router), React 19, Tailwind 4, TypeScript. Every page is statically generated; the only server code is `POST /api/chat` (Ask PureScan).
 
 ## Run it
 
@@ -12,7 +12,7 @@ npm run lint
 npm run build
 ```
 
-No environment variables are needed.
+The pages need no environment variables. Ask PureScan needs `ANTHROPIC_API_KEY` and reads `CHAT_ENABLED`, `CHAT_GLOBAL_DAILY_LIMIT`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` and `CHAT_HASH_SECRET` (required with Upstash); see `.env.example`.
 
 ## Where things live
 
@@ -24,6 +24,10 @@ No environment variables are needed.
 | Privacy and terms copy | `content/legal.md` → `app/privacy`, `app/terms` |
 | Design tokens (light and dark) | `app/globals.css` |
 | Fictional example products | `lib/examples.ts` |
+| Voice and vocabulary (inform, never advise) | `docs/voice.md`, banned phrases in `lib/voice.ts` |
+| Ask PureScan API contract | `docs/chat-api.md` |
+| Ask PureScan server (validation, Apple verification, rate limits, prompt) | `lib/chat/`, route in `app/api/chat/route.ts` |
+| Apple root certificates for StoreKit verification | `certs/apple/` |
 
 ## Updating additive data
 
@@ -38,6 +42,10 @@ npm run sync:knowledge -- /path/to/knowledge.json
 
 When the app is live, set `APP_STORE_LIVE = true` in `lib/site.ts`. That turns every "Coming soon" note into an App Store link, adds the link to the JSON-LD and enables Safari's Smart App Banner. Consider swapping in Apple's official badge artwork at the same time.
 
+## Ask PureScan
+
+`POST /api/chat` follows `docs/chat-api.md`: it checks the caller's StoreKit 2 Premium transaction with Apple's App Store Server Library (Production, then Sandbox), validates the request, applies rate limits (Upstash Redis when configured, otherwise in memory) and streams an answer from Anthropic as server-sent events. The system prompt is in `lib/chat/system-prompt.ts` and is built from the same scoring constants as the site. Message content is never logged or stored. Set `CHAT_ENABLED=false` to switch it off.
+
 ## Copy rules
 
-UK English, calm and evidence-led. No "toxic", "poison", "junk" or scare words; say "we suggest limiting". No health outcome claims. Name the source next to every claim. Example products are fictional; never show a real brand negatively.
+Follow `docs/voice.md`: PureScan informs; it never advises. Describe what's in the food and attribute every judgement to its source ("EFSA set an acceptable daily intake…"); never tell people to eat, avoid, limit, choose or swap anything. UK English, sentence case, no "toxic", "poison", "junk" or other scare words, no health outcome claims. Name the source next to every claim. Example products are fictional; never show a real brand negatively. `npm test` fails if a banned phrase from `lib/voice.ts` appears in `app/`, `components/`, `lib/` or `content/`.

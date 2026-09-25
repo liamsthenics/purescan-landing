@@ -75,13 +75,13 @@ export const PROCESSING_EXPLANATIONS: Record<NovaGroup, string> = {
 };
 
 export type CapReason =
-  | "avoidIngredient"
-  | "severalLimitIngredients"
+  | "highConcernIngredient"
+  | "severalModerateIngredients"
   | "ultraProcessedAndHighIn"
-  | "twoLimitIngredients"
+  | "twoModerateIngredients"
   | "highIn"
   | "ultraProcessed"
-  | "limitIngredient"
+  | "moderateIngredient"
   | "missingNutrition";
 
 export interface CapRule {
@@ -89,21 +89,31 @@ export interface CapRule {
   max: number;
   /** When the cap applies. */
   condition: string;
-  /** The app's "Held down: …" wording. */
-  heldDown: string;
+  /** Factual reason shown after "Capped at N: ", in its general form. */
+  capReason: string;
 }
 
 /** Every cap, strictest first. The lowest applicable cap wins. */
 export const CAPS: readonly CapRule[] = [
-  { reason: "avoidIngredient", max: 30, condition: "Contains an ingredient rated Avoid", heldDown: "contains an ingredient we suggest avoiding" },
-  { reason: "severalLimitIngredients", max: 40, condition: "Three or more rated Limit", heldDown: "contains several ingredients we suggest limiting" },
-  { reason: "ultraProcessedAndHighIn", max: 45, condition: "Ultra-processed and high in sugar, salt or saturates", heldDown: "ultra-processed and high in sugars" },
-  { reason: "twoLimitIngredients", max: 50, condition: "Two rated Limit", heldDown: "contains two ingredients we suggest limiting" },
-  { reason: "highIn", max: 60, condition: "High in sugar, salt or saturates", heldDown: "high in sugars" },
-  { reason: "ultraProcessed", max: 60, condition: "Ultra-processed (NOVA 4)", heldDown: "ultra-processed" },
-  { reason: "limitIngredient", max: 65, condition: "One rated Limit", heldDown: "contains an ingredient we suggest limiting" },
-  { reason: "missingNutrition", max: 70, condition: "Nutrition information missing", heldDown: "nutrition information is missing" },
+  { reason: "highConcernIngredient", max: 30, condition: "Contains an ingredient of high concern", capReason: "contains an ingredient of high concern" },
+  { reason: "severalModerateIngredients", max: 40, condition: "Three or more of moderate concern", capReason: "contains 3 or more ingredients of moderate concern" },
+  { reason: "ultraProcessedAndHighIn", max: 45, condition: "Ultra-processed and high in sugar, salt or saturates", capReason: "ultra-processed and high in sugar, salt or saturates" },
+  { reason: "twoModerateIngredients", max: 50, condition: "Two of moderate concern", capReason: "contains 2 ingredients of moderate concern" },
+  { reason: "highIn", max: 60, condition: "High in sugar, salt or saturates", capReason: "high in sugar, salt or saturates" },
+  { reason: "ultraProcessed", max: 60, condition: "Ultra-processed (NOVA 4)", capReason: "ultra-processed" },
+  { reason: "moderateIngredient", max: 65, condition: "One of moderate concern", capReason: "contains 1 ingredient of moderate concern" },
+  { reason: "missingNutrition", max: 70, condition: "Nutrition information missing", capReason: "nutrition information is missing" },
 ];
+
+/** "Capped at 40", the start of every cap note. */
+export function capLabel(max: number): string {
+  return `Capped at ${max}`;
+}
+
+/** "Capped at 40: contains 3 ingredients of moderate concern" (docs/voice.md wording). */
+export function capNote(max: number, reason: string): string {
+  return `${capLabel(max)}: ${reason}`;
+}
 
 /** Capped products score between this fraction of the cap and the full cap. */
 export const SOFT_CAP_FLOOR = 0.4;
@@ -167,8 +177,8 @@ function nutritionPart(facts: ProductFacts, levels: { nutrient: Nutrient; band: 
   return Math.min(100, Math.max(0, score));
 }
 
-/** Whether a red traffic light holds the score down (natural fat in whole foods doesn't). */
-function countsAsHighIn(nutrient: Nutrient, facts: ProductFacts): boolean {
+/** Whether a red traffic light triggers a cap (natural fat in whole foods doesn't). */
+export function countsAsHighIn(nutrient: Nutrient, facts: ProductFacts): boolean {
   const isFat = nutrient === "fat" || nutrient === "saturatedFat";
   if (isFat && (facts.nova === 1 || facts.nova === 2)) return false;
   if (nutrient !== "fat") return true;
@@ -178,11 +188,11 @@ function countsAsHighIn(nutrient: Nutrient, facts: ProductFacts): boolean {
 function applicableCaps(facts: ProductFacts, isHighIn: boolean, hasNutrition: boolean): CapReason[] {
   const reasons: CapReason[] = [];
   if (!hasNutrition) reasons.push("missingNutrition");
-  if (facts.findings.includes("high")) reasons.push("avoidIngredient");
-  const limitCount = facts.findings.filter((tier) => tier === "moderate").length;
-  if (limitCount === 1) reasons.push("limitIngredient");
-  if (limitCount === 2) reasons.push("twoLimitIngredients");
-  if (limitCount >= 3) reasons.push("severalLimitIngredients");
+  if (facts.findings.includes("high")) reasons.push("highConcernIngredient");
+  const moderateCount = facts.findings.filter((tier) => tier === "moderate").length;
+  if (moderateCount === 1) reasons.push("moderateIngredient");
+  if (moderateCount === 2) reasons.push("twoModerateIngredients");
+  if (moderateCount >= 3) reasons.push("severalModerateIngredients");
   if (isHighIn) reasons.push("highIn");
   if (facts.nova === 4) reasons.push(isHighIn ? "ultraProcessedAndHighIn" : "ultraProcessed");
   return reasons;

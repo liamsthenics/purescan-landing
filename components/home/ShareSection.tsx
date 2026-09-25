@@ -45,7 +45,7 @@ function ResultShareCard() {
   );
 }
 
-function SwapShareCard() {
+function CompareShareCard() {
   const before = FIZZBROOK_COLA;
   const after = CLEARWELL_LIME;
   const beforeScore = exampleScore(before);
@@ -55,7 +55,7 @@ function SwapShareCard() {
   return (
     <figure
       className="flex aspect-square w-full flex-col items-center justify-between mx-auto max-w-[340px] rounded-[22px] bg-paper p-6 text-center shadow-[var(--shadow-float)]"
-      aria-label={`Swap card: ${after.name} scores ${afterScore - beforeScore} points higher than ${before.name}`}
+      aria-label={`Comparison card: ${after.name} scores ${afterScore - beforeScore} points higher than ${before.name}`}
       role="img"
     >
       <p className="section-label" aria-hidden="true">
@@ -96,7 +96,7 @@ export function ShareSection() {
         </SectionIntro>
         <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
           <ResultShareCard />
-          <SwapShareCard />
+          <CompareShareCard />
         </div>
       </div>
     </section>

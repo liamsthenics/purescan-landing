@@ -35,7 +35,7 @@ const GETTING_STARTED = [
   },
   {
     title: "Your preferences",
-    body: "Add allergens, a diet or an avoid list and PureScan alerts you when a product matches. Alerts are personal and never change the score.",
+    body: "Add allergens, a diet or a watch list and PureScan tells you when a product contains something on it. Alerts are personal and never change the score.",
   },
   {
     title: "Your history",
@@ -90,8 +90,8 @@ export default function SupportPage() {
               Manage or cancel your subscription
             </h2>
             <p className="mt-4 text-[17px] leading-relaxed text-secondary">
-              PureScan Premium is sold and billed by Apple, so you manage it in your iPhone’s settings. To avoid being
-              charged for the next period, cancel at least 24 hours before it renews.
+              PureScan Premium is sold and billed by Apple, so you manage it in your iPhone’s settings. Cancel at least
+              24 hours before it renews and you won’t be charged for the next period.
             </p>
             <ol className="card mt-6 divide-y divide-separator">
               {CANCEL_STEPS.map((step, index) => (

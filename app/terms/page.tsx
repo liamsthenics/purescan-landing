@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { CONTACT_EMAIL, ODBL_URL } from "@/lib/site";
 
 // Copy from content/legal.md ("Terms of use"). Update both together.
-const LAST_UPDATED = "25 September 2026";
+const LAST_UPDATED = "26 September 2026";
 const APPLE_EULA_URL = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 
 export const metadata: Metadata = pageMetadata({
@@ -29,6 +29,11 @@ export default function TermsPage() {
           <strong>Accuracy.</strong> Product data comes from Open Food Facts, which is built by volunteers, and recipes
           change. We work hard to make scores accurate and consistent, but we can’t guarantee that any product’s data
           is complete or current. Allergen alerts rely on that data too, so check the pack.
+        </li>
+        <li>
+          <strong>Ask PureScan.</strong> Premium subscribers can ask questions about food and ingredients. Answers
+          are written by an AI model from PureScan’s data and public evidence. They’re general information, can be
+          incomplete or wrong, and aren’t medical, dietary or allergy advice. Fair-use limits apply.
         </li>
         <li>
           <strong>Our ratings are opinions.</strong> Scores and ratings are PureScan’s assessment using our published

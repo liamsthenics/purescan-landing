@@ -22,30 +22,30 @@ test("drinks use levy-based sugar bands", () => {
   assert.equal(bandFor("sugars", 8.1, false), "medium");
 });
 
-test("the Fizzbrook example scores 25, held down by three Limit ingredients", () => {
+test("the Fizzbrook example scores 25, capped by three ingredients of moderate concern", () => {
   const result = scoreProduct(FIZZBROOK_COLA.facts);
   assert.equal(result.ingredients, 40);
   assert.equal(result.nutrition, 40);
   assert.equal(result.processing, 30);
   assert.equal(Math.round(result.average), 38);
-  assert.equal(result.cap?.reason, "severalLimitIngredients");
+  assert.equal(result.cap?.reason, "severalModerateIngredients");
   assert.equal(result.score, 25);
 });
 
-test("the Orchard Lane swap scores 84 with no cap", () => {
+test("the Orchard Lane alternative scores 84 with no cap", () => {
   const result = scoreProduct(ORCHARD_LANE_PRESSE.facts);
   assert.equal(result.cap, null);
   assert.equal(result.score, 84);
 });
 
-test("an Avoid ingredient holds a product down to at most 30", () => {
+test("an ingredient of high concern caps a product at 30", () => {
   const result = scoreProduct({
     findings: ["high"],
     nutrition: { fat: 1, saturatedFat: 0.5, sugars: 2, salt: 0.1 },
     isDrink: false,
     nova: 3,
   });
-  assert.equal(result.cap?.reason, "avoidIngredient");
+  assert.equal(result.cap?.reason, "highConcernIngredient");
   assert.ok(result.score <= 30);
 });
 
@@ -66,12 +66,27 @@ test("missing nutrition caps the score at 70", () => {
   assert.equal(result.score, 70);
 });
 
-test("result copy for the examples matches the app's wording", async () => {
+test("a cap note names only the red lights that caused the cap", async () => {
+  const { capNoteFor } = await import("../lib/result-copy.ts");
+  // High in fat and sugars, but with enough protein that high fat doesn't count towards a cap.
+  const proteinBar = {
+    ...FIZZBROOK_COLA,
+    facts: {
+      findings: [],
+      nutrition: { fat: 25, saturatedFat: 3, sugars: 30, salt: 0.2, protein: 12 },
+      isDrink: false,
+      nova: 3 as const,
+    },
+  };
+  assert.equal(capNoteFor(proteinBar), "Capped at 60: high in sugars");
+});
+
+test("result copy for the examples follows the voice guide", async () => {
   const { CLEARWELL_LIME } = await import("../lib/examples.ts");
-  const { heldDownNote, mainDifference, whyLine, formatGrams } = await import("../lib/result-copy.ts");
-  assert.equal(whyLine(FIZZBROOK_COLA), "3 to limit · High in sugars · Ultra-processed");
-  assert.equal(heldDownNote(FIZZBROOK_COLA), "Held down: contains several ingredients we suggest limiting.");
-  assert.equal(heldDownNote(CLEARWELL_LIME), null);
+  const { capNoteFor, mainDifference, whyLine, formatGrams } = await import("../lib/result-copy.ts");
+  assert.equal(whyLine(FIZZBROOK_COLA), "3 of moderate concern · High in sugars · Ultra-processed");
+  assert.equal(capNoteFor(FIZZBROOK_COLA), "Capped at 40: contains 3 ingredients of moderate concern");
+  assert.equal(capNoteFor(CLEARWELL_LIME), null);
   assert.equal(mainDifference(FIZZBROOK_COLA, CLEARWELL_LIME), "sugars");
   assert.equal(mainDifference(FIZZBROOK_COLA, ORCHARD_LANE_PRESSE), "additives");
   assert.equal(formatGrams(10.6), "10.6 g");

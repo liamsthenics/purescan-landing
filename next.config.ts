@@ -15,6 +15,8 @@ const SECURITY_HEADERS = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   turbopack: { root: projectRoot },
+  // Apple's root certificates are read from disk by the chat route (lib/chat/apple-root-certificates.ts).
+  outputFileTracingIncludes: { "/api/chat": ["./certs/apple/*.cer"] },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },

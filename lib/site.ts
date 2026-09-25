@@ -7,9 +7,15 @@ export const APP_STORE_URL = `https://apps.apple.com/gb/app/id${APP_STORE_ID}`;
 
 export const SITE_URL = "https://purescan.io";
 export const SITE_NAME = "PureScan";
-export const SITE_TAGLINE = "Know what's really in your food.";
+export const SITE_TAGLINE = "The honest truth about what's in your food.";
+/** The second half of the positioning line in docs/voice.md. */
+export const SITE_TAGLINE_FOLLOW_UP = "What you do with it is up to you.";
 export const SITE_DESCRIPTION =
-  "PureScan is a UK food scanner for iPhone. Scan a barcode for one honest 0–100 score, every additive rated with sources, UK traffic-light nutrition and healthier swaps.";
+  "PureScan is a UK food scanner for iPhone: one honest 0–100 score, every additive with its evidence and sources, and UK traffic-light nutrition. What you do with it is up to you.";
+export const SHARE_IMAGE_ALT = `PureScan: ${SITE_TAGLINE} ${SITE_TAGLINE_FOLLOW_UP}`;
+/** The standard disclaimer from docs/voice.md. */
+export const STANDARD_DISCLAIMER =
+  "PureScan tells you what's in your food and what the evidence says. It isn't medical or dietary advice, and what you do with it is up to you.";
 
 export const CONTACT_EMAIL = "hello@purescan.io";
 export const PRIVACY_EMAIL = "privacy@purescan.io";

@@ -7,12 +7,12 @@ import { ProductArt } from "../ProductArt";
 import { ScoreGauge } from "../ScoreGauge";
 import { SectionIntro } from "../SectionIntro";
 
-interface SwapCardProps {
+interface AlternativeCardProps {
   product: ExampleProduct;
   locked?: boolean;
 }
 
-function SwapCard({ product, locked = false }: SwapCardProps) {
+function AlternativeCard({ product, locked = false }: AlternativeCardProps) {
   const score = exampleScore(product);
   const verdict = verdictFor(score);
   return (
@@ -38,7 +38,7 @@ function SwapCard({ product, locked = false }: SwapCardProps) {
   );
 }
 
-export function SwapsSection() {
+export function AlternativesSection() {
   const before = FIZZBROOK_COLA;
   const after = CLEARWELL_LIME;
   const beforeScore = exampleScore(before);
@@ -46,11 +46,11 @@ export function SwapsSection() {
   const driver = mainDifference(before, after);
   const beforeSugar = before.facts.nutrition?.sugars ?? 0;
   const afterSugar = after.facts.nutrition?.sugars ?? 0;
-  const limitCount = (product: ExampleProduct) => product.facts.findings.filter((tier) => tier === "moderate").length;
+  const moderateCount = (product: ExampleProduct) => product.facts.findings.filter((tier) => tier === "moderate").length;
 
   const differences = [
     { label: "Sugars per 100 ml", before: formatGrams(beforeSugar), after: formatGrams(afterSugar) },
-    { label: "Ingredients to limit", before: String(limitCount(before)), after: String(limitCount(after)) },
+    { label: "Ingredients of moderate concern", before: String(moderateCount(before)), after: String(moderateCount(after)) },
     {
       label: "Processing",
       before: before.facts.nova ? PROCESSING_LABELS[before.facts.nova] : "Unknown",
@@ -59,24 +59,24 @@ export function SwapsSection() {
   ];
 
   return (
-    <section aria-labelledby="swaps-heading" className="border-t border-separator py-20 md:py-28">
+    <section aria-labelledby="alternatives-heading" className="border-t border-separator py-20 md:py-28">
       <div className="container-page">
-        <SectionIntro label="Swaps & compare" title="A better choice, side by side." headingId="swaps-heading">
+        <SectionIntro label="Alternatives & compare" title="Higher-scoring alternatives, side by side." headingId="alternatives-heading">
           <p>
-            When something scores low, PureScan suggests similar products that score higher. Put any two side by
-            side with This-vs-That to see exactly where they differ.
+            When something scores low, PureScan shows similar products that score higher. Put any two side by side
+            with This-vs-That to see exactly where they differ.
           </p>
         </SectionIntro>
 
         <div className="mt-14 grid items-start gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="card min-w-0 p-6 md:p-8">
-            <p className="section-label">Healthier swaps</p>
+            <p className="section-label">Higher-scoring alternatives</p>
             <div className="-mx-2 mt-5 flex gap-3 overflow-x-auto px-2 pb-2">
-              <SwapCard product={after} />
-              <SwapCard product={ORCHARD_LANE_PRESSE} locked />
+              <AlternativeCard product={after} />
+              <AlternativeCard product={ORCHARD_LANE_PRESSE} locked />
             </div>
             <p className="mt-5 text-[15px] leading-relaxed text-secondary">
-              Your first swap is free on every scan. Premium shows them all.
+              Your first alternative is free on every scan. Premium shows them all.
             </p>
           </div>
 

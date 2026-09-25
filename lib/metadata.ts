@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_NAME } from "./site.ts";
+import { SHARE_IMAGE_ALT, SITE_NAME } from "./site.ts";
 
 interface PageMetadataOptions {
   /** Page title; the layout appends " | PureScan". */
@@ -17,7 +17,7 @@ const SHARE_IMAGE = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "PureScan: know what's really in your food. One honest score for UK food.",
+  alt: SHARE_IMAGE_ALT,
 };
 
 export function pageMetadata({ title, description, path, absoluteTitle = false }: PageMetadataOptions): Metadata {

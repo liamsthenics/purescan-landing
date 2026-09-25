@@ -27,7 +27,7 @@ export function AdditiveCard({ additive }: AdditiveCardProps) {
       {additive.summary && <p className="mt-3 text-[16px] leading-relaxed text-secondary">{additive.summary}</p>}
       {additive.reasons.length > 0 && (
         <>
-          <p className="section-label mt-7 mb-4">Why it’s flagged</p>
+          <p className="section-label mt-7 mb-4">What the evidence says</p>
           <ReasonList reasons={additive.reasons} />
         </>
       )}

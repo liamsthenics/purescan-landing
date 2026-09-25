@@ -1,6 +1,19 @@
 // Result wording shared by the phone mockup and examples, mirroring the app's ResultCopy.
 import type { ExampleProduct } from "./examples.ts";
-import { NUTRIENTS, NUTRIENT_BANDS, WEIGHTS, bandFor, scoreProduct, type NutrientBand } from "./scoring.ts";
+import {
+  NUTRIENTS,
+  NUTRIENT_BANDS,
+  WEIGHTS,
+  bandFor,
+  capLabel,
+  capNote,
+  capRule,
+  countsAsHighIn,
+  scoreProduct,
+  type CapReason,
+  type NutrientBand,
+} from "./scoring.ts";
+import type { Tier } from "./tiers.ts";
 
 export interface NutrientReading {
   label: string;
@@ -22,22 +35,87 @@ export function formatGrams(value: number): string {
   return Number.isInteger(rounded) ? `${rounded} g` : `${rounded.toFixed(1)} g`;
 }
 
-/** The why-line, e.g. "3 to limit · High in sugars · Ultra-processed". */
-export function whyLine(product: ExampleProduct): string {
-  const facts: string[] = [];
-  const avoid = product.facts.findings.filter((tier) => tier === "high").length;
-  const limit = product.facts.findings.filter((tier) => tier === "moderate").length;
-  if (avoid > 0) facts.push(`${avoid} to avoid`);
-  if (limit > 0) facts.push(`${limit} to limit`);
-  const high = nutrientReadings(product).filter((reading) => reading.band === "high");
-  if (high.length > 0) facts.push(`High in ${high.map((reading) => reading.label.toLowerCase()).join(" and ")}`);
-  if (product.facts.nova === 4) facts.push("Ultra-processed");
-  return facts.length > 0 ? facts.join(" · ") : "Nothing of concern found";
+function countOfTier(product: ExampleProduct, tier: Tier): number {
+  return product.facts.findings.filter((finding) => finding === tier).length;
 }
 
-export function heldDownNote(product: ExampleProduct): string | null {
+/** "sugars", "sugars and salt": the nutrients with a red traffic light. */
+function highNutrientNames(product: ExampleProduct): string | null {
+  const names = nutrientReadings(product)
+    .filter((reading) => reading.band === "high")
+    .map((reading) => reading.label.toLowerCase());
+  return names.length > 0 ? names.join(" and ") : null;
+}
+
+/** Like highNutrientNames, but only the red lights that trigger a cap (see scoring.countsAsHighIn). */
+function cappingNutrientNames(product: ExampleProduct): string | null {
+  const names = NUTRIENTS.filter(({ nutrient }) => {
+    const amount = product.facts.nutrition?.[nutrient];
+    if (amount === undefined) return false;
+    return bandFor(nutrient, amount, product.facts.isDrink) === "high" && countsAsHighIn(nutrient, product.facts);
+  }).map(({ label }) => label.toLowerCase());
+  return names.length > 0 ? names.join(" and ") : null;
+}
+
+const WHY_LINE_SEPARATOR = " · ";
+const NOTHING_OF_CONCERN = "Nothing of concern found";
+
+/** The facts behind a score, e.g. ["3 of moderate concern", "High in sugars", "Ultra-processed"]. */
+export function whyLineFacts(product: ExampleProduct): string[] {
+  const facts: string[] = [];
+  const highCount = countOfTier(product, "high");
+  const moderateCount = countOfTier(product, "moderate");
+  if (highCount > 0) facts.push(`${highCount} of high concern`);
+  if (moderateCount > 0) facts.push(`${moderateCount} of moderate concern`);
+  const highNutrients = highNutrientNames(product);
+  if (highNutrients) facts.push(`High in ${highNutrients}`);
+  if (product.facts.nova === 4) facts.push("Ultra-processed");
+  return facts.length > 0 ? facts : [NOTHING_OF_CONCERN];
+}
+
+/** The why-line, e.g. "3 of moderate concern · High in sugars · Ultra-processed". */
+export function whyLine(product: ExampleProduct): string {
+  return whyLineFacts(product).join(WHY_LINE_SEPARATOR);
+}
+
+function ingredientCount(count: number, tierWords: string): string {
+  return count === 1 ? `contains 1 ingredient of ${tierWords}` : `contains ${count} ingredients of ${tierWords}`;
+}
+
+/** The cap's reason for this product, with its real counts and nutrients. */
+function productCapReason(reason: CapReason, product: ExampleProduct): string {
+  const highNutrients = cappingNutrientNames(product);
+  switch (reason) {
+    case "highConcernIngredient":
+      return ingredientCount(countOfTier(product, "high"), "high concern");
+    case "severalModerateIngredients":
+      return ingredientCount(countOfTier(product, "moderate"), "moderate concern");
+    case "ultraProcessedAndHighIn":
+      return highNutrients ? `ultra-processed and high in ${highNutrients}` : capRule(reason).capReason;
+    case "highIn":
+      return highNutrients ? `high in ${highNutrients}` : capRule(reason).capReason;
+    default:
+      return capRule(reason).capReason;
+  }
+}
+
+export interface CapNote {
+  max: number;
+  /** "Capped at 40" */
+  label: string;
+  /** "contains 3 ingredients of moderate concern" */
+  reason: string;
+}
+
+export function capNoteParts(product: ExampleProduct): CapNote | null {
   const { cap } = scoreProduct(product.facts);
-  return cap ? `Held down: ${cap.heldDown}.` : null;
+  return cap ? { max: cap.max, label: capLabel(cap.max), reason: productCapReason(cap.reason, product) } : null;
+}
+
+/** "Capped at 40: contains 3 ingredients of moderate concern", or null when no cap applied. */
+export function capNoteFor(product: ExampleProduct): string | null {
+  const note = capNoteParts(product);
+  return note ? capNote(note.max, note.reason) : null;
 }
 
 /**

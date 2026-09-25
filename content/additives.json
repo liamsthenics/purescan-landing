@@ -955,7 +955,7 @@
    "tier": "low",
    "summary": "Propylene glycol is a solvent used to carry flavours and keep foods moist.",
    "reasons": [
-    "Generally safe at food levels, but high intakes can be harmful"
+    "Permitted at food levels; very high intakes, mostly from medicines, have caused side effects"
    ],
    "sources": [],
    "kidsWarning": false,
@@ -5403,7 +5403,7 @@
    "name": "Glutamic acid",
    "functions": [],
    "tier": "low",
-   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "summary": "A glutamate flavour enhancer (MSG or similar). EFSA set a group acceptable daily intake in 2017; some people report sensitivity.",
    "reasons": [
     "EFSA found some people may exceed its acceptable daily intake",
     "Common in ultra-processed savoury foods"
@@ -5424,7 +5424,7 @@
     "Flavour enhancer"
    ],
    "tier": "low",
-   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "summary": "A glutamate flavour enhancer (MSG or similar). EFSA set a group acceptable daily intake in 2017; some people report sensitivity.",
    "reasons": [
     "EFSA found some people may exceed its acceptable daily intake",
     "Common in ultra-processed savoury foods"
@@ -5443,7 +5443,7 @@
    "name": "Monopotassium glutamate",
    "functions": [],
    "tier": "low",
-   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "summary": "A glutamate flavour enhancer (MSG or similar). EFSA set a group acceptable daily intake in 2017; some people report sensitivity.",
    "reasons": [
     "EFSA found some people may exceed its acceptable daily intake",
     "Common in ultra-processed savoury foods"
@@ -5462,7 +5462,7 @@
    "name": "Calcium diglutamate",
    "functions": [],
    "tier": "low",
-   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "summary": "A glutamate flavour enhancer (MSG or similar). EFSA set a group acceptable daily intake in 2017; some people report sensitivity.",
    "reasons": [
     "EFSA found some people may exceed its acceptable daily intake",
     "Common in ultra-processed savoury foods"
@@ -5481,7 +5481,7 @@
    "name": "Monoammonium glutamate",
    "functions": [],
    "tier": "low",
-   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "summary": "A glutamate flavour enhancer (MSG or similar). EFSA set a group acceptable daily intake in 2017; some people report sensitivity.",
    "reasons": [
     "EFSA found some people may exceed its acceptable daily intake",
     "Common in ultra-processed savoury foods"
@@ -5500,7 +5500,7 @@
    "name": "Magnesium diglutamate",
    "functions": [],
    "tier": "low",
-   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "summary": "A glutamate flavour enhancer (MSG or similar). EFSA set a group acceptable daily intake in 2017; some people report sensitivity.",
    "reasons": [
     "EFSA found some people may exceed its acceptable daily intake",
     "Common in ultra-processed savoury foods"

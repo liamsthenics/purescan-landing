@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FOOTER_NAV } from "@/lib/navigation";
-import { CONTACT_EMAIL, ODBL_URL, OPEN_FOOD_FACTS_URL } from "@/lib/site";
+import { CONTACT_EMAIL, ODBL_URL, OPEN_FOOD_FACTS_URL, STANDARD_DISCLAIMER } from "@/lib/site";
 import { Wordmark } from "./Wordmark";
 
 const COPYRIGHT_YEAR = new Date().getFullYear();
@@ -45,7 +45,7 @@ export function SiteFooter() {
           <a href={ODBL_URL} className="underline underline-offset-2 hover:text-ink">
             Open Database Licence
           </a>
-          . PureScan gives general information, not medical or dietary advice.
+          . {STANDARD_DISCLAIMER.replace(/'/g, "’")}
         </p>
         <p>© {COPYRIGHT_YEAR} PureScan</p>
       </div>

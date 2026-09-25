@@ -1,6 +1,6 @@
-import { CAPS } from "@/lib/scoring";
+import { CAPS, capNote } from "@/lib/scoring";
 
-/** Every cap with its maximum and the app's "Held down" wording. */
+/** Every cap with its maximum and the app's "Capped at" wording. */
 export function CapsTable() {
   return (
     <div className="card overflow-x-auto">
@@ -26,7 +26,7 @@ export function CapsTable() {
                 {cap.condition}
               </th>
               <td className="px-3 py-3.5 text-[17px] font-semibold tabular-nums text-ink">{cap.max}</td>
-              <td className="px-5 py-3.5 text-secondary">Held down: {cap.heldDown}.</td>
+              <td className="px-5 py-3.5 text-secondary">{capNote(cap.max, cap.capReason)}</td>
             </tr>
           ))}
         </tbody>
