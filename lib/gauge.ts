@@ -1,17 +1,8 @@
-// Geometry for the score gauge: a 270° arc with the gap at the bottom.
+// Geometry for the brand mark: a 270° arc with the gap at the bottom.
 // Angles are in degrees, clockwise from 3 o'clock (SVG's y axis points down).
 
 export const GAUGE_START_ANGLE = 135;
 export const GAUGE_SWEEP = 270;
-
-export const GAUGE_SIZES = {
-  hero: { diameter: 132, stroke: 9.4, showsVerdictWord: true },
-  card: { diameter: 96, stroke: 7.5, showsVerdictWord: true },
-  compact: { diameter: 64, stroke: 5.0, showsVerdictWord: false },
-  mini: { diameter: 44, stroke: 3.8, showsVerdictWord: false },
-} as const;
-
-export type GaugeSize = keyof typeof GAUGE_SIZES;
 
 interface Point {
   x: number;

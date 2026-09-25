@@ -4,7 +4,7 @@ import { CapsTable } from "@/components/method/CapsTable";
 import { MethodSection } from "@/components/method/MethodSection";
 import { NutritionThresholds } from "@/components/method/NutritionThresholds";
 import { WorkedExample } from "@/components/method/WorkedExample";
-import { ScoreGauge } from "@/components/ScoreGauge";
+import { VerdictScale } from "@/components/score/VerdictScale";
 import { TierShape } from "@/components/TierShape";
 import { KNOWLEDGE_VERSION } from "@/lib/additives";
 import { METHOD_SOURCES } from "@/lib/method-sources";
@@ -27,7 +27,6 @@ import {
   type NovaGroup,
 } from "@/lib/scoring";
 import { TIERS } from "@/lib/tiers";
-import { VERDICTS, verdictColorVar } from "@/lib/verdict";
 
 export const metadata: Metadata = pageMetadata({
   title: "How we score food",
@@ -37,7 +36,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const NOVA_GROUPS: readonly NovaGroup[] = [1, 2, 3, 4];
-const SAMPLE_SCORES = { great: 93, okay: 60, poor: 35, bad: 15 } as const;
 const percent = (weight: number) => `${Math.round(weight * 100)}%`;
 
 function Formula() {
@@ -98,16 +96,8 @@ function NovaTable() {
 
 function VerdictBands() {
   return (
-    <div className="card grid grid-cols-2 gap-y-8 p-6 sm:grid-cols-4">
-      {VERDICTS.map((info) => (
-        <div key={info.verdict} className="flex flex-col items-center text-center">
-          <ScoreGauge score={SAMPLE_SCORES[info.verdict]} size="compact" animated={false} />
-          <p className="mt-2 text-[14px] font-semibold" style={{ color: verdictColorVar(info.verdict) }}>
-            {info.title} · {info.minScore}–{info.maxScore}
-          </p>
-          <p className="mt-0.5 font-serif text-[17px] text-ink">{info.headline}</p>
-        </div>
-      ))}
+    <div className="card p-6 pt-8 md:p-8 md:pt-10">
+      <VerdictScale showsHeadlines />
     </div>
   );
 }

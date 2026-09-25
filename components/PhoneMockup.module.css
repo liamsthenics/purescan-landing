@@ -58,9 +58,14 @@
 }
 
 .navRow {
+  position: absolute;
+  top: calc(58 * var(--pt));
+  left: 0;
+  right: 0;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
-  padding: calc(2 * var(--pt)) calc(20 * var(--pt)) 0;
+  padding: 0 calc(20 * var(--pt));
 }
 
 .glassButton {
@@ -69,211 +74,266 @@
   width: calc(40 * var(--pt));
   height: calc(40 * var(--pt));
   border-radius: 999px;
-  background: var(--surface);
-  box-shadow: 0 0 0 0.5px var(--card-ring), 0 calc(2 * var(--pt)) calc(6 * var(--pt)) rgba(20, 32, 26, 0.06);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 0.5px var(--card-ring), 0 calc(2 * var(--pt)) calc(10 * var(--pt)) rgba(20, 32, 26, 0.06);
   color: var(--ink);
 }
 
-.content {
-  padding: calc(14 * var(--pt)) calc(20 * var(--pt)) 0;
+/* Paper grain, as in the app. */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.12  0 0 0 0 0.1  0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-.header {
+.hero {
+  margin-top: calc(8 * var(--pt));
+}
+
+.identity {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: calc(14 * var(--pt));
+  gap: calc(6 * var(--pt));
+  margin-top: calc(10 * var(--pt));
+  padding: 0 calc(28 * var(--pt));
+  text-align: center;
 }
 
-.productTile {
-  flex: none;
-  width: calc(60 * var(--pt));
-  height: calc(60 * var(--pt));
-  border-radius: calc(14 * var(--pt));
-  background: #ffffff;
-  box-shadow: 0 0 0 0.5px var(--card-ring);
+.eyebrow {
+  font-size: calc(11.5 * var(--pt));
 }
 
 .productName {
   font-family: var(--font-serif);
-  font-size: calc(23 * var(--pt));
-  line-height: calc(26 * var(--pt));
-  letter-spacing: -0.01em;
+  font-size: calc(36 * var(--pt));
+  line-height: 1.02;
+  letter-spacing: -0.012em;
 }
 
-.productMeta {
-  margin-top: calc(3 * var(--pt));
-  font-size: calc(14 * var(--pt));
-  line-height: calc(18 * var(--pt));
-  color: var(--secondary);
+.scoreBlock {
+  position: relative;
+  padding: calc(24 * var(--pt)) calc(24 * var(--pt)) 0;
 }
 
-.verdictBlock {
+.scoreLine {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(12 * var(--pt));
+}
+
+.verdict {
+  padding-bottom: calc(4 * var(--pt));
+  max-width: calc(220 * var(--pt));
+}
+
+.ruler {
   margin-top: calc(22 * var(--pt));
-  text-align: center;
 }
 
-.verdictHeadline {
-  margin-top: calc(10 * var(--pt));
-  font-family: var(--font-serif);
-  font-size: calc(28 * var(--pt));
-  line-height: calc(31 * var(--pt));
-  letter-spacing: -0.01em;
-}
-
-.whyLine {
-  margin-top: calc(6 * var(--pt));
-  font-size: calc(14 * var(--pt));
-  line-height: calc(18 * var(--pt));
-  color: var(--secondary);
-}
-
-/* Keeps each fact ("Ultra-processed") on one line; the line breaks between facts. */
-.whyFact {
-  white-space: nowrap;
+.factsStrip {
+  margin: calc(18 * var(--pt)) calc(24 * var(--pt)) 0;
 }
 
 .capNote {
-  margin-top: calc(16 * var(--pt));
-  padding: calc(10 * var(--pt)) calc(12 * var(--pt));
-  border-radius: calc(12 * var(--pt));
-  background: color-mix(in srgb, var(--poor) 10%, transparent);
+  position: relative;
+  margin: calc(12 * var(--pt)) calc(24 * var(--pt)) 0;
   font-size: calc(13 * var(--pt));
-  line-height: calc(17 * var(--pt));
-  text-align: left;
+  line-height: 1.4;
+  color: var(--secondary);
 }
 
 .capNote strong {
   font-weight: 600;
-  color: var(--poor);
+  color: var(--ink);
 }
 
-.sectionLabel {
+.section {
+  position: relative;
+  padding: calc(30 * var(--pt)) calc(24 * var(--pt)) 0;
+}
+
+.sectionTitle {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  margin: calc(24 * var(--pt)) 0 calc(10 * var(--pt));
+  font-family: var(--font-serif);
+  font-size: calc(26 * var(--pt));
+  line-height: 1;
+}
+
+.sectionTitle small {
+  font-family: var(--font-mono);
   font-size: calc(11 * var(--pt));
-  font-weight: 600;
-  line-height: calc(13 * var(--pt));
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--tertiary);
+}
+
+.sectionNote {
+  margin-top: calc(6 * var(--pt));
+  font-size: calc(12.5 * var(--pt));
   color: var(--secondary);
 }
 
-.sectionTrailing {
-  font-size: calc(13 * var(--pt));
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.card {
-  border-radius: calc(20 * var(--pt));
-  background: var(--surface);
-  box-shadow: 0 0 0 0.5px var(--card-ring);
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: calc(12 * var(--pt));
-  min-height: calc(62 * var(--pt));
-  padding: 0 calc(16 * var(--pt));
-}
-
-.row + .row {
-  position: relative;
-}
-
-/* Separators inset past the leading shape, 0.5pt. */
-.row + .row::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: calc(42 * var(--pt));
-  right: 0;
-  height: 0.5px;
-  background: var(--separator);
-}
-
-.rowShape {
+.findingRow {
   display: grid;
-  place-items: center;
-  width: calc(14 * var(--pt));
+  grid-template-columns: calc(22 * var(--pt)) 1fr auto;
+  align-items: center;
+  padding: calc(12 * var(--pt)) 0;
+  border-bottom: 1px solid var(--separator);
 }
 
-.rowText {
-  flex: 1;
+.sectionTitle + .findingRow {
+  margin-top: calc(12 * var(--pt));
+  border-top: 1px solid var(--separator);
+}
+
+.findingText {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
-.rowTitle {
-  font-size: calc(16 * var(--pt));
-  font-weight: 500;
-  line-height: calc(20 * var(--pt));
-  white-space: nowrap;
+.findingName {
   overflow: hidden;
+  font-size: calc(15 * var(--pt));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.rowSubtitle {
+.findingMeta {
   margin-top: calc(2 * var(--pt));
-  font-size: calc(13 * var(--pt));
-  line-height: calc(17 * var(--pt));
-  color: var(--secondary);
-}
-
-.mono {
   font-family: var(--font-mono);
-  font-size: calc(12 * var(--pt));
+  font-size: calc(11 * var(--pt));
   font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--tertiary);
 }
 
-.rowTrailing {
+.findingLevel {
   display: flex;
   align-items: center;
   gap: calc(6 * var(--pt));
   font-size: calc(13 * var(--pt));
-  color: var(--secondary);
+  font-weight: 500;
 }
 
 .chevron {
   width: calc(9 * var(--pt));
   height: calc(14 * var(--pt));
-  opacity: 0.4;
-  color: var(--ink);
+  color: var(--tertiary);
 }
 
-.tiles {
+.nutrientRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: calc(10 * var(--pt));
-}
-
-.tile {
-  padding: calc(12 * var(--pt)) calc(14 * var(--pt));
-  border-radius: calc(16 * var(--pt));
-  background: var(--surface);
-  box-shadow: 0 0 0 0.5px var(--card-ring);
-}
-
-.tileLabel {
-  font-size: calc(13 * var(--pt));
-  line-height: calc(17 * var(--pt));
-  color: var(--secondary);
-}
-
-.tileValue {
-  display: flex;
+  grid-template-columns: calc(80 * var(--pt)) calc(56 * var(--pt)) 1fr;
+  gap: calc(12 * var(--pt));
   align-items: center;
-  justify-content: space-between;
-  margin-top: calc(4 * var(--pt));
-  font-size: calc(19 * var(--pt));
+  padding: calc(12 * var(--pt)) 0;
+  border-bottom: 1px solid var(--separator);
+}
+
+.sectionNote + .nutrientRow {
+  margin-top: calc(12 * var(--pt));
+  border-top: 1px solid var(--separator);
+}
+
+.nutrientName {
+  font-size: calc(14 * var(--pt));
+  font-weight: 500;
+}
+
+.nutrientValue {
+  font-size: calc(14 * var(--pt));
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+  text-align: right;
+}
+
+.track {
+  position: relative;
+  height: calc(22 * var(--pt));
+}
+
+.zones {
+  position: absolute;
+  inset: calc(9 * var(--pt)) 0 auto;
+  display: flex;
+  gap: calc(3 * var(--pt));
+  height: calc(4 * var(--pt));
+}
+
+.zones span {
+  border-radius: calc(2 * var(--pt));
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.dot {
+  position: absolute;
+  top: calc(5 * var(--pt));
+  width: calc(12 * var(--pt));
+  height: calc(12 * var(--pt));
+  border: calc(2.5 * var(--pt)) solid var(--paper);
+  border-radius: 999px;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+}
+
+.bandLabel {
+  position: absolute;
+  top: calc(-10 * var(--pt));
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: calc(10 * var(--pt));
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.fade {
+  position: absolute;
+  inset: auto 0 0;
+  height: calc(130 * var(--pt));
+  background: linear-gradient(to bottom, transparent, var(--paper) 65%);
+}
+
+/* The floating glass "Ask about this product" bar. */
+.askBar {
+  position: absolute;
+  left: calc(16 * var(--pt));
+  right: calc(16 * var(--pt));
+  bottom: calc(30 * var(--pt));
+  display: flex;
+  align-items: center;
+  height: calc(52 * var(--pt));
+  padding: 0 calc(7 * var(--pt)) 0 calc(20 * var(--pt));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 0.5px var(--chip-ring),
+    0 calc(10 * var(--pt)) calc(30 * var(--pt)) rgba(20, 32, 26, 0.12);
+  font-size: calc(15.5 * var(--pt));
+  color: var(--tertiary);
+}
+
+.askButton {
+  display: grid;
+  place-items: center;
+  width: calc(38 * var(--pt));
+  height: calc(38 * var(--pt));
+  margin-left: auto;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--on-brand);
 }
 
 .homeIndicator {
@@ -286,11 +346,4 @@
   border-radius: 999px;
   background: var(--ink);
   opacity: 0.85;
-}
-
-.fade {
-  position: absolute;
-  inset: auto 0 0;
-  height: calc(90 * var(--pt));
-  background: linear-gradient(to bottom, transparent, var(--paper) 70%);
 }

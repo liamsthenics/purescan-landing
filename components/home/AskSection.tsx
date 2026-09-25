@@ -7,8 +7,9 @@ import { tierInfo } from "@/lib/tiers";
 import { BrandMark } from "../BrandMark";
 import { ArrowRightIcon, CheckIcon } from "../icons";
 import { PremiumTag } from "../PremiumTag";
-import { ProductArt } from "../ProductArt";
-import { ScoreGauge } from "../ScoreGauge";
+import { Packshot } from "../score/Packshot";
+import { ProductEyebrow } from "../score/ProductEyebrow";
+import { ScoreNumeral } from "../score/ScoreNumeral";
 import { SectionIntro } from "../SectionIntro";
 
 const EXAMPLE_ADDITIVE_SLUG = "e150d-sulphite-ammonia-caramel";
@@ -60,18 +61,14 @@ function ExampleAnswer() {
 function ExampleConversation() {
   const product = FIZZBROOK_COLA;
   return (
-    <figure className="card min-w-0 p-5 md:p-7">
+    <figure className="app-sheet min-w-0 p-5 md:p-7">
       <div className="flex items-center gap-3 border-b border-separator pb-4">
-        <span className="block h-11 w-11 shrink-0 rounded-xl bg-white shadow-[0_0_0_0.5px_var(--card-ring)]">
-          <ProductArt art={product.art} />
-        </span>
+        <Packshot product={product} height="52px" className="w-9 shrink-0" />
         <span className="min-w-0 flex-1">
-          <span className="type-card-title block truncate text-[17px]">{product.name}</span>
-          <span className="block text-[12px] text-secondary">
-            {product.brand} · {product.quantity}
-          </span>
+          <ProductEyebrow product={product} className="block text-[10px]" />
+          <span className="mt-0.5 block truncate font-serif text-[20px] leading-tight text-ink">{product.name}</span>
         </span>
-        <ScoreGauge score={exampleScore(product)} size="mini" animated={false} />
+        <ScoreNumeral score={exampleScore(product)} size={36} className="shrink-0" />
       </div>
 
       <div className="mt-5 space-y-4">

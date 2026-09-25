@@ -87,3 +87,11 @@ export function PlusIcon({ size = 16, className }: IconProps) {
     </svg>
   );
 }
+
+export function CloseIcon({ size = 16, className }: IconProps) {
+  return (
+    <svg {...iconProps(size, className)} strokeWidth={2.2}>
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  );
+}

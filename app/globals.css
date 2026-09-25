@@ -11,6 +11,8 @@
   --surface-tint: rgba(20, 32, 26, 0.07);
   --ink: #14201a;
   --secondary: #5b665f;
+  /* Quieter than secondary, still 4.5:1 on paper. */
+  --tertiary: #687270;
   --separator: rgba(20, 32, 26, 0.08);
   --card-ring: rgba(20, 32, 26, 0.06);
   --chip-ring: rgba(20, 32, 26, 0.12);
@@ -24,9 +26,6 @@
   --bad: #c8372d;
   --none: #5b665f;
 
-  /* Gauge track bands: 18% light, 22% dark. */
-  --band-opacity: 0.18;
-
   --phone-bezel: #121614;
   --shadow-float: 0 1px 2px rgba(20, 32, 26, 0.04), 0 24px 60px -12px rgba(20, 32, 26, 0.18);
 }
@@ -38,6 +37,7 @@
     --surface-tint: rgba(255, 255, 255, 0.1);
     --ink: #f7f5f0;
     --secondary: #9aa69f;
+    --tertiary: #838e87;
     --separator: rgba(255, 255, 255, 0.08);
     --card-ring: rgba(255, 255, 255, 0.06);
     --chip-ring: rgba(255, 255, 255, 0.12);
@@ -51,8 +51,6 @@
     --bad: #e8645a;
     --none: #9aa69f;
 
-    --band-opacity: 0.22;
-
     --phone-bezel: #050706;
     --shadow-float: 0 1px 2px rgba(0, 0, 0, 0.3), 0 24px 60px -12px rgba(0, 0, 0, 0.6);
   }
@@ -64,6 +62,7 @@
   --color-surface-tint: var(--surface-tint);
   --color-ink: var(--ink);
   --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
   --color-separator: var(--separator);
   --color-brand: var(--brand);
   --color-brand-tint: var(--brand-tint);
@@ -190,6 +189,15 @@
     box-shadow: 0 0 0 0.5px var(--card-ring);
   }
 
+  /* App screens (share cards, compare, chat) are paper sheets, like the app, not white cards. */
+  .app-sheet {
+    border-radius: 22px;
+    background: var(--paper);
+    box-shadow:
+      0 0 0 0.5px var(--chip-ring),
+      var(--shadow-float);
+  }
+
   .hairline-ring {
     box-shadow: 0 0 0 0.5px var(--chip-ring);
   }
@@ -303,17 +311,15 @@
   }
 }
 
-/* Gauge progress arc draws in over 0.6s, ease-out (spec), unless motion is reduced. */
+/* The score ruler's marker slides in from 0, unless motion is reduced. */
 @media (prefers-reduced-motion: no-preference) {
-  .gauge-progress {
-    stroke-dasharray: 1 2;
-    stroke-dashoffset: 1;
-    animation: gauge-draw 0.6s ease-out 0.15s forwards;
+  .ruler-marker-animated {
+    animation: ruler-marker-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s backwards;
   }
 }
 
-@keyframes gauge-draw {
-  to {
-    stroke-dashoffset: 0;
+@keyframes ruler-marker-in {
+  from {
+    left: 0;
   }
 }

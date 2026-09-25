@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { WEIGHTS } from "@/lib/scoring";
-import { VERDICTS, verdictColorVar } from "@/lib/verdict";
 import { ArrowRightIcon } from "../icons";
-import { ScoreGauge } from "../ScoreGauge";
+import { VerdictScale } from "../score/VerdictScale";
 import { SectionIntro } from "../SectionIntro";
 
 const PARTS = [
@@ -24,8 +23,6 @@ const PARTS = [
 ];
 
 const LARGEST_WEIGHT = Math.max(...PARTS.map((part) => part.weight));
-/** A representative score inside each verdict band, for the legend gauges. */
-const SAMPLE_SCORES = { great: 93, okay: 60, poor: 35, bad: 15 } as const;
 
 export function ScoreSection() {
   return (
@@ -67,18 +64,8 @@ export function ScoreSection() {
               <p className="mt-3 text-[15px] leading-relaxed text-secondary">{part.body}</p>
             </div>
           ))}
-          <div className="card grid grid-cols-2 gap-y-8 p-6 sm:grid-cols-4">
-            {VERDICTS.map((info) => (
-              <div key={info.verdict} className="flex flex-col items-center text-center">
-                <ScoreGauge score={SAMPLE_SCORES[info.verdict]} size="compact" animated={false} />
-                <p className="mt-2 text-[14px] font-semibold" style={{ color: verdictColorVar(info.verdict) }}>
-                  {info.title}
-                </p>
-                <p className="text-[13px] tabular-nums text-secondary">
-                  {info.minScore}–{info.maxScore}
-                </p>
-              </div>
-            ))}
+          <div className="card p-6 pt-8">
+            <VerdictScale />
           </div>
         </div>
       </div>

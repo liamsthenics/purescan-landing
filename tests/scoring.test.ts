@@ -82,13 +82,39 @@ test("a cap note names only the red lights that caused the cap", async () => {
 });
 
 test("result copy for the examples follows the voice guide", async () => {
-  const { CLEARWELL_LIME } = await import("../lib/examples.ts");
+  const { WILD_SPRING_LEMON_LIME } = await import("../lib/examples.ts");
   const { capNoteFor, mainDifference, whyLine, formatGrams } = await import("../lib/result-copy.ts");
   assert.equal(whyLine(FIZZBROOK_COLA), "3 of moderate concern · High in sugars · Ultra-processed");
   assert.equal(capNoteFor(FIZZBROOK_COLA), "Capped at 40: contains 3 ingredients of moderate concern");
-  assert.equal(capNoteFor(CLEARWELL_LIME), null);
-  assert.equal(mainDifference(FIZZBROOK_COLA, CLEARWELL_LIME), "sugars");
+  assert.equal(capNoteFor(WILD_SPRING_LEMON_LIME), null);
+  assert.equal(mainDifference(FIZZBROOK_COLA, WILD_SPRING_LEMON_LIME), "sugars");
   assert.equal(mainDifference(FIZZBROOK_COLA, ORCHARD_LANE_PRESSE), "additives");
   assert.equal(formatGrams(10.6), "10.6 g");
   assert.equal(formatGrams(0), "0 g");
+});
+
+test("the facts strip shows concerns, sugars and processing, as in the app", async () => {
+  const { WILD_SPRING_LEMON_LIME } = await import("../lib/examples.ts");
+  const { keyFacts } = await import("../lib/result-copy.ts");
+  assert.deepEqual(keyFacts(FIZZBROOK_COLA), [
+    { value: "3", label: "of moderate concern" },
+    { value: "10.6g", label: "sugars per 100 ml" },
+    { value: "NOVA 4", label: "ultra-processed" },
+  ]);
+  assert.deepEqual(keyFacts(WILD_SPRING_LEMON_LIME)[0], { value: "0", label: "flagged ingredients" });
+});
+
+test("nutrient bars sit against the UK thresholds, highest band first", async () => {
+  const { nutrientBars } = await import("../lib/result-copy.ts");
+  const [sugars, ...rest] = nutrientBars(FIZZBROOK_COLA);
+  assert.equal(sugars.label, "Sugars");
+  assert.equal(sugars.band, "high");
+  assert.deepEqual(sugars.zones, [2.5, 5.5, 8]);
+  assert.equal(sugars.position, 10.6 / 16);
+  assert.ok(rest.every((bar) => bar.band === "low" && bar.position >= 0 && bar.position <= 1));
+});
+
+test("verdicts describe their range on the scale", async () => {
+  const { verdictFor, verdictRangeText } = await import("../lib/verdict.ts");
+  assert.equal(verdictRangeText(verdictFor(25)), "25–49 on the PureScan scale");
 });

@@ -1,4 +1,4 @@
-import { FIZZBROOK_COLA } from "@/lib/examples";
+import { FIZZBROOK_COLA, fullProductName } from "@/lib/examples";
 import { formatGrams, nutrientReadings } from "@/lib/result-copy";
 import { NUTRIENT_BANDS } from "@/lib/scoring";
 import { SectionIntro } from "../SectionIntro";
@@ -27,7 +27,7 @@ export function NutritionSection() {
           <div className="card p-6 md:p-8">
             <div className="flex items-baseline justify-between gap-4">
               <p className="section-label">Nutrition · per 100 ml</p>
-              <p className="text-[13px] text-secondary">{FIZZBROOK_COLA.name}</p>
+              <p className="text-[13px] text-secondary">{fullProductName(FIZZBROOK_COLA)}</p>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3">
               {readings.map((reading) => (

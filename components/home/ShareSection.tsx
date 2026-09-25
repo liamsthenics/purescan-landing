@@ -1,44 +1,51 @@
-import { CLEARWELL_LIME, FIZZBROOK_COLA, exampleScore } from "@/lib/examples";
-import { formatGrams, mainDifference, whyLine } from "@/lib/result-copy";
+import { FIZZBROOK_COLA, WILD_SPRING_LEMON_LIME, exampleScore, fullProductName } from "@/lib/examples";
+import { formatGrams, mainDifference } from "@/lib/result-copy";
 import { verdictFor } from "@/lib/verdict";
 import { BrandMark } from "../BrandMark";
-import { ProductArt } from "../ProductArt";
-import { ScoreGauge } from "../ScoreGauge";
+import { KeyFactsStrip } from "../score/KeyFactsStrip";
+import { Packshot } from "../score/Packshot";
+import { ProductEyebrow } from "../score/ProductEyebrow";
+import { ProductScoreColumn } from "../score/ProductScoreColumn";
+import { ScoreNumeral } from "../score/ScoreNumeral";
+import { ScoreRuler } from "../score/ScoreRuler";
+import { VerdictReadout } from "../score/VerdictReadout";
 import { SectionIntro } from "../SectionIntro";
+
+/** Share cards are sized in their own units so they read like the app's story image, only smaller. */
+const CARD_UNIT = "0.82px";
+const SHARE_CARD_CLASS =
+  "app-sheet mx-auto flex w-full max-w-[340px] flex-col px-6 pb-5 pt-6";
 
 function ShareFooter() {
   return (
-    <p className="flex items-center justify-center gap-1.5 whitespace-nowrap text-[11px] text-secondary">
+    <p className="mt-auto flex items-center justify-center gap-1.5 whitespace-nowrap pt-5 text-[11px] text-secondary">
       <BrandMark size={13} />
-      Scanned with PureScan · purescan.io
+      Scanned with <span className="font-semibold text-ink">PureScan</span> · purescan.io
     </p>
   );
 }
 
 function ResultShareCard() {
-  const product = CLEARWELL_LIME;
+  const product = FIZZBROOK_COLA;
   const score = exampleScore(product);
   return (
     <figure
-      className="flex aspect-square w-full flex-col items-center justify-between mx-auto max-w-[340px] rounded-[22px] bg-paper p-6 text-center shadow-[var(--shadow-float)]"
-      aria-label={`Share card: ${product.name}, score ${score}, ${verdictFor(score).title}`}
+      className={SHARE_CARD_CLASS}
+      aria-label={`Share card: ${fullProductName(product)}, score ${score} out of 100, ${verdictFor(score).title}`}
       role="img"
     >
-      <div className="flex items-center gap-3 self-stretch text-left" aria-hidden="true">
-        <span className="block h-11 w-11 rounded-xl bg-white shadow-[0_0_0_0.5px_var(--card-ring)]">
-          <ProductArt art={product.art} />
-        </span>
-        <span>
-          <span className="type-card-title block text-[17px]">{product.name}</span>
-          <span className="block text-[12px] text-secondary">
-            {product.brand} · {product.quantity}
-          </span>
-        </span>
-      </div>
-      <div className="flex flex-col items-center" aria-hidden="true">
-        <ScoreGauge score={score} size="card" width="104px" animated={false} />
-        <p className="type-card-title mt-2 text-[20px]">{verdictFor(score).headline}</p>
-        <p className="mt-1 text-[12px] text-secondary">{whyLine(product)}</p>
+      <div aria-hidden="true" className="flex flex-1 flex-col">
+        <Packshot product={product} height="118px" />
+        <div className="mt-3 text-center">
+          <ProductEyebrow product={product} className="text-[10px]" />
+          <p className="mt-1 font-serif text-[26px] leading-none text-ink">{product.name}</p>
+        </div>
+        <div className="mt-5 flex items-end justify-between gap-3">
+          <ScoreNumeral score={score} size={64} />
+          <VerdictReadout score={score} unit={CARD_UNIT} className="pb-1" />
+        </div>
+        <ScoreRuler score={score} unit={CARD_UNIT} className="mt-4" />
+        <KeyFactsStrip product={product} unit={CARD_UNIT} className="mt-1" />
       </div>
       <ShareFooter />
     </figure>
@@ -47,37 +54,30 @@ function ResultShareCard() {
 
 function CompareShareCard() {
   const before = FIZZBROOK_COLA;
-  const after = CLEARWELL_LIME;
-  const beforeScore = exampleScore(before);
-  const afterScore = exampleScore(after);
+  const after = WILD_SPRING_LEMON_LIME;
+  const difference = exampleScore(after) - exampleScore(before);
   const driver = mainDifference(before, after);
   const sugarChange = `${formatGrams(before.facts.nutrition?.sugars ?? 0)} → ${formatGrams(after.facts.nutrition?.sugars ?? 0)}`;
   return (
     <figure
-      className="flex aspect-square w-full flex-col items-center justify-between mx-auto max-w-[340px] rounded-[22px] bg-paper p-6 text-center shadow-[var(--shadow-float)]"
-      aria-label={`Comparison card: ${after.name} scores ${afterScore - beforeScore} points higher than ${before.name}`}
+      className={SHARE_CARD_CLASS}
+      aria-label={`Comparison card: ${fullProductName(after)} scores ${difference} points higher than ${fullProductName(before)}`}
       role="img"
     >
-      <p className="section-label" aria-hidden="true">
-        This vs That
-      </p>
-      <div className="flex items-center gap-4" aria-hidden="true">
-        <ScoreGauge score={beforeScore} size="compact" width="68px" animated={false} />
-        <span className="text-[18px] text-secondary">→</span>
-        <ScoreGauge score={afterScore} size="compact" width="68px" animated={false} />
-      </div>
-      <div aria-hidden="true">
-        <p className="type-card-title text-[22px]">+{afterScore - beforeScore} points</p>
-        {driver && (
-          <p className="mt-1 text-[13px] text-secondary">
-            mostly on {driver}
-            {driver === "sugars" && (
-              <>
-                : <span className="whitespace-nowrap">{sugarChange}</span>
-              </>
-            )}
-          </p>
-        )}
+      <div aria-hidden="true" className="flex flex-1 flex-col">
+        <p className="e-number text-center text-[10px] uppercase tracking-[0.12em] text-secondary">This vs That</p>
+        <div className="mt-4 flex items-start gap-3">
+          <ProductScoreColumn product={before} packshotHeight="104px" numeralSize={46} unit={CARD_UNIT} />
+          <span className="mt-[150px] font-serif text-[20px] italic text-tertiary">vs</span>
+          <ProductScoreColumn product={after} packshotHeight="104px" numeralSize={46} unit={CARD_UNIT} />
+        </div>
+        <div className="mt-5 border-y border-separator py-3 text-center">
+          <p className="font-serif text-[26px] leading-none text-ink">+{difference} points</p>
+          {driver && <p className="mt-1.5 text-[12px] text-secondary">mostly on {driver}</p>}
+          {driver === "sugars" && (
+            <p className="e-number mt-0.5 text-[11px] text-tertiary">{sugarChange} sugars per 100 ml</p>
+          )}
+        </div>
       </div>
       <ShareFooter />
     </figure>
@@ -90,11 +90,11 @@ export function ShareSection() {
       <div className="container-page grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <SectionIntro label="Share" title="Share what you find." headingId="share-heading">
           <p>
-            Turn any result or comparison into a clean card for a Story or a post. Each card shows the score and
-            the reasons behind it, so the people you share it with can see why.
+            Turn any result or comparison into a clean card for a Story or a post. Each card shows the score on the
+            PureScan scale and the facts behind it, so the people you share it with can see why.
           </p>
         </SectionIntro>
-        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
+        <div className="grid items-stretch gap-5 sm:grid-cols-2 sm:gap-6">
           <ResultShareCard />
           <CompareShareCard />
         </div>

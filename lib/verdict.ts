@@ -19,11 +19,19 @@ export const VERDICTS: readonly VerdictInfo[] = [
   { verdict: "bad", title: "Bad", headline: "Scores very low", minScore: 0, maxScore: 24 },
 ];
 
+/** Verdicts in scale order, 0 to 100 (bad, poor, okay, great). */
+export const VERDICTS_ON_SCALE: readonly VerdictInfo[] = [...VERDICTS].reverse();
+
 export function verdictFor(score: number): VerdictInfo {
   const clamped = Math.min(100, Math.max(0, Math.round(score)));
   const match = VERDICTS.find((info) => clamped >= info.minScore);
   // VERDICTS ends at minScore 0, so a clamped score always matches.
   return match ?? VERDICTS[VERDICTS.length - 1];
+}
+
+/** "25–49 on the PureScan scale" */
+export function verdictRangeText(info: VerdictInfo): string {
+  return `${info.minScore}–${info.maxScore} on the PureScan scale`;
 }
 
 /** CSS custom property holding the verdict's colour. */

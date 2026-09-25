@@ -3,6 +3,7 @@ import type { ExampleProduct } from "./examples.ts";
 import {
   NUTRIENTS,
   NUTRIENT_BANDS,
+  PROCESSING_LABELS,
   WEIGHTS,
   bandFor,
   capLabel,
@@ -143,4 +144,65 @@ export function mainDifference(worse: ExampleProduct, better: ExampleProduct): s
   });
   if (gaps.length === 0) return "nutrition";
   return gaps.reduce((top, gap) => (gap.gap > top.gap ? gap : top)).label;
+}
+
+export interface KeyFact {
+  /** Set large, e.g. "3", "10.6g", "NOVA 4". */
+  value: string;
+  /** e.g. "of moderate concern", "sugars per 100 ml". */
+  label: string;
+}
+
+/** "10.6g": the compact form used in the facts strip. */
+function compactGrams(value: number): string {
+  return formatGrams(value).replace(" ", "");
+}
+
+function concernFact(product: ExampleProduct): KeyFact {
+  const highCount = countOfTier(product, "high");
+  if (highCount > 0) return { value: String(highCount), label: "of high concern" };
+  const moderateCount = countOfTier(product, "moderate");
+  if (moderateCount > 0) return { value: String(moderateCount), label: "of moderate concern" };
+  return { value: "0", label: "flagged ingredients" };
+}
+
+/** The three facts under the score, as in the app: concerns, sugars, processing. */
+export function keyFacts(product: ExampleProduct): KeyFact[] {
+  const facts = [concernFact(product)];
+  const sugars = product.facts.nutrition?.sugars;
+  const unit = product.facts.isDrink ? "100 ml" : "100 g";
+  if (sugars !== undefined) facts.push({ value: compactGrams(sugars), label: `sugars per ${unit}` });
+  const nova = product.facts.nova;
+  if (nova) facts.push({ value: `NOVA ${nova}`, label: PROCESSING_LABELS[nova].toLowerCase() });
+  return facts;
+}
+
+export interface NutrientBar extends NutrientReading {
+  /** Widths of the low, medium and high zones, in grams (high is drawn as wide as the high threshold). */
+  zones: [number, number, number];
+  /** Where the amount sits along the bar, 0 to 1. */
+  position: number;
+}
+
+const BAND_SEVERITY: Record<NutrientBand, number> = { high: 0, medium: 1, low: 2 };
+
+/** Nutrients against the UK front-of-pack thresholds, highest band first. */
+export function nutrientBars(product: ExampleProduct): NutrientBar[] {
+  const kind = product.facts.isDrink ? "drink" : "food";
+  const bars = NUTRIENTS.flatMap(({ nutrient, label }) => {
+    const amount = product.facts.nutrition?.[nutrient];
+    if (amount === undefined) return [];
+    const { lowMax, highMin } = NUTRIENT_BANDS[kind][nutrient];
+    const scaleMax = highMin * 2;
+    return [
+      {
+        label,
+        amount,
+        band: bandFor(nutrient, amount, product.facts.isDrink),
+        zones: [lowMax, highMin - lowMax, highMin] as [number, number, number],
+        position: Math.min(1, Math.max(0, amount / scaleMax)),
+      },
+    ];
+  });
+  return bars.sort((first, second) => BAND_SEVERITY[first.band] - BAND_SEVERITY[second.band]);
 }

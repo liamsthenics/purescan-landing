@@ -1,15 +1,18 @@
 import type { CSSProperties } from "react";
-import type { ExampleProduct } from "@/lib/examples";
-import { capNoteParts, formatGrams, nutrientReadings, whyLine, whyLineFacts } from "@/lib/result-copy";
-import { scoreProduct } from "@/lib/scoring";
+import { fullProductName, type ExampleProduct } from "@/lib/examples";
+import { capNoteParts, formatGrams, nutrientBars, whyLine, type NutrientBar } from "@/lib/result-copy";
+import { scoreProduct, type NutrientBand } from "@/lib/scoring";
 import { tierInfo } from "@/lib/tiers";
 import { verdictFor } from "@/lib/verdict";
-import { ChevronLeftIcon, ChevronRightIcon, ShareIcon } from "./icons";
+import { ArrowRightIcon, ChevronRightIcon, CloseIcon, ShareIcon } from "./icons";
 import styles from "./PhoneMockup.module.css";
-import { ProductArt } from "./ProductArt";
-import { ScoreGauge } from "./ScoreGauge";
+import { KeyFactsStrip } from "./score/KeyFactsStrip";
+import { Packshot } from "./score/Packshot";
+import { ProductEyebrow } from "./score/ProductEyebrow";
+import { ScoreNumeral } from "./score/ScoreNumeral";
+import { ScoreRuler } from "./score/ScoreRuler";
+import { VerdictReadout } from "./score/VerdictReadout";
 import { TierShape } from "./TierShape";
-import { TrafficChip } from "./TrafficChip";
 
 interface PhoneMockupProps {
   product: ExampleProduct;
@@ -19,6 +22,8 @@ interface PhoneMockupProps {
 }
 
 const PT = "var(--pt)";
+const BAND_LABELS: Record<NutrientBand, string> = { low: "Low", medium: "Med", high: "High" };
+const BAND_COLOURS: Record<NutrientBand, string> = { low: "var(--great)", medium: "var(--okay)", high: "var(--bad)" };
 
 function StatusIcons() {
   return (
@@ -40,18 +45,43 @@ function StatusIcons() {
   );
 }
 
+function NutrientRow({ bar }: { bar: NutrientBar }) {
+  const colour = BAND_COLOURS[bar.band];
+  return (
+    <div className={styles.nutrientRow}>
+      <span className={styles.nutrientName}>{bar.label}</span>
+      <span className={styles.nutrientValue}>{formatGrams(bar.amount)}</span>
+      <span className={styles.track}>
+        <span className={styles.zones}>
+          {bar.zones.map((width, index) => (
+            <span key={index} style={{ flex: width }} />
+          ))}
+        </span>
+        <span
+          className={styles.dot}
+          style={{ left: `calc(${bar.position * 100}% - 6 * ${PT})`, background: colour } as CSSProperties}
+        />
+        <span className={styles.bandLabel} style={{ color: colour }}>
+          {BAND_LABELS[bar.band]}
+        </span>
+      </span>
+    </div>
+  );
+}
+
 /** The app's result screen for an example product, drawn in HTML/CSS. */
 export function PhoneMockup({ product, width, className }: PhoneMockupProps) {
   const { score } = scoreProduct(product.facts);
   const verdict = verdictFor(score);
   const capNote = capNoteParts(product);
-  const readings = nutrientReadings(product);
-  const description = `The PureScan result screen for ${product.name}, a fictional product: score ${score} out of 100, ${verdict.title}. ${whyLine(product)}.`;
+  const unit = product.facts.isDrink ? "ml" : "g";
+  const description = `The PureScan result screen for ${fullProductName(product)}, a fictional product: score ${score} out of 100, ${verdict.title}. ${whyLine(product)}.`;
 
   return (
     <figure className={className} aria-label={description} role="img">
       <div className={styles.phone} style={width ? ({ "--phone-width": width } as CSSProperties) : undefined}>
         <div className={styles.screen} aria-hidden="true">
+          <div className={styles.grain} />
           <div className={styles.island} />
           <div className={styles.statusBar}>
             <span>9:41</span>
@@ -59,87 +89,81 @@ export function PhoneMockup({ product, width, className }: PhoneMockupProps) {
           </div>
           <div className={styles.navRow}>
             <span className={styles.glassButton}>
-              <ChevronLeftIcon size={18} />
-            </span>
-            <span className={styles.glassButton}>
               <ShareIcon size={17} />
             </span>
+            <span className={styles.glassButton}>
+              <CloseIcon size={15} />
+            </span>
           </div>
 
-          <div className={styles.content}>
-            <div className={styles.header}>
-              <span className={styles.productTile}>
-                <ProductArt art={product.art} />
-              </span>
-              <div>
-                <p className={styles.productName}>{product.name}</p>
-                <p className={styles.productMeta}>
-                  {product.brand} · {product.quantity}
-                </p>
+          <Packshot
+            product={product}
+            height={`calc(170 * ${PT})`}
+            washVerdict={verdict.verdict}
+            unit={PT}
+            className={styles.hero}
+            priority
+          />
+          <div className={styles.identity}>
+            <ProductEyebrow product={product} className={styles.eyebrow} />
+            <p className={styles.productName}>{product.name}</p>
+          </div>
+
+          <div className={styles.scoreBlock}>
+            <div className={styles.scoreLine}>
+              <ScoreNumeral score={score} size={88} unit={PT} />
+              <VerdictReadout score={score} unit={PT} className={styles.verdict} />
+            </div>
+            <ScoreRuler score={score} unit={PT} animated className={styles.ruler} />
+          </div>
+
+          <KeyFactsStrip product={product} unit={PT} className={styles.factsStrip} />
+          {capNote && (
+            <p className={styles.capNote}>
+              <strong>{capNote.label}:</strong> {capNote.reason}
+            </p>
+          )}
+
+          <section className={styles.section}>
+            <p className={styles.sectionTitle}>
+              What’s inside <small>{product.findings.length} flagged</small>
+            </p>
+            {product.findings.map((finding) => (
+              <div key={finding.name} className={styles.findingRow}>
+                <TierShape tier={finding.tier} size={12} />
+                <span className={styles.findingText}>
+                  <span className={styles.findingName}>{finding.name}</span>
+                  <span className={styles.findingMeta}>
+                    {finding.code ? `${finding.code} · ${finding.detail}` : finding.detail}
+                  </span>
+                </span>
+                <span className={styles.findingLevel} style={{ color: tierInfo(finding.tier).colorVar }}>
+                  {tierInfo(finding.tier).chipLabel}
+                  <ChevronRightIcon className={styles.chevron} />
+                </span>
               </div>
-            </div>
+            ))}
+          </section>
 
-            <div className={styles.verdictBlock}>
-              <ScoreGauge score={score} size="hero" width={`calc(132 * ${PT})`} />
-              <p className={styles.verdictHeadline}>{verdict.headline}</p>
-              <p className={styles.whyLine}>
-                {whyLineFacts(product).map((fact, index) => (
-                  <span key={fact} className={styles.whyFact}>
-                    {index > 0 && " · "}
-                    {fact}
-                  </span>
-                ))}
-              </p>
-              {capNote && (
-                <p className={styles.capNote}>
-                  <strong>{capNote.label}:</strong> {capNote.reason}
-                </p>
-              )}
-            </div>
-
-            <p className={styles.sectionLabel}>
-              <span>What’s inside</span>
-              <span className={styles.sectionTrailing}>{product.findings.length} flagged</span>
+          <section className={styles.section}>
+            <p className={styles.sectionTitle}>
+              Nutrition <small>per 100 {unit}</small>
             </p>
-            <div className={styles.card}>
-              {product.findings.map((finding) => (
-                <div key={finding.name} className={styles.row}>
-                  <span className={styles.rowShape}>
-                    <TierShape tier={finding.tier} size={12} />
-                  </span>
-                  <span className={styles.rowText}>
-                    <span className={styles.rowTitle} style={{ display: "block" }}>
-                      {finding.name}
-                    </span>
-                    <span className={styles.rowSubtitle} style={{ display: "block" }}>
-                      {finding.code && <span className={styles.mono}>{finding.code} · </span>}
-                      {finding.detail}
-                    </span>
-                  </span>
-                  <span className={styles.rowTrailing}>
-                    {tierInfo(finding.tier).chipLabel}
-                    <ChevronRightIcon className={styles.chevron} />
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <p className={styles.sectionLabel}>
-              <span>Nutrition · per 100 {product.facts.isDrink ? "ml" : "g"}</span>
+            <p className={styles.sectionNote}>
+              Against the UK front-of-pack thresholds for {product.facts.isDrink ? "drinks" : "food"}.
             </p>
-            <div className={styles.tiles}>
-              {readings.map((reading) => (
-                <div key={reading.label} className={styles.tile}>
-                  <p className={styles.tileLabel}>{reading.label}</p>
-                  <p className={styles.tileValue}>
-                    {formatGrams(reading.amount)}
-                    <TrafficChip band={reading.band} scale={PT} />
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+            {nutrientBars(product).map((bar) => (
+              <NutrientRow key={bar.label} bar={bar} />
+            ))}
+          </section>
+
           <div className={styles.fade} />
+          <div className={styles.askBar}>
+            Ask about this product
+            <span className={styles.askButton}>
+              <ArrowRightIcon size={15} className="-rotate-90" />
+            </span>
+          </div>
           <div className={styles.homeIndicator} />
         </div>
       </div>
