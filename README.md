@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# purescan.io
 
-## Getting Started
+Marketing site for PureScan, the UK food scanner for iPhone. Next.js (app router), React 19, Tailwind 4, TypeScript. Every page is statically generated.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm test           # unit tests (Node's built-in runner, no extra dependencies)
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No environment variables are needed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| What | Where |
+| --- | --- |
+| Launch switch, App Store link, prices, emails | `lib/site.ts` (`APP_STORE_LIVE`) |
+| Scoring rules shown on /how-we-score | `lib/scoring.ts` (mirrors the app's `ScoringPolicy.swift`) |
+| Additive ratings, reasons and sources | `content/additives.json` |
+| Privacy and terms copy | `content/legal.md` → `app/privacy`, `app/terms` |
+| Design tokens (light and dark) | `app/globals.css` |
+| Fictional example products | `lib/examples.ts` |
 
-## Learn More
+## Updating additive data
 
-To learn more about Next.js, take a look at the following resources:
+The additive pages are generated from the app's knowledge base. After the app's `knowledge.json` changes:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run sync:knowledge                       # reads the iOS repo next to this one
+npm run sync:knowledge -- /path/to/knowledge.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Launch
 
-## Deploy on Vercel
+When the app is live, set `APP_STORE_LIVE = true` in `lib/site.ts`. That turns every "Coming soon" note into an App Store link, adds the link to the JSON-LD and enables Safari's Smart App Banner. Consider swapping in Apple's official badge artwork at the same time.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Copy rules
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+UK English, calm and evidence-led. No "toxic", "poison", "junk" or scare words; say "we suggest limiting". No health outcome claims. Name the source next to every claim. Example products are fictional; never show a real brand negatively.

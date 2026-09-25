@@ -1,0 +1,291 @@
+/* An HTML/CSS iPhone showing the app's result screen.
+   Everything inside the screen is sized in points of a 393pt-wide iPhone
+   via --pt, so the mockup scales cleanly with --phone-width. */
+
+.phone {
+  --phone-width: 320px;
+  --bezel: calc(var(--phone-width) * 0.034);
+  --pt: calc((var(--phone-width) - 2 * var(--bezel)) / 393);
+  position: relative;
+  width: var(--phone-width);
+  aspect-ratio: 393 / 852;
+  box-sizing: content-box;
+  padding: var(--bezel);
+  border-radius: calc(var(--phone-width) * 0.165);
+  background: var(--phone-bezel);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.08),
+    var(--shadow-float);
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--phone-width) * 0.135);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.island {
+  position: absolute;
+  top: calc(11 * var(--pt));
+  left: 50%;
+  width: calc(124 * var(--pt));
+  height: calc(36 * var(--pt));
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #000;
+  z-index: 2;
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(54 * var(--pt));
+  padding: calc(4 * var(--pt)) calc(32 * var(--pt)) 0 calc(44 * var(--pt));
+  font-size: calc(17 * var(--pt));
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.statusIcons {
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--pt));
+}
+
+.navRow {
+  display: flex;
+  justify-content: space-between;
+  padding: calc(2 * var(--pt)) calc(20 * var(--pt)) 0;
+}
+
+.glassButton {
+  display: grid;
+  place-items: center;
+  width: calc(40 * var(--pt));
+  height: calc(40 * var(--pt));
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 0 0 0 0.5px var(--card-ring), 0 calc(2 * var(--pt)) calc(6 * var(--pt)) rgba(20, 32, 26, 0.06);
+  color: var(--ink);
+}
+
+.content {
+  padding: calc(14 * var(--pt)) calc(20 * var(--pt)) 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: calc(14 * var(--pt));
+}
+
+.productTile {
+  flex: none;
+  width: calc(60 * var(--pt));
+  height: calc(60 * var(--pt));
+  border-radius: calc(14 * var(--pt));
+  background: #ffffff;
+  box-shadow: 0 0 0 0.5px var(--card-ring);
+}
+
+.productName {
+  font-family: var(--font-serif);
+  font-size: calc(23 * var(--pt));
+  line-height: calc(26 * var(--pt));
+  letter-spacing: -0.01em;
+}
+
+.productMeta {
+  margin-top: calc(3 * var(--pt));
+  font-size: calc(14 * var(--pt));
+  line-height: calc(18 * var(--pt));
+  color: var(--secondary);
+}
+
+.verdictBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: calc(22 * var(--pt));
+  text-align: center;
+}
+
+.verdictHeadline {
+  margin-top: calc(10 * var(--pt));
+  font-family: var(--font-serif);
+  font-size: calc(28 * var(--pt));
+  line-height: calc(31 * var(--pt));
+  letter-spacing: -0.01em;
+}
+
+.whyLine {
+  margin-top: calc(6 * var(--pt));
+  font-size: calc(14 * var(--pt));
+  line-height: calc(18 * var(--pt));
+  color: var(--secondary);
+}
+
+.heldDown {
+  margin-top: calc(16 * var(--pt));
+  padding: calc(10 * var(--pt)) calc(12 * var(--pt));
+  border-radius: calc(12 * var(--pt));
+  background: color-mix(in srgb, var(--poor) 10%, transparent);
+  font-size: calc(13 * var(--pt));
+  line-height: calc(17 * var(--pt));
+  text-align: left;
+}
+
+.heldDown strong {
+  font-weight: 600;
+  color: var(--poor);
+}
+
+.sectionLabel {
+  display: flex;
+  justify-content: space-between;
+  margin: calc(24 * var(--pt)) 0 calc(10 * var(--pt));
+  font-size: calc(11 * var(--pt));
+  font-weight: 600;
+  line-height: calc(13 * var(--pt));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.sectionTrailing {
+  font-size: calc(13 * var(--pt));
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.card {
+  border-radius: calc(20 * var(--pt));
+  background: var(--surface);
+  box-shadow: 0 0 0 0.5px var(--card-ring);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--pt));
+  min-height: calc(62 * var(--pt));
+  padding: 0 calc(16 * var(--pt));
+}
+
+.row + .row {
+  position: relative;
+}
+
+/* Separators inset past the leading shape, 0.5pt. */
+.row + .row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(42 * var(--pt));
+  right: 0;
+  height: 0.5px;
+  background: var(--separator);
+}
+
+.rowShape {
+  display: grid;
+  place-items: center;
+  width: calc(14 * var(--pt));
+}
+
+.rowText {
+  flex: 1;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: calc(16 * var(--pt));
+  font-weight: 500;
+  line-height: calc(20 * var(--pt));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowSubtitle {
+  margin-top: calc(2 * var(--pt));
+  font-size: calc(13 * var(--pt));
+  line-height: calc(17 * var(--pt));
+  color: var(--secondary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: calc(12 * var(--pt));
+  font-weight: 500;
+}
+
+.rowTrailing {
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--pt));
+  font-size: calc(13 * var(--pt));
+  color: var(--secondary);
+}
+
+.chevron {
+  width: calc(9 * var(--pt));
+  height: calc(14 * var(--pt));
+  opacity: 0.4;
+  color: var(--ink);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(10 * var(--pt));
+}
+
+.tile {
+  padding: calc(12 * var(--pt)) calc(14 * var(--pt));
+  border-radius: calc(16 * var(--pt));
+  background: var(--surface);
+  box-shadow: 0 0 0 0.5px var(--card-ring);
+}
+
+.tileLabel {
+  font-size: calc(13 * var(--pt));
+  line-height: calc(17 * var(--pt));
+  color: var(--secondary);
+}
+
+.tileValue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: calc(4 * var(--pt));
+  font-size: calc(19 * var(--pt));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.homeIndicator {
+  position: absolute;
+  bottom: calc(8 * var(--pt));
+  left: 50%;
+  width: calc(134 * var(--pt));
+  height: calc(5 * var(--pt));
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--ink);
+  opacity: 0.85;
+}
+
+.fade {
+  position: absolute;
+  inset: auto 0 0;
+  height: calc(90 * var(--pt));
+  background: linear-gradient(to bottom, transparent, var(--paper) 70%);
+}

@@ -1,0 +1,6528 @@
+{
+ "version": "2026.09.1",
+ "generated": "2026-09-25",
+ "additives": {
+  "en:e100": {
+   "code": "E100",
+   "name": "Curcumin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1679"
+  },
+  "en:e1000": {
+   "code": "E1000",
+   "name": "Cholic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1001": {
+   "code": "E1001",
+   "name": "Choline salt",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e101": {
+   "code": "E101",
+   "name": "Riboflavin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3357"
+  },
+  "en:e101a": {
+   "code": "E101a",
+   "name": "E101a food additive",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3357"
+  },
+  "en:e101i": {
+   "code": "E101",
+   "name": "E101i - Riboflavin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3357"
+  },
+  "en:e101ii": {
+   "code": "E101",
+   "name": "E101ii - Riboflavin-5′-phosphate",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3357"
+  },
+  "en:e102": {
+   "code": "E102",
+   "name": "Tartrazine",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "One of the 'Southampton six' artificial colours. UK law requires foods containing it to carry a warning that it may affect activity and attention in children.",
+   "reasons": [
+    "Linked to increased hyperactivity in children in a UK government-funded trial",
+    "Must carry the label: 'may have an adverse effect on activity and attention in children'"
+   ],
+   "sources": [
+    {
+     "title": "McCann et al., The Lancet (2007): food colours and hyperactivity",
+     "url": "https://doi.org/10.1016/S0140-6736(07)61306-3"
+    }
+   ],
+   "kidsWarning": true,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2009.1331"
+  },
+  "en:e103": {
+   "code": "E103",
+   "name": "Alkannin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e104": {
+   "code": "E104",
+   "name": "Quinoline yellow",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "One of the 'Southampton six' artificial colours. UK law requires foods containing it to carry a warning that it may affect activity and attention in children.",
+   "reasons": [
+    "Linked to increased hyperactivity in children in a UK government-funded trial",
+    "Must carry the label: 'may have an adverse effect on activity and attention in children'"
+   ],
+   "sources": [
+    {
+     "title": "McCann et al., The Lancet (2007): food colours and hyperactivity",
+     "url": "https://doi.org/10.1016/S0140-6736(07)61306-3"
+    }
+   ],
+   "kidsWarning": true,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2009.1329"
+  },
+  "en:e105": {
+   "code": "E105",
+   "name": "Fast Yellow AB",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e106": {
+   "code": "E106",
+   "name": "Flavin mononucleotide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e107": {
+   "code": "E107",
+   "name": "Yellow 2G",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e110": {
+   "code": "E110",
+   "name": "Sunset yellow FCF",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "One of the 'Southampton six' artificial colours. UK law requires foods containing it to carry a warning that it may affect activity and attention in children.",
+   "reasons": [
+    "Linked to increased hyperactivity in children in a UK government-funded trial",
+    "Must carry the label: 'may have an adverse effect on activity and attention in children'"
+   ],
+   "sources": [
+    {
+     "title": "McCann et al., The Lancet (2007): food colours and hyperactivity",
+     "url": "https://doi.org/10.1016/S0140-6736(07)61306-3"
+    }
+   ],
+   "kidsWarning": true,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3765"
+  },
+  "en:e1100": {
+   "code": "E1100",
+   "name": "Alpha-Amylase",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1101": {
+   "code": "E1101",
+   "name": "Protease",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e1102": {
+   "code": "E1102",
+   "name": "Glucose oxidase",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none"
+  },
+  "en:e1103": {
+   "code": "E1103",
+   "name": "Invertase",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e1104": {
+   "code": "E1104",
+   "name": "Lipase",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1105": {
+   "code": "E1105",
+   "name": "Lysozyme",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e111": {
+   "code": "E111",
+   "name": "Orange GGN",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e120": {
+   "code": "E120",
+   "name": "Cochineal",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "low",
+   "summary": "Carmine (cochineal) is a red colour made from crushed insects.",
+   "reasons": [
+    "Can cause allergic reactions in some people",
+    "Not suitable for vegans or vegetarians"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4288"
+  },
+  "en:e1200": {
+   "code": "E1200",
+   "name": "Polydextrose",
+   "functions": [
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1201": {
+   "code": "E1201",
+   "name": "Polyvinylpyrrolidone",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1202": {
+   "code": "E1202",
+   "name": "Polyvinylpolypyrrolidone",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e1203": {
+   "code": "E1203",
+   "name": "Polyvinyl alcohol",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1204": {
+   "code": "E1204",
+   "name": "Pullulan",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1205": {
+   "code": "E1205",
+   "name": "Basic methacrylate copolymer",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4490"
+  },
+  "en:e1206": {
+   "code": "E1206",
+   "name": "Neutral methacrylate copolymer",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1207": {
+   "code": "E1207",
+   "name": "Anionic methacrylate copolymer",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1208": {
+   "code": "E1208",
+   "name": "Polyvinylpyrrolidone-vinyl acetate copolymer",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1209": {
+   "code": "E1209",
+   "name": "Polyvinyl alcohol-polyethylene glycol-graft-co-polymer",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e121": {
+   "code": "E121",
+   "name": "Citrus Red 2",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1210": {
+   "code": "E1210",
+   "name": "Carbomer",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e122": {
+   "code": "E122",
+   "name": "Azorubine",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "One of the 'Southampton six' artificial colours. UK law requires foods containing it to carry a warning that it may affect activity and attention in children.",
+   "reasons": [
+    "Linked to increased hyperactivity in children in a UK government-funded trial",
+    "Must carry the label: 'may have an adverse effect on activity and attention in children'"
+   ],
+   "sources": [
+    {
+     "title": "McCann et al., The Lancet (2007): food colours and hyperactivity",
+     "url": "https://doi.org/10.1016/S0140-6736(07)61306-3"
+    }
+   ],
+   "kidsWarning": true,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2009.1332"
+  },
+  "en:e123": {
+   "code": "E123",
+   "name": "Amaranth",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "moderate",
+   "summary": "Amaranth is a synthetic red dye. It is banned in the US and heavily restricted in the UK and EU.",
+   "reasons": [
+    "Banned in the US since 1976 over tumour concerns in animal studies",
+    "In the UK and EU, only permitted in a few products such as aperitif wines"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: Amaranth re-evaluation (2010)",
+     "url": "https://doi.org/10.2903/j.efsa.2010.1649"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://www.efsa.europa.eu/fr/efsajournal/doc/1649.pdf"
+  },
+  "en:e124": {
+   "code": "E124",
+   "name": "Ponceau 4r",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "One of the 'Southampton six' artificial colours. UK law requires foods containing it to carry a warning that it may affect activity and attention in children.",
+   "reasons": [
+    "Linked to increased hyperactivity in children in a UK government-funded trial",
+    "Must carry the label: 'may have an adverse effect on activity and attention in children'"
+   ],
+   "sources": [
+    {
+     "title": "McCann et al., The Lancet (2007): food colours and hyperactivity",
+     "url": "https://doi.org/10.1016/S0140-6736(07)61306-3"
+    }
+   ],
+   "kidsWarning": true,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2009.1328"
+  },
+  "en:e125": {
+   "code": "E125",
+   "name": "Scarlet GN",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e127": {
+   "code": "E127",
+   "name": "Erythrosine",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "A synthetic red dye. The US FDA revoked its use in food in 2025 because it caused thyroid tumours in male rats.",
+   "reasons": [
+    "Caused thyroid tumours in animal studies",
+    "Authorisation for food use revoked in the US in 2025"
+   ],
+   "sources": [
+    {
+     "title": "FDA: authorisation of Red No. 3 revoked (2025)",
+     "url": "https://www.fda.gov/industry/color-additives/fdc-red-no-3"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2011.1854"
+  },
+  "en:e128": {
+   "code": "E128",
+   "name": "Red 2G",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "Red 2G is a synthetic dye withdrawn from EU food in 2007 after safety concerns.",
+   "reasons": [
+    "Converts to aniline in the body, a suspected carcinogen",
+    "Withdrawn from EU food since 2007"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: Red 2G opinion (2007)",
+     "url": "https://doi.org/10.2903/j.efsa.2007.515"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2007.515"
+  },
+  "en:e129": {
+   "code": "E129",
+   "name": "Allura red",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "One of the 'Southampton six' artificial colours. UK law requires foods containing it to carry a warning that it may affect activity and attention in children.",
+   "reasons": [
+    "Linked to increased hyperactivity in children in a UK government-funded trial",
+    "Must carry the label: 'may have an adverse effect on activity and attention in children'"
+   ],
+   "sources": [
+    {
+     "title": "McCann et al., The Lancet (2007): food colours and hyperactivity",
+     "url": "https://doi.org/10.1016/S0140-6736(07)61306-3"
+    }
+   ],
+   "kidsWarning": true,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2015.4007"
+  },
+  "en:e130": {
+   "code": "E130",
+   "name": "Indanthrene blue RS",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e131": {
+   "code": "E131",
+   "name": "Patent blue v",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "A synthetic colour that is not permitted in the US.",
+   "reasons": [
+    "Not approved for food use in the US",
+    "Purely cosmetic: adds colour only"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2013.2818"
+  },
+  "en:e132": {
+   "code": "E132",
+   "name": "Indigotine",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "low",
+   "summary": "A synthetic colour. It is permitted in the UK, EU and US, but adds nothing but colour.",
+   "reasons": [
+    "Purely cosmetic: adds colour only",
+    "Can trigger sensitivity reactions in some people"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2014.3768"
+  },
+  "en:e133": {
+   "code": "E133",
+   "name": "Brilliant blue FCF",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "low",
+   "summary": "A synthetic colour. It is permitted in the UK, EU and US, but adds nothing but colour.",
+   "reasons": [
+    "Purely cosmetic: adds colour only",
+    "Can trigger sensitivity reactions in some people"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2010.1853"
+  },
+  "en:e140": {
+   "code": "E140",
+   "name": "Chlorophylls and Chlorophyllins",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4089"
+  },
+  "en:e1400": {
+   "code": "E1400",
+   "name": "Dextrin",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1401": {
+   "code": "E1401",
+   "name": "Acid-treated modified starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1402": {
+   "code": "E1402",
+   "name": "Alkaline modified starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1403": {
+   "code": "E1403",
+   "name": "Bleached starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1404": {
+   "code": "E1404",
+   "name": "Oxidised starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1405": {
+   "code": "E1405",
+   "name": "Enzyme treated starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e140i": {
+   "code": "E140",
+   "name": "E140i - Chlorophylls",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4089"
+  },
+  "en:e140ii": {
+   "code": "E140",
+   "name": "E140ii - Chlorophyllins",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4089"
+  },
+  "en:e141": {
+   "code": "E141",
+   "name": "Copper complexes of chlorophylls and chlorophyllins",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4151"
+  },
+  "en:e1410": {
+   "code": "E1410",
+   "name": "Monostarch phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1411": {
+   "code": "E1411",
+   "name": "Distarch glycerol",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1412": {
+   "code": "E1412",
+   "name": "Distarch phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1413": {
+   "code": "E1413",
+   "name": "Phosphated distarch phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1414": {
+   "code": "E1414",
+   "name": "Acetylated distarch phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e141i": {
+   "code": "E141",
+   "name": "E141i - Copper complexes of chlorophylls",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4151"
+  },
+  "en:e141ii": {
+   "code": "E141",
+   "name": "E141ii - Copper complexes of chlorophyllins",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4151"
+  },
+  "en:e142": {
+   "code": "E142",
+   "name": "Green s",
+   "functions": [],
+   "tier": "low",
+   "summary": "A synthetic colour. It is permitted in the UK, EU and US, but adds nothing but colour.",
+   "reasons": [
+    "Purely cosmetic: adds colour only",
+    "Can trigger sensitivity reactions in some people"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2010.1851"
+  },
+  "en:e1420": {
+   "code": "E1420",
+   "name": "Acetylated starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1421": {
+   "code": "E1421",
+   "name": "Acetylated starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1422": {
+   "code": "E1422",
+   "name": "Acetylated distarch adipate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1423": {
+   "code": "E1423",
+   "name": "Acetylated distarch glycerol",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e143": {
+   "code": "E143",
+   "name": "Fast Green FCF",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none"
+  },
+  "en:e1430": {
+   "code": "E1430",
+   "name": "Distarch glycerine",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1440": {
+   "code": "E1440",
+   "name": "Hydroxypropyl starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1441": {
+   "code": "E1441",
+   "name": "Hydroxy propyl distarch glycerine",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1442": {
+   "code": "E1442",
+   "name": "Hydroxypropyl distarch phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1443": {
+   "code": "E1443",
+   "name": "Hydroxy propyl distarch glycerol",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1450": {
+   "code": "E1450",
+   "name": "Starch sodium octenyl succinate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1451": {
+   "code": "E1451",
+   "name": "Acetylated oxidised starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e1452": {
+   "code": "E1452",
+   "name": "Starch aluminium octenyl succinate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e14xx": {
+   "code": "E1499",
+   "name": "E14XX - Modified Starch",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e150": {
+   "code": "E150",
+   "name": "Caramel",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.3030"
+  },
+  "en:e1503": {
+   "code": "E1503",
+   "name": "Castor oil",
+   "functions": [
+    "Carrier",
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e1504": {
+   "code": "E1504",
+   "name": "Ethyl acetate",
+   "functions": [
+    "Carrier"
+   ],
+   "tier": "none"
+  },
+  "en:e1505": {
+   "code": "E1505",
+   "name": "Triethyl citrate",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e150a": {
+   "code": "E150a",
+   "name": "Plain caramel",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.3030"
+  },
+  "en:e150b": {
+   "code": "E150b",
+   "name": "Caustic sulphite caramel",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2011.2004"
+  },
+  "en:e150c": {
+   "code": "E150c",
+   "name": "Ammonia caramel",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "moderate",
+   "summary": "Caramel colour made with ammonia. It can contain 4-MEI, a by-product classed as possibly carcinogenic. Common in colas.",
+   "reasons": [
+    "Can contain 4-MEI (IARC Group 2B, possibly carcinogenic)",
+    "Purely cosmetic: adds colour only"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: caramel colours re-evaluation (2011)",
+     "url": "https://doi.org/10.2903/j.efsa.2011.2004"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.3030"
+  },
+  "en:e150d": {
+   "code": "E150d",
+   "name": "Sulphite ammonia caramel",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "moderate",
+   "summary": "Caramel colour made with ammonia. It can contain 4-MEI, a by-product classed as possibly carcinogenic. Common in colas.",
+   "reasons": [
+    "Can contain 4-MEI (IARC Group 2B, possibly carcinogenic)",
+    "Purely cosmetic: adds colour only"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: caramel colours re-evaluation (2011)",
+     "url": "https://doi.org/10.2903/j.efsa.2011.2004"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.3030"
+  },
+  "en:e151": {
+   "code": "E151",
+   "name": "Brilliant black bn",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "moderate",
+   "summary": "A synthetic colour that is not permitted in the US.",
+   "reasons": [
+    "Not approved for food use in the US",
+    "Purely cosmetic: adds colour only"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.3960"
+  },
+  "en:e1510": {
+   "code": "E1510",
+   "name": "Ethanol",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1517": {
+   "code": "E1517",
+   "name": "Glyceryl diacetate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1518": {
+   "code": "E1518",
+   "name": "Glyceryl triacetate",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant"
+   ],
+   "tier": "none"
+  },
+  "en:e1519": {
+   "code": "E1519",
+   "name": "Benzyl alcohol",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e152": {
+   "code": "E152",
+   "name": "Black 7984",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e1520": {
+   "code": "E1520",
+   "name": "Propylene Glycol",
+   "functions": [
+    "Emulsifier",
+    "Humectant"
+   ],
+   "tier": "low",
+   "summary": "Propylene glycol is a solvent used to carry flavours and keep foods moist.",
+   "reasons": [
+    "Generally safe at food levels, but high intakes can be harmful"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5235"
+  },
+  "en:e1521": {
+   "code": "E1521",
+   "name": "Polyethylene glycol",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5293"
+  },
+  "en:e153": {
+   "code": "E153",
+   "name": "Vegetable carbon",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.2592"
+  },
+  "en:e154": {
+   "code": "E154",
+   "name": "Brown FK",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "A synthetic colour that is not permitted in the US.",
+   "reasons": [
+    "Not approved for food use in the US",
+    "Purely cosmetic: adds colour only"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1535"
+  },
+  "en:e155": {
+   "code": "E155",
+   "name": "Brown ht",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "moderate",
+   "summary": "A synthetic colour that is not permitted in the US.",
+   "reasons": [
+    "Not approved for food use in the US",
+    "Purely cosmetic: adds colour only"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2014.3719"
+  },
+  "en:e15x": {
+   "code": "E159",
+   "name": "E15x - E15x food additive",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e160": {
+   "code": "E160",
+   "name": "Carotenoids",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3492"
+  },
+  "en:e160a": {
+   "code": "E160a",
+   "name": "Carotene",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4434"
+  },
+  "en:e160ai": {
+   "code": "E160a",
+   "name": "E160ai - Beta-carotene",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4434"
+  },
+  "en:e160aii": {
+   "code": "E160a",
+   "name": "E160aii - Plant carotenes",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4434"
+  },
+  "en:e160aiii": {
+   "code": "E160a",
+   "name": "E160aiii - Beta-carotene from blakeslea trispora",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4434"
+  },
+  "en:e160aiv": {
+   "code": "E160a",
+   "name": "E160aiv - Algal carotenes",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4434"
+  },
+  "en:e160b": {
+   "code": "E160b",
+   "name": "Annatto",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "low",
+   "summary": "Annatto is a natural orange colour from seeds.",
+   "reasons": [
+    "Can cause allergic or sensitivity reactions in some people"
+   ],
+   "sources": [],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4544"
+  },
+  "en:e160bi": {
+   "code": "E160b",
+   "name": "E160bi - Annatto bixin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "low",
+   "summary": "Annatto is a natural orange colour from seeds.",
+   "reasons": [
+    "Can cause allergic or sensitivity reactions in some people"
+   ],
+   "sources": [],
+   "kidsWarning": false
+  },
+  "en:e160bii": {
+   "code": "E160b",
+   "name": "E160bii - Annatto norbixin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "low",
+   "summary": "Annatto is a natural orange colour from seeds.",
+   "reasons": [
+    "Can cause allergic or sensitivity reactions in some people"
+   ],
+   "sources": [],
+   "kidsWarning": false
+  },
+  "en:e160c": {
+   "code": "E160c",
+   "name": "Paprika extract",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4320"
+  },
+  "en:e160d": {
+   "code": "E160d",
+   "name": "Lycopene",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3492"
+  },
+  "en:e160e": {
+   "code": "E160e",
+   "name": "Beta-apo-8′-carotenal (c30)",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3492"
+  },
+  "en:e160f": {
+   "code": "E160f",
+   "name": "Ethyl ester of beta-apo-8'-carotenic acid (C 30)",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3492"
+  },
+  "en:e161": {
+   "code": "E161",
+   "name": "Xanthophylls",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161a": {
+   "code": "E161a",
+   "name": "Flavoxanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161b": {
+   "code": "E161b",
+   "name": "Lutein",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1678"
+  },
+  "en:e161c": {
+   "code": "E161c",
+   "name": "Cryptoaxanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161d": {
+   "code": "E161d",
+   "name": "Rubixanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161e": {
+   "code": "E161e",
+   "name": "Violaxanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161f": {
+   "code": "E161f",
+   "name": "Rhodoxanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161g": {
+   "code": "E161g",
+   "name": "Canthaxanthin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161h": {
+   "code": "E161h",
+   "name": "Zeaxanthin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161i": {
+   "code": "E161",
+   "name": "E161i - Citranaxanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e161j": {
+   "code": "E161",
+   "name": "E161j - Astaxanthin",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1852"
+  },
+  "en:e162": {
+   "code": "E162",
+   "name": "Beetroot red",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4318"
+  },
+  "en:e163": {
+   "code": "E163",
+   "name": "Anthocyanins",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e163a": {
+   "code": "E163a",
+   "name": "Cyanidin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e163b": {
+   "code": "E163b",
+   "name": "Delphinidin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e163c": {
+   "code": "E163c",
+   "name": "Malvidin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e163d": {
+   "code": "E163d",
+   "name": "Pelargonidin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e163e": {
+   "code": "E163e",
+   "name": "Peonidin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e163f": {
+   "code": "E163f",
+   "name": "Petunidin",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3145"
+  },
+  "en:e164": {
+   "code": "E164",
+   "name": "Saffron",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e165": {
+   "code": "E165",
+   "name": "Gardenia Blue",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e166": {
+   "code": "E166",
+   "name": "Sandalwood",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e170": {
+   "code": "E170",
+   "name": "Calcium carbonates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e170i": {
+   "code": "E170",
+   "name": "E170i - Calcium carbonate",
+   "functions": [
+    "Colour",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://www.efsa.europa.eu/fr/efsajournal/doc/2318.pdf"
+  },
+  "en:e170ii": {
+   "code": "E170ii",
+   "name": "Calcium hydrogen carbonate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e171": {
+   "code": "E171",
+   "name": "Titanium dioxide",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "high",
+   "summary": "A whitening pigment. The EU banned it in food in 2022 after EFSA said it could no longer be considered safe. It is still permitted in Great Britain.",
+   "reasons": [
+    "EFSA could not rule out genotoxicity (damage to DNA)",
+    "Banned as a food additive across the EU since 2022"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: titanium dioxide no longer considered safe (2021)",
+     "url": "https://www.efsa.europa.eu/en/news/titanium-dioxide-e171-no-longer-considered-safe-when-used-food-additive"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4545"
+  },
+  "en:e172": {
+   "code": "E172",
+   "name": "Iron oxides and iron hydroxides",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none"
+  },
+  "en:e172i": {
+   "code": "E172",
+   "name": "E172i - Black iron oxide",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4317"
+  },
+  "en:e172ii": {
+   "code": "E172",
+   "name": "E172ii - Red iron oxide",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4317"
+  },
+  "en:e172iii": {
+   "code": "E172",
+   "name": "E172iii - Yellow iron oxide",
+   "functions": [
+    "Colour"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4317"
+  },
+  "en:e173": {
+   "code": "E173",
+   "name": "Aluminium",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e174": {
+   "code": "E174",
+   "name": "Silver",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4364"
+  },
+  "en:e175": {
+   "code": "E175",
+   "name": "Gold",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4362"
+  },
+  "en:e180": {
+   "code": "E180",
+   "name": "Litholrubine bk",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1586"
+  },
+  "en:e181": {
+   "code": "E181",
+   "name": "Tannin",
+   "functions": [
+    "Colour",
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e182": {
+   "code": "E182",
+   "name": "Orcein",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e200": {
+   "code": "E200",
+   "name": "Sorbic acid",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2015.4144"
+  },
+  "en:e201": {
+   "code": "E201",
+   "name": "Sodium sorbate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e202": {
+   "code": "E202",
+   "name": "Potassium sorbate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2015.4144"
+  },
+  "en:e203": {
+   "code": "E203",
+   "name": "Calcium sorbate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4144"
+  },
+  "en:e209": {
+   "code": "E209",
+   "name": "Heptylparaben",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e210": {
+   "code": "E210",
+   "name": "Benzoic acid",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "moderate",
+   "summary": "A benzoate preservative. With vitamin C (ascorbic acid) it can form small amounts of benzene, a known carcinogen.",
+   "reasons": [
+    "Can form benzene when combined with vitamin C, especially in drinks exposed to heat or light",
+    "EFSA found some children may exceed the acceptable daily intake"
+   ],
+   "sources": [
+    {
+     "title": "FDA: benzene in soft drinks (benzoate + vitamin C)",
+     "url": "https://www.fda.gov/food/environmental-contaminants-food/questions-and-answers-occurrence-benzene-soft-drinks-and-other-beverages"
+    },
+    {
+     "title": "EFSA: benzoic acid and benzoates re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4433"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4433"
+  },
+  "en:e211": {
+   "code": "E211",
+   "name": "Sodium benzoate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "moderate",
+   "summary": "A benzoate preservative. With vitamin C (ascorbic acid) it can form small amounts of benzene, a known carcinogen.",
+   "reasons": [
+    "Can form benzene when combined with vitamin C, especially in drinks exposed to heat or light",
+    "EFSA found some children may exceed the acceptable daily intake"
+   ],
+   "sources": [
+    {
+     "title": "FDA: benzene in soft drinks (benzoate + vitamin C)",
+     "url": "https://www.fda.gov/food/environmental-contaminants-food/questions-and-answers-occurrence-benzene-soft-drinks-and-other-beverages"
+    },
+    {
+     "title": "EFSA: benzoic acid and benzoates re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4433"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4433"
+  },
+  "en:e212": {
+   "code": "E212",
+   "name": "Potassium benzoate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "moderate",
+   "summary": "A benzoate preservative. With vitamin C (ascorbic acid) it can form small amounts of benzene, a known carcinogen.",
+   "reasons": [
+    "Can form benzene when combined with vitamin C, especially in drinks exposed to heat or light",
+    "EFSA found some children may exceed the acceptable daily intake"
+   ],
+   "sources": [
+    {
+     "title": "FDA: benzene in soft drinks (benzoate + vitamin C)",
+     "url": "https://www.fda.gov/food/environmental-contaminants-food/questions-and-answers-occurrence-benzene-soft-drinks-and-other-beverages"
+    },
+    {
+     "title": "EFSA: benzoic acid and benzoates re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4433"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4433"
+  },
+  "en:e213": {
+   "code": "E213",
+   "name": "Calcium benzoate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "moderate",
+   "summary": "A benzoate preservative. With vitamin C (ascorbic acid) it can form small amounts of benzene, a known carcinogen.",
+   "reasons": [
+    "Can form benzene when combined with vitamin C, especially in drinks exposed to heat or light",
+    "EFSA found some children may exceed the acceptable daily intake"
+   ],
+   "sources": [
+    {
+     "title": "FDA: benzene in soft drinks (benzoate + vitamin C)",
+     "url": "https://www.fda.gov/food/environmental-contaminants-food/questions-and-answers-occurrence-benzene-soft-drinks-and-other-beverages"
+    },
+    {
+     "title": "EFSA: benzoic acid and benzoates re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4433"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4433"
+  },
+  "en:e214": {
+   "code": "E214",
+   "name": "Ethyl p-hydroxybenzoate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2004.83"
+  },
+  "en:e215": {
+   "code": "E215",
+   "name": "Sodium ethyl p-hydroxybenzoate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e216": {
+   "code": "E216",
+   "name": "Propyl para-hydroxybenzoate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e217": {
+   "code": "E217",
+   "name": "Sodium propyl para-hydroxybenzoate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e218": {
+   "code": "E218",
+   "name": "Methyl p-hydroxybenzoate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e219": {
+   "code": "E219",
+   "name": "Sodium methyl p-hydroxybenzoate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e220": {
+   "code": "E220",
+   "name": "Sulphur dioxide",
+   "functions": [
+    "Antioxidant",
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e221": {
+   "code": "E221",
+   "name": "Sodium sulphite",
+   "functions": [
+    "Antioxidant",
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e222": {
+   "code": "E222",
+   "name": "Sodium bisulphite",
+   "functions": [
+    "Antioxidant",
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e223": {
+   "code": "E223",
+   "name": "Sodium metabisulphite",
+   "functions": [
+    "Antioxidant",
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e224": {
+   "code": "E224",
+   "name": "Potassium metabisulphite",
+   "functions": [
+    "Antioxidant",
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e225": {
+   "code": "E225",
+   "name": "Calcium Disulphite",
+   "functions": [
+    "Antioxidant",
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e226": {
+   "code": "E226",
+   "name": "Calcium sulphite",
+   "functions": [],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e227": {
+   "code": "E227",
+   "name": "Calcium bisulphite",
+   "functions": [],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e228": {
+   "code": "E228",
+   "name": "Potassium bisulphite",
+   "functions": [],
+   "tier": "low",
+   "summary": "A sulphite preservative. It can trigger asthma and sensitivity reactions, so it must be declared as an allergen.",
+   "reasons": [
+    "Can trigger asthma attacks in sensitive people",
+    "Must be declared as an allergen on UK labels"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: sulphites re-evaluation (2016)",
+     "url": "https://doi.org/10.2903/j.efsa.2016.4438"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+  },
+  "en:e230": {
+   "code": "E230",
+   "name": "Biphenyl",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e231": {
+   "code": "E231",
+   "name": "Orthophenyl phenol",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e232": {
+   "code": "E232",
+   "name": "Sodium orthophenyl phenol",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e233": {
+   "code": "E233",
+   "name": "Thiabendazole",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e234": {
+   "code": "E234",
+   "name": "Nisin",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2006.314"
+  },
+  "en:e235": {
+   "code": "E235",
+   "name": "Natamycin",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2009.1412"
+  },
+  "en:e236": {
+   "code": "E236",
+   "name": "Formic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e237": {
+   "code": "E237",
+   "name": "Sodium formiate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e238": {
+   "code": "E238",
+   "name": "Calcium formiate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e239": {
+   "code": "E239",
+   "name": "Hexamethylene tetramine",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3696"
+  },
+  "en:e240": {
+   "code": "E240",
+   "name": "Formaldehyde",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e241": {
+   "code": "E241",
+   "name": "Gum Guaicum",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e242": {
+   "code": "E242",
+   "name": "Dimethyl dicarbonate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4319"
+  },
+  "en:e243": {
+   "code": "E243",
+   "name": "Ethyl lauroyl arginate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5621"
+  },
+  "en:e246": {
+   "code": "E246",
+   "name": "Glycolipids",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e249": {
+   "code": "E249",
+   "name": "Potassium nitrite",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "high",
+   "summary": "Nitrites cure and preserve processed meats. They can form N-nitroso compounds, which are linked to bowel cancer.",
+   "reasons": [
+    "Processed meat is classed as a Group 1 carcinogen by the WHO's cancer agency",
+    "Nitrites can react to form carcinogenic nitrosamines, especially when cooked at high heat"
+   ],
+   "sources": [
+    {
+     "title": "IARC: processed meat classified as carcinogenic (2015)",
+     "url": "https://www.iarc.who.int/wp-content/uploads/2018/07/pr240_E.pdf"
+    },
+    {
+     "title": "EFSA: nitrites and nitrates re-evaluation (2017)",
+     "url": "https://www.efsa.europa.eu/en/press/news/170615"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e250": {
+   "code": "E250",
+   "name": "Sodium nitrite",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "high",
+   "summary": "Nitrites cure and preserve processed meats. They can form N-nitroso compounds, which are linked to bowel cancer.",
+   "reasons": [
+    "Processed meat is classed as a Group 1 carcinogen by the WHO's cancer agency",
+    "Nitrites can react to form carcinogenic nitrosamines, especially when cooked at high heat"
+   ],
+   "sources": [
+    {
+     "title": "IARC: processed meat classified as carcinogenic (2015)",
+     "url": "https://www.iarc.who.int/wp-content/uploads/2018/07/pr240_E.pdf"
+    },
+    {
+     "title": "EFSA: nitrites and nitrates re-evaluation (2017)",
+     "url": "https://www.efsa.europa.eu/en/press/news/170615"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://zenodo.org/record/1252752/files/EFSAOutputs_KJ_2018.xlsx"
+  },
+  "en:e251": {
+   "code": "E251",
+   "name": "Sodium nitrate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "high",
+   "summary": "Nitrates cure processed meats and convert to nitrites in the product and in the body.",
+   "reasons": [
+    "Convert to nitrites, which can form carcinogenic nitrosamines",
+    "Mainly used in processed meat, classed as a Group 1 carcinogen"
+   ],
+   "sources": [
+    {
+     "title": "IARC: processed meat classified as carcinogenic (2015)",
+     "url": "https://www.iarc.who.int/wp-content/uploads/2018/07/pr240_E.pdf"
+    },
+    {
+     "title": "EFSA: nitrites and nitrates re-evaluation (2017)",
+     "url": "https://www.efsa.europa.eu/en/press/news/170615"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4787"
+  },
+  "en:e252": {
+   "code": "E252",
+   "name": "Potassium nitrate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "high",
+   "summary": "Nitrates cure processed meats and convert to nitrites in the product and in the body.",
+   "reasons": [
+    "Convert to nitrites, which can form carcinogenic nitrosamines",
+    "Mainly used in processed meat, classed as a Group 1 carcinogen"
+   ],
+   "sources": [
+    {
+     "title": "IARC: processed meat classified as carcinogenic (2015)",
+     "url": "https://www.iarc.who.int/wp-content/uploads/2018/07/pr240_E.pdf"
+    },
+    {
+     "title": "EFSA: nitrites and nitrates re-evaluation (2017)",
+     "url": "https://www.efsa.europa.eu/en/press/news/170615"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4787"
+  },
+  "en:e260": {
+   "code": "E260",
+   "name": "Acetic acid",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e261": {
+   "code": "E261",
+   "name": "Potassium acetate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e262": {
+   "code": "E262",
+   "name": "Sodium acetates",
+   "functions": [
+    "Preservative",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e262i": {
+   "code": "E262",
+   "name": "E262i - Sodium acetate",
+   "functions": [
+    "Preservative",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e262ii": {
+   "code": "E262",
+   "name": "E262ii - Sodium diacetate",
+   "functions": [
+    "Preservative",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e263": {
+   "code": "E263",
+   "name": "Calcium acetate",
+   "functions": [
+    "Preservative",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e264": {
+   "code": "E264",
+   "name": "Ammonium acetate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e265": {
+   "code": "E265",
+   "name": "Dehydroacetic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e266": {
+   "code": "E266",
+   "name": "Sodium dehydroacetate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e267": {
+   "code": "E267",
+   "name": "Buffered vinegar",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e270": {
+   "code": "E270",
+   "name": "Lactic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e280": {
+   "code": "E280",
+   "name": "Propionic acid",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A propionate preservative that stops mould in bread and baked goods.",
+   "reasons": [
+    "Some small studies link it to changes in insulin and appetite hormones"
+   ],
+   "sources": [
+    {
+     "title": "Tirosh et al., Science Translational Medicine (2019): propionate and metabolism",
+     "url": "https://doi.org/10.1126/scitranslmed.aav0120"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3779"
+  },
+  "en:e281": {
+   "code": "E281",
+   "name": "Sodium propionate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A propionate preservative that stops mould in bread and baked goods.",
+   "reasons": [
+    "Some small studies link it to changes in insulin and appetite hormones"
+   ],
+   "sources": [
+    {
+     "title": "Tirosh et al., Science Translational Medicine (2019): propionate and metabolism",
+     "url": "https://doi.org/10.1126/scitranslmed.aav0120"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3779"
+  },
+  "en:e282": {
+   "code": "E282",
+   "name": "Calcium propionate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A propionate preservative that stops mould in bread and baked goods.",
+   "reasons": [
+    "Some small studies link it to changes in insulin and appetite hormones"
+   ],
+   "sources": [
+    {
+     "title": "Tirosh et al., Science Translational Medicine (2019): propionate and metabolism",
+     "url": "https://doi.org/10.1126/scitranslmed.aav0120"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3779"
+  },
+  "en:e283": {
+   "code": "E283",
+   "name": "Potassium propionate",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "low",
+   "summary": "A propionate preservative that stops mould in bread and baked goods.",
+   "reasons": [
+    "Some small studies link it to changes in insulin and appetite hormones"
+   ],
+   "sources": [
+    {
+     "title": "Tirosh et al., Science Translational Medicine (2019): propionate and metabolism",
+     "url": "https://doi.org/10.1126/scitranslmed.aav0120"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3779"
+  },
+  "en:e284": {
+   "code": "E284",
+   "name": "Boric acid",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3407"
+  },
+  "en:e285": {
+   "code": "E285",
+   "name": "Sodium tetraborate (borax)",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3407"
+  },
+  "en:e290": {
+   "code": "E290",
+   "name": "Carbon dioxide",
+   "functions": [
+    "Preservative",
+    "Propellent gas"
+   ],
+   "tier": "none"
+  },
+  "en:e296": {
+   "code": "E296",
+   "name": "Malic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e297": {
+   "code": "E297",
+   "name": "Fumaric acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e300": {
+   "code": "E300",
+   "name": "Ascorbic acid",
+   "functions": [
+    "Antioxidant",
+    "Sequestrant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2015.4087"
+  },
+  "en:e301": {
+   "code": "E301",
+   "name": "Sodium ascorbate",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2015.4087"
+  },
+  "en:e302": {
+   "code": "E302",
+   "name": "Calcium ascorbate",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2015.4087"
+  },
+  "en:e303": {
+   "code": "E303",
+   "name": "Potassium ascorbate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e304": {
+   "code": "E304",
+   "name": "Fatty acid esters of ascorbic acid",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4289"
+  },
+  "en:e304i": {
+   "code": "E304",
+   "name": "E304i - Ascorbyl palmitate",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4289"
+  },
+  "en:e304ii": {
+   "code": "E304",
+   "name": "E304ii - Ascorbyl stearate",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4289"
+  },
+  "en:e306": {
+   "code": "E306",
+   "name": "Tocopherol-rich extract",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e307": {
+   "code": "E307",
+   "name": "Alpha-tocopherol",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e307a": {
+   "code": "E307a",
+   "name": "D-Alpha-tocopherol",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e307b": {
+   "code": "E307b",
+   "name": "Concentrated tocopherol",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e307c": {
+   "code": "E307c",
+   "name": "DL-Alpha-tocopherol",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e308": {
+   "code": "E308",
+   "name": "Gamme-tocopherol",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e309": {
+   "code": "E309",
+   "name": "Delta-tocopherol",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4247"
+  },
+  "en:e310": {
+   "code": "E310",
+   "name": "Propyl gallate",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "moderate",
+   "summary": "Propyl gallate is a synthetic antioxidant used in fats and oils.",
+   "reasons": [
+    "Suspected endocrine (hormone) disruptor in lab studies",
+    "Can cause skin and stomach sensitivity"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: gallates re-evaluation (2014)",
+     "url": "https://doi.org/10.2903/j.efsa.2014.3642"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3642"
+  },
+  "en:e311": {
+   "code": "E311",
+   "name": "Octyl gallate",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4248"
+  },
+  "en:e312": {
+   "code": "E312",
+   "name": "Dodecyl gallate",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4086"
+  },
+  "en:e313": {
+   "code": "E313",
+   "name": "Ethyl gallate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e314": {
+   "code": "E314",
+   "name": "Guaiacum",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none"
+  },
+  "en:e315": {
+   "code": "E315",
+   "name": "Erythorbic acid",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2016.4360"
+  },
+  "en:e316": {
+   "code": "E316",
+   "name": "Sodium erythorbate",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2016.4360"
+  },
+  "en:e317": {
+   "code": "E317",
+   "name": "Erythorbin acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e318": {
+   "code": "E318",
+   "name": "Calcium erythorbin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e319": {
+   "code": "E319",
+   "name": "Tertiary-butylhydroquinone (tbhq)",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "moderate",
+   "summary": "TBHQ is a synthetic antioxidant used in frying oils and snacks.",
+   "reasons": [
+    "Animal studies suggest effects on the immune system",
+    "EFSA found some high consumers may exceed the acceptable daily intake"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: TBHQ opinion (2004)",
+     "url": "https://doi.org/10.2903/j.efsa.2004.84"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4363"
+  },
+  "en:e320": {
+   "code": "E320",
+   "name": "Butylated hydroxyanisole (bha)",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "high",
+   "summary": "BHA is a synthetic antioxidant used to stop fats going rancid. It is classed as possibly carcinogenic to humans.",
+   "reasons": [
+    "Classed as possibly carcinogenic (IARC Group 2B)",
+    "Suspected endocrine (hormone) disruptor"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: butylated hydroxyanisole (BHA) re-evaluation (2011)",
+     "url": "https://doi.org/10.2903/j.efsa.2011.2392"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.2759"
+  },
+  "en:e321": {
+   "code": "E321",
+   "name": "Butylated hydroxytoluene",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "moderate",
+   "summary": "BHT is a synthetic antioxidant that stops fats going rancid.",
+   "reasons": [
+    "Mixed animal evidence on liver, thyroid and tumour effects",
+    "Suspected endocrine (hormone) disruptor"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: BHT re-evaluation (2012)",
+     "url": "https://doi.org/10.2903/j.efsa.2012.2588"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.2588"
+  },
+  "en:e322": {
+   "code": "E322",
+   "name": "Lecithins",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e322a": {
+   "code": "E322a",
+   "name": "Oat lecithin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e322i": {
+   "code": "E322",
+   "name": "E322i - Lecithin",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e322ii": {
+   "code": "E322",
+   "name": "E322ii - Partially hydrolyzed lecithin",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e323": {
+   "code": "E323",
+   "name": "Anoxomer",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e324": {
+   "code": "E324",
+   "name": "Ethoxyquin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e325": {
+   "code": "E325",
+   "name": "Sodium lactate",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier",
+    "Humectant",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e326": {
+   "code": "E326",
+   "name": "Potassium lactate",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier",
+    "Humectant"
+   ],
+   "tier": "none"
+  },
+  "en:e327": {
+   "code": "E327",
+   "name": "Calcium lactate",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e328": {
+   "code": "E328",
+   "name": "Ammonium lactate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e329": {
+   "code": "E329",
+   "name": "Magnesium lactate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e330": {
+   "code": "E330",
+   "name": "Citric acid",
+   "functions": [
+    "Antioxidant",
+    "Sequestrant"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3152"
+  },
+  "en:e331": {
+   "code": "E331",
+   "name": "Sodium citrates",
+   "functions": [
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e331i": {
+   "code": "E331",
+   "name": "E331i - Monosodium citrate",
+   "functions": [
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e331ii": {
+   "code": "E331",
+   "name": "E331ii - Disodium citrate",
+   "functions": [
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e331iii": {
+   "code": "E331",
+   "name": "E331iii - Trisodium citrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e332": {
+   "code": "E332",
+   "name": "Potassium citrates",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e332i": {
+   "code": "E332",
+   "name": "E332i - Monopotassium citrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e332ii": {
+   "code": "E332",
+   "name": "E332ii - Tripotassium citrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e333": {
+   "code": "E333",
+   "name": "Calcium citrates",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e333i": {
+   "code": "E333",
+   "name": "E333i - Monocalcium citrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e333ii": {
+   "code": "E333",
+   "name": "E333ii - Dicalcium citrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e333iii": {
+   "code": "E333",
+   "name": "E333iii - Tricalcium citrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e334": {
+   "code": "E334",
+   "name": "L(+)-tartaric acid",
+   "functions": [
+    "Antioxidant",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e335": {
+   "code": "E335",
+   "name": "Sodium tartrates",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e335i": {
+   "code": "E335",
+   "name": "E335i - Monosodium tartrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e335ii": {
+   "code": "E335",
+   "name": "E335ii - Disodium tartrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e336": {
+   "code": "E336",
+   "name": "Potassium tartrates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e336i": {
+   "code": "E336",
+   "name": "E336i - Monopotassium tartrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e336ii": {
+   "code": "E336",
+   "name": "E336ii - Dipotassium tartrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e337": {
+   "code": "E337",
+   "name": "Potassium sodium tartrate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e338": {
+   "code": "E338",
+   "name": "Phosphoric acid",
+   "functions": [
+    "Antioxidant",
+    "Sequestrant"
+   ],
+   "tier": "moderate",
+   "summary": "Phosphoric acid gives colas their sharp taste. High phosphate intake is linked to heart and kidney strain.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "EFSA set a group intake limit that some children may exceed"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e339": {
+   "code": "E339",
+   "name": "Sodium phosphates",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Preservative",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e339i": {
+   "code": "E339",
+   "name": "E339i - Monosodium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Preservative",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e339ii": {
+   "code": "E339",
+   "name": "E339ii - Disodium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Preservative",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e339iii": {
+   "code": "E339",
+   "name": "E339iii - Trisodium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Preservative",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e340": {
+   "code": "E340",
+   "name": "Potassium phosphates",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e340i": {
+   "code": "E340",
+   "name": "E340i - Monopotassium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e340ii": {
+   "code": "E340",
+   "name": "E340ii - Dipotassium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e340iii": {
+   "code": "E340",
+   "name": "E340iii - Tripotassium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e341": {
+   "code": "E341",
+   "name": "Calcium phosphates",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e341i": {
+   "code": "E341",
+   "name": "E341i - Monocalcium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e341ii": {
+   "code": "E341",
+   "name": "E341ii - Dicalcium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e341iii": {
+   "code": "E341",
+   "name": "E341iii - Tricalcium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e342": {
+   "code": "E342",
+   "name": "Ammonium phosphate",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e343": {
+   "code": "E343",
+   "name": "Magnesium phosphates",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e343i": {
+   "code": "E343",
+   "name": "E343i - Monomagnesium phosphate",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e343ii": {
+   "code": "E343",
+   "name": "E343ii - Dimagnesium phosphate",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e344": {
+   "code": "E344",
+   "name": "Lecithin citrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e345": {
+   "code": "E345",
+   "name": "Magnesium citrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e349": {
+   "code": "E349",
+   "name": "Ammonium malate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e350": {
+   "code": "E350",
+   "name": "Sodium malates",
+   "functions": [
+    "Humectant"
+   ],
+   "tier": "none"
+  },
+  "en:e350i": {
+   "code": "E350",
+   "name": "E350i - Sodium malate",
+   "functions": [
+    "Humectant"
+   ],
+   "tier": "none"
+  },
+  "en:e350ii": {
+   "code": "E350",
+   "name": "E350ii - Sodium hydrogen malate",
+   "functions": [
+    "Humectant"
+   ],
+   "tier": "none"
+  },
+  "en:e351": {
+   "code": "E351",
+   "name": "Potassium malate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e352": {
+   "code": "E352",
+   "name": "Calcium malates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e352i": {
+   "code": "E352",
+   "name": "E352i - Calcium malate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e352ii": {
+   "code": "E352",
+   "name": "E352ii - Calcium hydrogen malate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e353": {
+   "code": "E353",
+   "name": "Metatartaric acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e354": {
+   "code": "E354",
+   "name": "Calcium tartrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e355": {
+   "code": "E355",
+   "name": "Adipic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e356": {
+   "code": "E356",
+   "name": "Sodium adipate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e357": {
+   "code": "E357",
+   "name": "Potassium adipate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e359": {
+   "code": "E359",
+   "name": "Ammonium adipate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e363": {
+   "code": "E363",
+   "name": "Succinic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e365": {
+   "code": "E365",
+   "name": "Sodium fumarate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e366": {
+   "code": "E366",
+   "name": "Potassium fumarate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e367": {
+   "code": "E367",
+   "name": "Calcium fumarate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e368": {
+   "code": "E368",
+   "name": "Ammonium fumarate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e369": {
+   "code": "E639",
+   "name": "E369 - Alanin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e370": {
+   "code": "E370",
+   "name": "1‚4-Heptonolactone",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e375": {
+   "code": "E375",
+   "name": "Nicotinic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e380": {
+   "code": "E380",
+   "name": "Triammonium citrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e381": {
+   "code": "E381",
+   "name": "Ferric ammonium citrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e383": {
+   "code": "E383",
+   "name": "Calcium glycerophosphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e384": {
+   "code": "E384",
+   "name": "Isopropyl citrates",
+   "functions": [
+    "Antioxidant",
+    "Preservative",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e385": {
+   "code": "E385",
+   "name": "Calcium disodium ethylenediaminetetraacetate",
+   "functions": [
+    "Antioxidant",
+    "Preservative",
+    "Sequestrant"
+   ],
+   "tier": "low",
+   "summary": "Calcium disodium EDTA is a preservative that binds metals.",
+   "reasons": [
+    "Can reduce absorption of some minerals",
+    "A marker of ultra-processed foods"
+   ],
+   "sources": [],
+   "kidsWarning": false
+  },
+  "en:e388": {
+   "code": "E388",
+   "name": "Thiodipropionic acid",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none"
+  },
+  "en:e391": {
+   "code": "E391",
+   "name": "Phytic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e392": {
+   "code": "E392",
+   "name": "Extracts of rosemary",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4090"
+  },
+  "en:e399": {
+   "code": "E399",
+   "name": "Calcium lactobionate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e400": {
+   "code": "E400",
+   "name": "Alginic acid",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.5049"
+  },
+  "en:e401": {
+   "code": "E401",
+   "name": "Sodium alginate",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.5049"
+  },
+  "en:e402": {
+   "code": "E402",
+   "name": "Potassium alginate",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.5049"
+  },
+  "en:e403": {
+   "code": "E403",
+   "name": "Ammonium alginate",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.5049"
+  },
+  "en:e404": {
+   "code": "E404",
+   "name": "Calcium alginate",
+   "functions": [
+    "Carrier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.5049"
+  },
+  "en:e405": {
+   "code": "E405",
+   "name": "Propane-1‚2-diol alginate",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e406": {
+   "code": "E406",
+   "name": "Agar",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e407": {
+   "code": "E407",
+   "name": "Carrageenan",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "moderate",
+   "summary": "A seaweed-derived thickener. Animal and cell studies link it to gut inflammation, and EFSA has asked for more safety data.",
+   "reasons": [
+    "Linked to intestinal inflammation in animal studies",
+    "EFSA set only a temporary acceptable intake pending more data"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: carrageenan re-evaluation (2018)",
+     "url": "https://doi.org/10.2903/j.efsa.2018.5238"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5238"
+  },
+  "en:e407a": {
+   "code": "E407a",
+   "name": "Processed eucheuma seaweed",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "moderate",
+   "summary": "A seaweed-derived thickener. Animal and cell studies link it to gut inflammation, and EFSA has asked for more safety data.",
+   "reasons": [
+    "Linked to intestinal inflammation in animal studies",
+    "EFSA set only a temporary acceptable intake pending more data"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: carrageenan re-evaluation (2018)",
+     "url": "https://doi.org/10.2903/j.efsa.2018.5238"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5238"
+  },
+  "en:e408": {
+   "code": "E408",
+   "name": "Bakers yeast glycan",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e409": {
+   "code": "E409",
+   "name": "Arabinogalactan",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e410": {
+   "code": "E410",
+   "name": "Locust bean gum",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.4646"
+  },
+  "en:e411": {
+   "code": "E411",
+   "name": "E411 food additive",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e412": {
+   "code": "E412",
+   "name": "Guar gum",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e413": {
+   "code": "E413",
+   "name": "Tragacanth",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.4789"
+  },
+  "en:e414": {
+   "code": "E414",
+   "name": "Acacia gum",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e414a": {
+   "code": "E414a",
+   "name": "E414a food additive",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e415": {
+   "code": "E415",
+   "name": "Xanthan gum",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.4909"
+  },
+  "en:e416": {
+   "code": "E416",
+   "name": "Karaya-gum",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4598"
+  },
+  "en:e417": {
+   "code": "E417",
+   "name": "Tara gum",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.4863"
+  },
+  "en:e418": {
+   "code": "E418",
+   "name": "Gellan gum",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5296"
+  },
+  "en:e419": {
+   "code": "E419",
+   "name": "Gum ghatti",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e420": {
+   "code": "E420",
+   "name": "Sorbitol",
+   "functions": [
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A sugar alcohol (polyol) used as a sweetener or to keep food moist.",
+   "reasons": [
+    "Can cause bloating and a laxative effect in larger amounts"
+   ],
+   "sources": [
+    {
+     "title": "NHS: sugar alcohols can have a laxative effect",
+     "url": "https://www.nhs.uk/live-well/eat-well/food-types/are-sweeteners-safe/"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e420i": {
+   "code": "E420",
+   "name": "E420i - D-sorbitol",
+   "functions": [
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e420ii": {
+   "code": "E420",
+   "name": "E420ii - Sorbitol syrup",
+   "functions": [
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e421": {
+   "code": "E421",
+   "name": "Mannitol",
+   "functions": [
+    "Humectant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A sugar alcohol (polyol) used as a sweetener or to keep food moist.",
+   "reasons": [
+    "Can cause bloating and a laxative effect in larger amounts"
+   ],
+   "sources": [
+    {
+     "title": "NHS: sugar alcohols can have a laxative effect",
+     "url": "https://www.nhs.uk/live-well/eat-well/food-types/are-sweeteners-safe/"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e422": {
+   "code": "E422",
+   "name": "Glycerol",
+   "functions": [
+    "Humectant",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e424": {
+   "code": "E424",
+   "name": "Curdlan",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e425": {
+   "code": "E425",
+   "name": "Konjac",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e425i": {
+   "code": "E425",
+   "name": "E425i - Konjac gum",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e425ii": {
+   "code": "E425",
+   "name": "E425ii - Konjac glucomannan",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e426": {
+   "code": "E426",
+   "name": "Soybean hemicellulose",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e427": {
+   "code": "E427",
+   "name": "Cassia gum",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e428": {
+   "code": "E428",
+   "name": "Gelatine",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e429": {
+   "code": "E429",
+   "name": "Peptone",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e430": {
+   "code": "E430",
+   "name": "Polyoxyethylene (8) stearate",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e431": {
+   "code": "E431",
+   "name": "Polyoxyethylene (40) stearate",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e432": {
+   "code": "E432",
+   "name": "Polyoxyethylene sorbitan monolaurate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "moderate",
+   "summary": "A polysorbate emulsifier. Mouse studies found it thinned the gut's protective mucus layer and promoted inflammation.",
+   "reasons": [
+    "Promoted gut inflammation and metabolic changes in mouse studies",
+    "Human evidence is still limited"
+   ],
+   "sources": [
+    {
+     "title": "Chassaing et al., Nature (2015): emulsifiers, gut microbiota and inflammation",
+     "url": "https://doi.org/10.1038/nature14232"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4152"
+  },
+  "en:e433": {
+   "code": "E433",
+   "name": "Polyoxyethylene sorbitan monooleate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "moderate",
+   "summary": "A polysorbate emulsifier. Mouse studies found it thinned the gut's protective mucus layer and promoted inflammation.",
+   "reasons": [
+    "Promoted gut inflammation and metabolic changes in mouse studies",
+    "Human evidence is still limited"
+   ],
+   "sources": [
+    {
+     "title": "Chassaing et al., Nature (2015): emulsifiers, gut microbiota and inflammation",
+     "url": "https://doi.org/10.1038/nature14232"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4152"
+  },
+  "en:e434": {
+   "code": "E434",
+   "name": "Polyoxyethylene sorbitan monopalmitate",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "moderate",
+   "summary": "A polysorbate emulsifier. Mouse studies found it thinned the gut's protective mucus layer and promoted inflammation.",
+   "reasons": [
+    "Promoted gut inflammation and metabolic changes in mouse studies",
+    "Human evidence is still limited"
+   ],
+   "sources": [
+    {
+     "title": "Chassaing et al., Nature (2015): emulsifiers, gut microbiota and inflammation",
+     "url": "https://doi.org/10.1038/nature14232"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4152"
+  },
+  "en:e435": {
+   "code": "E435",
+   "name": "Polyoxyethylene sorbitan monostearate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "moderate",
+   "summary": "A polysorbate emulsifier. Mouse studies found it thinned the gut's protective mucus layer and promoted inflammation.",
+   "reasons": [
+    "Promoted gut inflammation and metabolic changes in mouse studies",
+    "Human evidence is still limited"
+   ],
+   "sources": [
+    {
+     "title": "Chassaing et al., Nature (2015): emulsifiers, gut microbiota and inflammation",
+     "url": "https://doi.org/10.1038/nature14232"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4152"
+  },
+  "en:e436": {
+   "code": "E436",
+   "name": "Polyoxyethylene sorbitan tristearate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "moderate",
+   "summary": "A polysorbate emulsifier. Mouse studies found it thinned the gut's protective mucus layer and promoted inflammation.",
+   "reasons": [
+    "Promoted gut inflammation and metabolic changes in mouse studies",
+    "Human evidence is still limited"
+   ],
+   "sources": [
+    {
+     "title": "Chassaing et al., Nature (2015): emulsifiers, gut microbiota and inflammation",
+     "url": "https://doi.org/10.1038/nature14232"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4152"
+  },
+  "en:e440": {
+   "code": "E440",
+   "name": "Pectins",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440a": {
+   "code": "E440a",
+   "name": "Pectin",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440aii": {
+   "code": "E440a",
+   "name": "E440aii - Sodium pectate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440aiii": {
+   "code": "E440a",
+   "name": "E440aiii - Potassium pectate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440aiv": {
+   "code": "E440a",
+   "name": "E440aiv - Ammonium Pectate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440b": {
+   "code": "E440b",
+   "name": "Pectin amide",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440i": {
+   "code": "E440",
+   "name": "E440i - non-amidated pectines",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e440ii": {
+   "code": "E440",
+   "name": "E440ii - Amidated pectin",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e441": {
+   "code": "E441",
+   "name": "Superglycerinated hydrogenated rapeseed oil",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e442": {
+   "code": "E442",
+   "name": "Ammonium phosphatides",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e443": {
+   "code": "E443",
+   "name": "Brominated vegetable oil",
+   "functions": [],
+   "tier": "high",
+   "summary": "Brominated vegetable oil keeps citrus flavour suspended in drinks. It is not permitted in the UK or EU and the US withdrew it in 2024.",
+   "reasons": [
+    "Bromine can build up in body fat and has been linked to thyroid effects",
+    "No longer authorised in the US (2024), UK or EU"
+   ],
+   "sources": [
+    {
+     "title": "FDA: brominated vegetable oil no longer authorised (2024)",
+     "url": "https://www.fda.gov/food/food-additives-petitions/brominated-vegetable-oil-bvo"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e444": {
+   "code": "E444",
+   "name": "Sucrose acetate isobutyrate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4489"
+  },
+  "en:e445": {
+   "code": "E445",
+   "name": "Glycerol esters of wood rosin",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e446": {
+   "code": "E446",
+   "name": "Succistearin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e450": {
+   "code": "E450",
+   "name": "Diphosphates",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e450i": {
+   "code": "E450",
+   "name": "E450i - Disodium diphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450ii": {
+   "code": "E450",
+   "name": "E450ii - Trisodium diphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450iii": {
+   "code": "E450",
+   "name": "E450iii - Tetrasodium diphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450iv": {
+   "code": "E450",
+   "name": "E450iv - dipotassium dihydrogenpyrophosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450v": {
+   "code": "E450",
+   "name": "E450v - Tetrapotassium diphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450vi": {
+   "code": "E450",
+   "name": "E450vi - Dicalcium diphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450vii": {
+   "code": "E450",
+   "name": "E450vii - Calcium dihydrogen diphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e450viii": {
+   "code": "E450",
+   "name": "E450viii",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e451": {
+   "code": "E451",
+   "name": "Triphosphates",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e451i": {
+   "code": "E451",
+   "name": "E451i - Pentasodium triphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e451ii": {
+   "code": "E451",
+   "name": "E451ii - Pentapotassium triphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e452": {
+   "code": "E452",
+   "name": "Polyphosphates",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A phosphate additive used as a raising agent, stabiliser or emulsifying salt.",
+   "reasons": [
+    "High phosphate intake is linked to cardiovascular and kidney risk",
+    "Most concerning for people with kidney disease"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: phosphates re-evaluation (2019)",
+     "url": "https://doi.org/10.2903/j.efsa.2019.5674"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5674"
+  },
+  "en:e452i": {
+   "code": "E452",
+   "name": "E452i - Sodium polyphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e452ii": {
+   "code": "E452",
+   "name": "E452ii - Potassium polyphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e452iii": {
+   "code": "E452",
+   "name": "E452iii - Sodium calcium polyphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e452iv": {
+   "code": "E452",
+   "name": "E452iv - Calcium polyphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e452v": {
+   "code": "E452",
+   "name": "E452v - Ammonium polyphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e452vi": {
+   "code": "E452",
+   "name": "E452vi - Sodium tripolyphosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e457": {
+   "code": "E457",
+   "name": "Alpha-Cyclodextrine",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e458": {
+   "code": "E458",
+   "name": "Gamma-Cyclodextrine",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e459": {
+   "code": "E459",
+   "name": "Beta-cyclodextrine",
+   "functions": [
+    "Carrier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4628"
+  },
+  "en:e460": {
+   "code": "E460",
+   "name": "Cellulose",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e460i": {
+   "code": "E460",
+   "name": "E460i - Microcrystalline cellulose",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e460ii": {
+   "code": "E460",
+   "name": "E460ii - Powdered cellulose",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e461": {
+   "code": "E461",
+   "name": "Methyl cellulose",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e462": {
+   "code": "E462",
+   "name": "Ethyl cellulose",
+   "functions": [
+    "Carrier",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e463": {
+   "code": "E463",
+   "name": "Hydroxypropyl cellulose",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e464": {
+   "code": "E464",
+   "name": "Hydroxypropyl methyl cellulose",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4088"
+  },
+  "en:e465": {
+   "code": "E465",
+   "name": "Ethyl methyl cellulose",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e466": {
+   "code": "E466",
+   "name": "Sodium carboxy methyl cellulose",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "moderate",
+   "summary": "Carboxymethylcellulose (CMC) is a synthetic thickener. In a controlled human trial it changed gut bacteria and reduced beneficial nutrients in the gut.",
+   "reasons": [
+    "Altered gut microbiota in healthy adults in a controlled trial",
+    "Promoted gut inflammation in mouse studies"
+   ],
+   "sources": [
+    {
+     "title": "Chassaing et al., Gastroenterology (2022): CMC trial in healthy adults",
+     "url": "https://doi.org/10.1053/j.gastro.2021.11.006"
+    },
+    {
+     "title": "Chassaing et al., Nature (2015): emulsifiers, gut microbiota and inflammation",
+     "url": "https://doi.org/10.1038/nature14232"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e467": {
+   "code": "E467",
+   "name": "Ethulose",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e468": {
+   "code": "E468",
+   "name": "Cross-linked sodium carboxymethylcellulose",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e469": {
+   "code": "E469",
+   "name": "Enzymatically hydrolysed carboxymethylcellulose",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e470": {
+   "code": "E470",
+   "name": "Sodium/potassium/calcium and magnesium salts of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e470a": {
+   "code": "E470a",
+   "name": "Sodium/potassium and calcium salts of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e470ai": {
+   "code": "E470a",
+   "name": "E470ai - Sodium salts of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e470aii": {
+   "code": "E470a",
+   "name": "E470aii - Potassium salts of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e470aiii": {
+   "code": "E470a",
+   "name": "E470aiii - Calcium salts of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e470b": {
+   "code": "E470b",
+   "name": "Magnesium salts of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e471": {
+   "code": "E471",
+   "name": "Mono- and diglycerides of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "low",
+   "summary": "A common emulsifier made from fats. A large 2023 French study linked it with higher cardiovascular risk.",
+   "reasons": [
+    "Associated with cardiovascular disease in a large cohort study (observational)",
+    "Can contain small amounts of trans fats"
+   ],
+   "sources": [
+    {
+     "title": "Sellem et al., BMJ (2023): emulsifiers and cardiovascular disease",
+     "url": "https://doi.org/10.1136/bmj-2023-076058"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e472": {
+   "code": "E472",
+   "name": "Acid esters of mono- and diglycerides of fatty acids",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e472a": {
+   "code": "E472a",
+   "name": "Acetic acid esters of mono- and diglycerides of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e472b": {
+   "code": "E472b",
+   "name": "Lactic acid esters of mono- and diglycerides of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e472c": {
+   "code": "E472c",
+   "name": "Citric acid esters of mono- and diglycerides of fatty acids",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e472d": {
+   "code": "E472d",
+   "name": "Tartaric acid esters of mono- and diglycerides of fatty acids",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e472e": {
+   "code": "E472e",
+   "name": "Mono- and diacetyltartaric acid esters of mono- and diglycerides of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "low",
+   "summary": "A common emulsifier made from fats. A large 2023 French study linked it with higher cardiovascular risk.",
+   "reasons": [
+    "Associated with cardiovascular disease in a large cohort study (observational)",
+    "Can contain small amounts of trans fats"
+   ],
+   "sources": [
+    {
+     "title": "Sellem et al., BMJ (2023): emulsifiers and cardiovascular disease",
+     "url": "https://doi.org/10.1136/bmj-2023-076058"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e472f": {
+   "code": "E472f",
+   "name": "Mixed acetic and tartaric acid esters of mono- and diglycerides of fatty acids",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e472g": {
+   "code": "E472g",
+   "name": "Succinylated monoglycerides",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e473": {
+   "code": "E473",
+   "name": "Sucrose esters of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5087"
+  },
+  "en:e473a": {
+   "code": "E473a",
+   "name": "Oligoesters of sucrose type I",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2004.106"
+  },
+  "en:e474": {
+   "code": "E474",
+   "name": "Sucroglycerides",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2004.106"
+  },
+  "en:e475": {
+   "code": "E475",
+   "name": "Polyglycerol esters of fatty acids",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e476": {
+   "code": "E476",
+   "name": "Polyglycerol polyricinoleate",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e477": {
+   "code": "E477",
+   "name": "Propane-1‚2-diol esters of fatty acids",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e478": {
+   "code": "E478",
+   "name": "Lactylated fatty acid esters of glycerol and propane-1",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e479b": {
+   "code": "E479b",
+   "name": "Thermally oxidised soya bean oil interacted with mono- and diglycerides of fatty acids",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e481": {
+   "code": "E481",
+   "name": "Sodium stearoyl-2-lactylate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3144"
+  },
+  "en:e482": {
+   "code": "E482",
+   "name": "Calcium stearoyl-2-lactylate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3144"
+  },
+  "en:e483": {
+   "code": "E483",
+   "name": "Stearyl tartrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e484": {
+   "code": "E484",
+   "name": "Stearyl citrate",
+   "functions": [
+    "Antioxidant",
+    "Emulsifier",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e485": {
+   "code": "E485",
+   "name": "Sodium stearoyl fumarate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e486": {
+   "code": "E486",
+   "name": "Calcium stearoyl fumarate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e487": {
+   "code": "E487",
+   "name": "Sodium dodecyl sulfate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e488": {
+   "code": "E488",
+   "name": "Ethoxylated Mono- and Di-Glycerides",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e489": {
+   "code": "E489",
+   "name": "Methyl glucoside-coconut oil ester",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e490": {
+   "code": "E490",
+   "name": "Propylene glycol",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e491": {
+   "code": "E491",
+   "name": "Sorbitan monostearate",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none",
+   "efsaUrl": "hhttps://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4788"
+  },
+  "en:e492": {
+   "code": "E492",
+   "name": "Sorbitan tristearate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "hhttps://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4788"
+  },
+  "en:e493": {
+   "code": "E493",
+   "name": "Sorbitan monolaurate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "hhttps://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4788"
+  },
+  "en:e494": {
+   "code": "E494",
+   "name": "Sorbitan monooleate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser"
+   ],
+   "tier": "none",
+   "efsaUrl": "hhttps://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4788"
+  },
+  "en:e495": {
+   "code": "E495",
+   "name": "Sorbitan monopalmitate",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none",
+   "efsaUrl": "hhttps://efsa.onlinelibrary.wiley.com/doi/epdf/10.2903/j.efsa.2017.4788"
+  },
+  "en:e496": {
+   "code": "E496",
+   "name": "Sorbitan trioleate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e500": {
+   "code": "E500",
+   "name": "Sodium carbonates",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3152"
+  },
+  "en:e500i": {
+   "code": "E500",
+   "name": "E500i - Sodium carbonate",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3152"
+  },
+  "en:e500ii": {
+   "code": "E500",
+   "name": "E500ii - Sodium hydrogen carbonate",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3152"
+  },
+  "en:e500iii": {
+   "code": "E500",
+   "name": "E500iii - Sodium sesquicarbonate",
+   "functions": [
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3152"
+  },
+  "en:e501": {
+   "code": "E501",
+   "name": "Potassium carbonates",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e501i": {
+   "code": "E501",
+   "name": "E501i - Potassium carbonate",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e501ii": {
+   "code": "E501",
+   "name": "E501ii - Potassium hydrogen carbonate",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e502": {
+   "code": "E502",
+   "name": "Carbonates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e503": {
+   "code": "E503",
+   "name": "Ammonium carbonates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e503i": {
+   "code": "E503",
+   "name": "E503i - Ammonium carbonate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e503ii": {
+   "code": "E503",
+   "name": "E503ii - Ammonium hydrogen carbonate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e504": {
+   "code": "E504",
+   "name": "Magnesium carbonates",
+   "functions": [
+    "Carrier"
+   ],
+   "tier": "none"
+  },
+  "en:e504i": {
+   "code": "E504",
+   "name": "E504i - Magnesium carbonate",
+   "functions": [
+    "Carrier"
+   ],
+   "tier": "none"
+  },
+  "en:e504ii": {
+   "code": "E504",
+   "name": "E504ii - Magnesium hydroxide carbonate",
+   "functions": [
+    "Carrier"
+   ],
+   "tier": "none"
+  },
+  "en:e505": {
+   "code": "E505",
+   "name": "Ferrous carbonate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e507": {
+   "code": "E507",
+   "name": "Hydrochloric acid",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5751"
+  },
+  "en:e508": {
+   "code": "E508",
+   "name": "Potassium chloride",
+   "functions": [
+    "Stabiliser",
+    "Thickener",
+    "Preservative"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5751"
+  },
+  "en:e509": {
+   "code": "E509",
+   "name": "Calcium chloride",
+   "functions": [
+    "Stabiliser",
+    "Thickener",
+    "Coagulant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5751"
+  },
+  "en:e510": {
+   "code": "E510",
+   "name": "Ammonium chloride",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e511": {
+   "code": "E511",
+   "name": "Magnesium chloride",
+   "functions": [
+    "Stabiliser",
+    "Coagulant"
+   ],
+   "tier": "none",
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2019.5751"
+  },
+  "en:e512": {
+   "code": "E512",
+   "name": "Stannous chloride",
+   "functions": [
+    "Antioxidant"
+   ],
+   "tier": "none"
+  },
+  "en:e513": {
+   "code": "E513",
+   "name": "Sulphuric acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e514": {
+   "code": "E514",
+   "name": "Sodium sulphates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e514i": {
+   "code": "E514",
+   "name": "E514i - Sodium sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e514ii": {
+   "code": "E514",
+   "name": "E514ii - Sodium hydrogen sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e515": {
+   "code": "E515",
+   "name": "Potassium sulphates",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e515i": {
+   "code": "E515",
+   "name": "E515i - Potassium sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e515ii": {
+   "code": "E515",
+   "name": "E515ii - Potassium hydrogen sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e516": {
+   "code": "E516",
+   "name": "Calcium sulphate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser"
+   ],
+   "tier": "none"
+  },
+  "en:e517": {
+   "code": "E517",
+   "name": "Ammonium sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e518": {
+   "code": "E518",
+   "name": "Magnesium sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e519": {
+   "code": "E519",
+   "name": "Copper sulphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e520": {
+   "code": "E520",
+   "name": "Aluminium sulphate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e521": {
+   "code": "E521",
+   "name": "Aluminium sodium sulphate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e522": {
+   "code": "E522",
+   "name": "Aluminium potassium sulphate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e523": {
+   "code": "E523",
+   "name": "Aluminium ammonium sulphate",
+   "functions": [
+    "Stabiliser"
+   ],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e524": {
+   "code": "E524",
+   "name": "Sodium hydroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e525": {
+   "code": "E525",
+   "name": "Potassium hydroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e526": {
+   "code": "E526",
+   "name": "Calcium hydroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e527": {
+   "code": "E527",
+   "name": "Ammonium hydroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e528": {
+   "code": "E528",
+   "name": "Magnesium hydroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e529": {
+   "code": "E529",
+   "name": "Calcium oxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e530": {
+   "code": "E530",
+   "name": "Magnesium oxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e535": {
+   "code": "E535",
+   "name": "Sodium ferrocyanide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e536": {
+   "code": "E536",
+   "name": "Potassium ferrocyanide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e537": {
+   "code": "E537",
+   "name": "Ferrous hexacyanomanganate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e538": {
+   "code": "E538",
+   "name": "Calcium ferrocyanide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e539": {
+   "code": "E539",
+   "name": "Sodium thiosulfate",
+   "functions": [
+    "Antioxidant",
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e540": {
+   "code": "E540",
+   "name": "Dicalcium diphosphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e541": {
+   "code": "E541",
+   "name": "Sodium aluminium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e541i": {
+   "code": "E541",
+   "name": "E541i - Acid sodium aluminium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e541ii": {
+   "code": "E541",
+   "name": "E541ii - Alkaline sodium aluminium phosphate",
+   "functions": [
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e542": {
+   "code": "E542",
+   "name": "Bone phosphate",
+   "functions": [
+    "Emulsifier",
+    "Humectant"
+   ],
+   "tier": "none"
+  },
+  "en:e543": {
+   "code": "E543",
+   "name": "E543 food additive",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e544": {
+   "code": "E544",
+   "name": "Calcium polyphosphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e545": {
+   "code": "E545",
+   "name": "Ammonium polyphosphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e546": {
+   "code": "E546",
+   "name": "Magnesium pyrophosphate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e550": {
+   "code": "E550",
+   "name": "Sodium silicate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e551": {
+   "code": "E551",
+   "name": "Silicon dioxide",
+   "functions": [
+    "Carrier"
+   ],
+   "tier": "none"
+  },
+  "en:e552": {
+   "code": "E552",
+   "name": "Calcium silicate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e553": {
+   "code": "E553",
+   "name": "Magnesium silicates",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e553a": {
+   "code": "E553a",
+   "name": "Synthetic magnesium silicates",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e553ai": {
+   "code": "E553a",
+   "name": "E553ai - Synthetic magnesium silicate",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e553aii": {
+   "code": "E553a",
+   "name": "E553aii - Magnesium trisilicate",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e553b": {
+   "code": "E553b",
+   "name": "Talc",
+   "functions": [
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e554": {
+   "code": "E554",
+   "name": "Sodium aluminium silicate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e555": {
+   "code": "E555",
+   "name": "Potassium aluminium silicate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e556": {
+   "code": "E556",
+   "name": "Calcium aluminium silicate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e557": {
+   "code": "E557",
+   "name": "Hemimorphite",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e558": {
+   "code": "E558",
+   "name": "Bentonite",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e559": {
+   "code": "E559",
+   "name": "Aluminium silicate",
+   "functions": [],
+   "tier": "moderate",
+   "summary": "An aluminium-based additive. Aluminium can build up in the body, and EFSA found some people may exceed its tolerable weekly intake.",
+   "reasons": [
+    "Some population groups may exceed EFSA's tolerable weekly intake for aluminium",
+    "Aluminium can affect the nervous system at high intakes"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: dietary aluminium safety (2008)",
+     "url": "https://doi.org/10.2903/j.efsa.2008.754"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e560": {
+   "code": "E560",
+   "name": "Potassium silicate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e570": {
+   "code": "E570",
+   "name": "Fatty acids",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e571": {
+   "code": "E571",
+   "name": "E571",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e572": {
+   "code": "E572",
+   "name": "Magnesium stearate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e573": {
+   "code": "E573",
+   "name": "Aluminium stearate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e574": {
+   "code": "E574",
+   "name": "Gluconic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e575": {
+   "code": "E575",
+   "name": "Glucono-delta-lactone",
+   "functions": [
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e576": {
+   "code": "E576",
+   "name": "Sodium gluconate",
+   "functions": [
+    "Sequestrant",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none"
+  },
+  "en:e577": {
+   "code": "E577",
+   "name": "Potassium gluconate",
+   "functions": [
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e578": {
+   "code": "E578",
+   "name": "Calcium gluconate",
+   "functions": [
+    "Sequestrant"
+   ],
+   "tier": "none"
+  },
+  "en:e579": {
+   "code": "E579",
+   "name": "Iron gluconate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e580": {
+   "code": "E580",
+   "name": "Magnesium Gluconate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e585": {
+   "code": "E585",
+   "name": "Ferrous lactate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e586": {
+   "code": "E586",
+   "name": "4-hexylresorcinol",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2014.3643"
+  },
+  "en:e620": {
+   "code": "E620",
+   "name": "Glutamic acid",
+   "functions": [],
+   "tier": "low",
+   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "reasons": [
+    "EFSA found some people may exceed its acceptable daily intake",
+    "Common in ultra-processed savoury foods"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: glutamates re-evaluation (2017)",
+     "url": "https://doi.org/10.2903/j.efsa.2017.4910"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.3981"
+  },
+  "en:e621": {
+   "code": "E621",
+   "name": "Monosodium glutamate",
+   "functions": [
+    "Flavour enhancer"
+   ],
+   "tier": "low",
+   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "reasons": [
+    "EFSA found some people may exceed its acceptable daily intake",
+    "Common in ultra-processed savoury foods"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: glutamates re-evaluation (2017)",
+     "url": "https://doi.org/10.2903/j.efsa.2017.4910"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2017.4910"
+  },
+  "en:e622": {
+   "code": "E622",
+   "name": "Monopotassium glutamate",
+   "functions": [],
+   "tier": "low",
+   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "reasons": [
+    "EFSA found some people may exceed its acceptable daily intake",
+    "Common in ultra-processed savoury foods"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: glutamates re-evaluation (2017)",
+     "url": "https://doi.org/10.2903/j.efsa.2017.4910"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.3981"
+  },
+  "en:e623": {
+   "code": "E623",
+   "name": "Calcium diglutamate",
+   "functions": [],
+   "tier": "low",
+   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "reasons": [
+    "EFSA found some people may exceed its acceptable daily intake",
+    "Common in ultra-processed savoury foods"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: glutamates re-evaluation (2017)",
+     "url": "https://doi.org/10.2903/j.efsa.2017.4910"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.3981"
+  },
+  "en:e624": {
+   "code": "E624",
+   "name": "Monoammonium glutamate",
+   "functions": [],
+   "tier": "low",
+   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "reasons": [
+    "EFSA found some people may exceed its acceptable daily intake",
+    "Common in ultra-processed savoury foods"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: glutamates re-evaluation (2017)",
+     "url": "https://doi.org/10.2903/j.efsa.2017.4910"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.3981"
+  },
+  "en:e625": {
+   "code": "E625",
+   "name": "Magnesium diglutamate",
+   "functions": [],
+   "tier": "low",
+   "summary": "A glutamate flavour enhancer (MSG or similar). Safe for most people at normal intakes; some report sensitivity.",
+   "reasons": [
+    "EFSA found some people may exceed its acceptable daily intake",
+    "Common in ultra-processed savoury foods"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: glutamates re-evaluation (2017)",
+     "url": "https://doi.org/10.2903/j.efsa.2017.4910"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.3981"
+  },
+  "en:e626": {
+   "code": "E626",
+   "name": "Guanylic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e627": {
+   "code": "E627",
+   "name": "Disodium guanylate",
+   "functions": [],
+   "tier": "low",
+   "summary": "A flavour enhancer usually used alongside MSG.",
+   "reasons": [
+    "Not suitable for people with gout, as it can raise uric acid",
+    "A marker of ultra-processed savoury foods"
+   ],
+   "sources": [],
+   "kidsWarning": false
+  },
+  "en:e628": {
+   "code": "E628",
+   "name": "Dipotassium guanylate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e629": {
+   "code": "E629",
+   "name": "Calcium guanylate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e630": {
+   "code": "E630",
+   "name": "Inosinic acid",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e631": {
+   "code": "E631",
+   "name": "Disodium inosinate",
+   "functions": [],
+   "tier": "low",
+   "summary": "A flavour enhancer usually used alongside MSG.",
+   "reasons": [
+    "Not suitable for people with gout, as it can raise uric acid",
+    "A marker of ultra-processed savoury foods"
+   ],
+   "sources": [],
+   "kidsWarning": false
+  },
+  "en:e632": {
+   "code": "E632",
+   "name": "Dipotassium inosinate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e633": {
+   "code": "E633",
+   "name": "Calcium inosinate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e634": {
+   "code": "E634",
+   "name": "Calcium 5'-ribonucleotide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e635": {
+   "code": "E635",
+   "name": "Disodium 5'-ribonucleotide",
+   "functions": [],
+   "tier": "low",
+   "summary": "A flavour enhancer usually used alongside MSG.",
+   "reasons": [
+    "Not suitable for people with gout, as it can raise uric acid",
+    "A marker of ultra-processed savoury foods"
+   ],
+   "sources": [],
+   "kidsWarning": false
+  },
+  "en:e636": {
+   "code": "E636",
+   "name": "Maltol",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e637": {
+   "code": "E637",
+   "name": "Ethyl maltol",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e638": {
+   "code": "E638",
+   "name": "E638",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e640": {
+   "code": "E640",
+   "name": "Glycine and its sodium salt",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e640i": {
+   "code": "E640",
+   "name": "E640i - Glycine",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e640ii": {
+   "code": "E640",
+   "name": "E640ii - Sodiumglycinate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e641": {
+   "code": "E641",
+   "name": "Leucine",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e642": {
+   "code": "E642",
+   "name": "E642",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e650": {
+   "code": "E650",
+   "name": "Zinc acetate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e710": {
+   "code": "E710",
+   "name": "Spiramycin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e713": {
+   "code": "E713",
+   "name": "Tylosin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e900": {
+   "code": "E900",
+   "name": "Dimethylpolysiloxane and Methylphenylpolysiloxane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e900a": {
+   "code": "E900a",
+   "name": "Dimethyl polysiloxane",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:e900b": {
+   "code": "E900b",
+   "name": "Methylphenylpolysiloxane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e901": {
+   "code": "E901",
+   "name": "White and yellow beeswax",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Stabiliser",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2007.615"
+  },
+  "en:e902": {
+   "code": "E902",
+   "name": "Candelilla wax",
+   "functions": [
+    "Carrier",
+    "Emulsifier",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.2946"
+  },
+  "en:e903": {
+   "code": "E903",
+   "name": "Carnauba wax",
+   "functions": [
+    "Carrier"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2012.2880"
+  },
+  "en:e904": {
+   "code": "E904",
+   "name": "Shellac",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e905": {
+   "code": "E905",
+   "name": "Synthetic wax",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905a": {
+   "code": "E905a",
+   "name": "Mineral oil",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905b": {
+   "code": "E905b",
+   "name": "Petroleum jelly",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905c": {
+   "code": "E905c",
+   "name": "Petroleum wax",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905ci": {
+   "code": "E905c",
+   "name": "E905ci - Microcrystalline wax",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905cii": {
+   "code": "E905c",
+   "name": "E905cii - Paraffin wax",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905d": {
+   "code": "E905d",
+   "name": "Mineral oil high viscosity",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905e": {
+   "code": "E905e",
+   "name": "Mineral oil medium viscosity",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905f": {
+   "code": "E905f",
+   "name": "Mineral oil medium and low viscosity class II",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e905g": {
+   "code": "E905g",
+   "name": "Mineral oil medium and low viscosity class III",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3146"
+  },
+  "en:e906": {
+   "code": "E906",
+   "name": "Benzoin resin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e907": {
+   "code": "E907",
+   "name": "Hydrogenated poly-1-decene",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e908": {
+   "code": "E908",
+   "name": "Rice bran wax",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e909": {
+   "code": "E909",
+   "name": "Spermaceti",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e910": {
+   "code": "E910",
+   "name": "Wax ester",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e911": {
+   "code": "E911",
+   "name": "Fatty acid methyl ester",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e912": {
+   "code": "E912",
+   "name": "Montanic acid esters",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3236"
+  },
+  "en:e913": {
+   "code": "E913",
+   "name": "Lanolin",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e914": {
+   "code": "E914",
+   "name": "Oxidised polyethylene wax",
+   "functions": [],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4145"
+  },
+  "en:e915": {
+   "code": "E915",
+   "name": "Esters of Colophane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e916": {
+   "code": "E916",
+   "name": "Calcium iodate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e917": {
+   "code": "E917",
+   "name": "Potassium iodate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e918": {
+   "code": "E918",
+   "name": "Nitrogen oxides",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e919": {
+   "code": "E919",
+   "name": "Nitrosyl chloride",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e920": {
+   "code": "E920",
+   "name": "L-cysteine",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e921": {
+   "code": "E921",
+   "name": "L-cysteine hydrochloride monohydrate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e922": {
+   "code": "E922",
+   "name": "Potassium persulfate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e923": {
+   "code": "E923",
+   "name": "Ammonium persulfate",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e924": {
+   "code": "E924",
+   "name": "Potassium bromate",
+   "functions": [],
+   "tier": "high",
+   "summary": "Potassium bromate strengthens dough. It is not permitted in UK or EU food and is classed as possibly carcinogenic.",
+   "reasons": [
+    "Classed as possibly carcinogenic (IARC Group 2B)",
+    "Not permitted in UK or EU food"
+   ],
+   "sources": [
+    {
+     "title": "IARC Monographs: potassium bromate (Group 2B)",
+     "url": "https://publications.iarc.who.int/Book-And-Report-Series/Iarc-Monographs-On-The-Identification-Of-Carcinogenic-Hazards-To-Humans/Some-Naturally-Occurring-And-Synthetic-Food-Components-Furocoumarins-And-Ultraviolet-Radiation-1986"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e924a": {
+   "code": "E924a",
+   "name": "Potassium bromate",
+   "functions": [],
+   "tier": "high",
+   "summary": "Potassium bromate strengthens dough. It is not permitted in UK or EU food and is classed as possibly carcinogenic.",
+   "reasons": [
+    "Classed as possibly carcinogenic (IARC Group 2B)",
+    "Not permitted in UK or EU food"
+   ],
+   "sources": [
+    {
+     "title": "IARC Monographs: potassium bromate (Group 2B)",
+     "url": "https://publications.iarc.who.int/Book-And-Report-Series/Iarc-Monographs-On-The-Identification-Of-Carcinogenic-Hazards-To-Humans/Some-Naturally-Occurring-And-Synthetic-Food-Components-Furocoumarins-And-Ultraviolet-Radiation-1986"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e924b": {
+   "code": "E924b",
+   "name": "Calcium bromate",
+   "functions": [],
+   "tier": "high",
+   "summary": "Potassium bromate strengthens dough. It is not permitted in UK or EU food and is classed as possibly carcinogenic.",
+   "reasons": [
+    "Classed as possibly carcinogenic (IARC Group 2B)",
+    "Not permitted in UK or EU food"
+   ],
+   "sources": [
+    {
+     "title": "IARC Monographs: potassium bromate (Group 2B)",
+     "url": "https://publications.iarc.who.int/Book-And-Report-Series/Iarc-Monographs-On-The-Identification-Of-Carcinogenic-Hazards-To-Humans/Some-Naturally-Occurring-And-Synthetic-Food-Components-Furocoumarins-And-Ultraviolet-Radiation-1986"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e925": {
+   "code": "E925",
+   "name": "Chlorine",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e926": {
+   "code": "E926",
+   "name": "Chlorine dioxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e927": {
+   "code": "E927",
+   "name": "Azodicarbonamide and Carbamide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e927a": {
+   "code": "E927a",
+   "name": "Azodicarbonamide",
+   "functions": [],
+   "tier": "high",
+   "summary": "Azodicarbonamide is a dough conditioner that is not permitted in UK or EU food.",
+   "reasons": [
+    "Breaks down into semicarbazide during baking, which caused tumours in animal studies",
+    "Not permitted in UK or EU food"
+   ],
+   "sources": [
+    {
+     "title": "EFSA: semicarbazide in food (2005)",
+     "url": "https://doi.org/10.2903/j.efsa.2005.219"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e927b": {
+   "code": "E927b",
+   "name": "Carbamide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e928": {
+   "code": "E928",
+   "name": "Benzole peroxide",
+   "functions": [
+    "Preservative"
+   ],
+   "tier": "none"
+  },
+  "en:e929": {
+   "code": "E929",
+   "name": "Acetone peroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e930": {
+   "code": "E930",
+   "name": "Calcium peroxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e931": {
+   "code": "E931",
+   "name": "Nitrogen",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e932": {
+   "code": "E932",
+   "name": "Nitrogen oxide",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e938": {
+   "code": "E938",
+   "name": "Argon",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e939": {
+   "code": "E939",
+   "name": "Helium",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e940": {
+   "code": "E940",
+   "name": "Dichlorodifluoromethane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e941": {
+   "code": "E941",
+   "name": "Nitrogen",
+   "functions": [
+    "Propellent gas"
+   ],
+   "tier": "none"
+  },
+  "en:e942": {
+   "code": "E942",
+   "name": "Nitrous oxide",
+   "functions": [
+    "Antioxidant",
+    "Propellent gas"
+   ],
+   "tier": "none"
+  },
+  "en:e943a": {
+   "code": "E943a",
+   "name": "Butane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e943b": {
+   "code": "E943b",
+   "name": "Isobutane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e944": {
+   "code": "E944",
+   "name": "Propane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e945": {
+   "code": "E945",
+   "name": "Chloropentafluoroethane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e946": {
+   "code": "E946",
+   "name": "Octafluorocyclobutane",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e948": {
+   "code": "E948",
+   "name": "Oxygen",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e949": {
+   "code": "E949",
+   "name": "Hydrogen",
+   "functions": [],
+   "tier": "none"
+  },
+  "en:e950": {
+   "code": "E950",
+   "name": "Acesulfame k",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "Acesulfame K is an artificial sweetener, about 200 times sweeter than sugar.",
+   "reasons": [
+    "Associated with higher cancer risk in a large French cohort (observational)",
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "Debras et al., PLOS Medicine (2022): artificial sweeteners and cancer risk",
+     "url": "https://doi.org/10.1371/journal.pmed.1003950"
+    },
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4437"
+  },
+  "en:e951": {
+   "code": "E951",
+   "name": "Aspartame",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "Aspartame is an artificial sweetener. In 2023 the WHO's cancer agency classed it as possibly carcinogenic, though the acceptable daily intake was unchanged.",
+   "reasons": [
+    "Classed as possibly carcinogenic (IARC Group 2B) in 2023",
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "WHO/IARC: aspartame hazard and risk assessment (2023)",
+     "url": "https://www.who.int/news/item/14-07-2023-aspartame-hazard-and-risk-assessment-results-released"
+    },
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2013.3496"
+  },
+  "en:e952": {
+   "code": "E952",
+   "name": "Cyclamic acid and its Na and Ca salts",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "Cyclamate is an artificial sweetener. It is permitted in the UK and EU but banned in the US.",
+   "reasons": [
+    "Banned in the US since 1969",
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e953": {
+   "code": "E953",
+   "name": "Isomalt",
+   "functions": [
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A sugar alcohol (polyol) used as a sweetener or to keep food moist.",
+   "reasons": [
+    "Can cause bloating and a laxative effect in larger amounts"
+   ],
+   "sources": [
+    {
+     "title": "NHS: sugar alcohols can have a laxative effect",
+     "url": "https://www.nhs.uk/live-well/eat-well/food-types/are-sweeteners-safe/"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e954": {
+   "code": "E954",
+   "name": "Saccharin and its salts",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "Saccharin is one of the oldest artificial sweeteners.",
+   "reasons": [
+    "WHO advises against non-sugar sweeteners for weight control",
+    "May alter gut bacteria and glucose response in some people"
+   ],
+   "sources": [
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e955": {
+   "code": "E955",
+   "name": "Sucralose",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "Sucralose is an artificial sweetener made from sugar. A 2023 lab study found one of its breakdown products damaged DNA.",
+   "reasons": [
+    "A breakdown product (sucralose-6-acetate) was genotoxic in lab tests",
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "Schiffman et al. (2023): sucralose-6-acetate genotoxicity",
+     "url": "https://doi.org/10.1080/10937404.2023.2213903"
+    },
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2016.4361"
+  },
+  "en:e956": {
+   "code": "E956",
+   "name": "Alitame",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e957": {
+   "code": "E957",
+   "name": "Thaumatin",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4290"
+  },
+  "en:e958": {
+   "code": "E958",
+   "name": "Glycyrrhizin",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e959": {
+   "code": "E959",
+   "name": "Neohesperidine dihydrochalcone",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e960": {
+   "code": "E960",
+   "name": "Steviol glycosides",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2015.4146"
+  },
+  "en:e960a": {
+   "code": "E960a",
+   "name": "Steviol glycosides from Stevia",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e960b": {
+   "code": "E960b",
+   "name": "Rebaudioside from multiple gene donors expressed in Yarrowia lipolityca",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e960c": {
+   "code": "E960c",
+   "name": "Enzymatically produced steviol glycosides",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e960d": {
+   "code": "E960d",
+   "name": "Glucosylated steviol glycosides",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e961": {
+   "code": "E961",
+   "name": "Neotame",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "A high-intensity artificial sweetener derived from aspartame.",
+   "reasons": [
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e962": {
+   "code": "E962",
+   "name": "Salt of aspartame-acesulfame",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "A combined salt of aspartame and acesulfame K, two artificial sweeteners.",
+   "reasons": [
+    "Contains aspartame (IARC Group 2B) and acesulfame K",
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "WHO/IARC: aspartame hazard and risk assessment (2023)",
+     "url": "https://www.who.int/news/item/14-07-2023-aspartame-hazard-and-risk-assessment-results-released"
+    },
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e963": {
+   "code": "E963",
+   "name": "Tagatose",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e964": {
+   "code": "E964",
+   "name": "Polyglycitol syrup",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "none"
+  },
+  "en:e965": {
+   "code": "E965",
+   "name": "Maltitol",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A sugar alcohol (polyol) used as a sweetener or to keep food moist.",
+   "reasons": [
+    "Can cause bloating and a laxative effect in larger amounts"
+   ],
+   "sources": [
+    {
+     "title": "NHS: sugar alcohols can have a laxative effect",
+     "url": "https://www.nhs.uk/live-well/eat-well/food-types/are-sweeteners-safe/"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2006.354"
+  },
+  "en:e965i": {
+   "code": "E965",
+   "name": "E965i - D-Maltitol",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2006.354"
+  },
+  "en:e965ii": {
+   "code": "E965",
+   "name": "E965ii - Maltitol syrup",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "none",
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2006.354"
+  },
+  "en:e966": {
+   "code": "E966",
+   "name": "Lactitol",
+   "functions": [
+    "Emulsifier",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A sugar alcohol (polyol) used as a sweetener or to keep food moist.",
+   "reasons": [
+    "Can cause bloating and a laxative effect in larger amounts"
+   ],
+   "sources": [
+    {
+     "title": "NHS: sugar alcohols can have a laxative effect",
+     "url": "https://www.nhs.uk/live-well/eat-well/food-types/are-sweeteners-safe/"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e967": {
+   "code": "E967",
+   "name": "Xylitol",
+   "functions": [
+    "Emulsifier",
+    "Humectant",
+    "Stabiliser",
+    "Sweetener",
+    "Thickener"
+   ],
+   "tier": "low",
+   "summary": "A sugar alcohol (polyol) used as a sweetener or to keep food moist.",
+   "reasons": [
+    "Can cause bloating and a laxative effect in larger amounts"
+   ],
+   "sources": [
+    {
+     "title": "NHS: sugar alcohols can have a laxative effect",
+     "url": "https://www.nhs.uk/live-well/eat-well/food-types/are-sweeteners-safe/"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e968": {
+   "code": "E968",
+   "name": "Erythritol",
+   "functions": [
+    "Humectant",
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "Erythritol is a sugar alcohol used as a sweetener. A 2023 study linked higher blood levels to increased clotting and cardiovascular risk.",
+   "reasons": [
+    "Linked to increased blood clotting and cardiovascular events (2023)",
+    "Can cause digestive upset in large amounts"
+   ],
+   "sources": [
+    {
+     "title": "Witkowski et al., Nature Medicine (2023): erythritol and clotting risk",
+     "url": "https://doi.org/10.1038/s41591-023-02223-9"
+    }
+   ],
+   "kidsWarning": false,
+   "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1650"
+  },
+  "en:e969": {
+   "code": "E969",
+   "name": "Advantame",
+   "functions": [
+    "Sweetener"
+   ],
+   "tier": "moderate",
+   "summary": "A high-intensity artificial sweetener derived from aspartame.",
+   "reasons": [
+    "WHO advises against non-sugar sweeteners for weight control"
+   ],
+   "sources": [
+    {
+     "title": "WHO guideline: don't use non-sugar sweeteners for weight control (2023)",
+     "url": "https://www.who.int/news/item/15-05-2023-who-advises-not-to-use-non-sugar-sweeteners-for-weight-control-in-newly-released-guideline"
+    }
+   ],
+   "kidsWarning": false
+  },
+  "en:e999": {
+   "code": "E999",
+   "name": "Quillaia extract",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  },
+  "en:exxx": {
+   "code": "E999",
+   "name": "Exxx - Exxx food additive",
+   "functions": [
+    "Emulsifier"
+   ],
+   "tier": "none"
+  }
+ }
+}

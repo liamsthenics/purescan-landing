@@ -1,135 +1,85 @@
-"use client";
+import type { Metadata } from "next";
+import { LegalPage } from "@/components/LegalPage";
+import { pageMetadata } from "@/lib/metadata";
+import { PRIVACY_EMAIL } from "@/lib/site";
 
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+// Copy from content/legal.md ("Privacy policy"). Update both together.
+const LAST_UPDATED = "25 September 2026";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy policy",
+  description:
+    "PureScan has no accounts and no tracking. Your scan history and preferences stay on your phone; to look up a product we send only its barcode to Open Food Facts.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
-    return (
-        <div className="min-h-screen bg-[#FAFAF8] text-[#1A1A1A] font-sans">
-            <Header />
+  return (
+    <LegalPage label="Legal" title="Privacy policy" updated={LAST_UPDATED}>
+      <p className="card !mt-0 px-6 py-5 !text-ink">
+        <strong>The short version:</strong> PureScan has no accounts and no tracking. Your scan history and
+        preferences stay on your phone. To look up a product we send its barcode (and nothing about you) to Open
+        Food Facts.
+      </p>
 
-            {/* Hero Section */}
-            <section className="pt-40 pb-12 px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h1 className="text-display text-5xl mb-4">Privacy Policy</h1>
-                    <p className="text-[#6B7280]">Last updated: January 1, 2026</p>
-                </div>
-            </section>
+      <h2>Who we are</h2>
+      <p>
+        PureScan (“we”, “us”) makes the PureScan app for iPhone. For anything about your privacy, email{" "}
+        <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>.
+      </p>
 
-            {/* Content */}
-            <section className="py-12 px-6">
-                <div className="max-w-3xl mx-auto">
-                    <div className="space-y-8">
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">1. Introduction</h2>
-                            <p className="text-[#6B7280] leading-relaxed">
-                                PureScan (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use the PureScan mobile application.
-                            </p>
-                        </div>
+      <h2>What the app does with data</h2>
+      <ul>
+        <li>
+          <strong>Barcodes and searches.</strong> When you scan a barcode or search for a product, the app sends that
+          barcode or search text to Open Food Facts (openfoodfacts.org), a non-profit open database, to get the
+          product’s details. We don’t attach any personal information or identifier to these requests. Open Food
+          Facts’ own privacy policy applies to their servers:{" "}
+          <a href="https://world.openfoodfacts.org/privacy">world.openfoodfacts.org/privacy</a>
+        </li>
+        <li>
+          <strong>Scan history and preferences</strong> (allergens, diet, avoid list) are stored only on your device.
+          We never receive them. Deleting the app, or using “Clear scan history”, deletes them.
+        </li>
+        <li>
+          <strong>Label photos.</strong> If a product isn’t in the database you can photograph its ingredients. The
+          photo is read on your device and isn’t uploaded or stored.
+        </li>
+        <li>
+          <strong>Camera.</strong> Used only to read barcodes and labels while the scanner is open.
+        </li>
+        <li>
+          <strong>Purchases.</strong> Subscriptions are handled by Apple. We never see your payment details; we only
+          learn from Apple whether a subscription is active.
+        </li>
+        <li>
+          <strong>No analytics, advertising or tracking.</strong> The app contains no third-party analytics or
+          advertising SDKs and doesn’t track you across apps or websites.
+        </li>
+      </ul>
 
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">2. Information We Collect</h2>
-                            <p className="text-[#6B7280] leading-relaxed mb-4">We collect the following types of information:</p>
-                            <ul className="space-y-3 text-[#6B7280]">
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    <span><strong className="text-[#1A1A1A]">Account Information:</strong> Email address, name (optional), and account preferences.</span>
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    <span><strong className="text-[#1A1A1A]">Scan Data:</strong> Images of product labels you scan (processed locally when possible).</span>
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    <span><strong className="text-[#1A1A1A]">Usage Data:</strong> App usage patterns and feature interactions.</span>
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    <span><strong className="text-[#1A1A1A]">Device Information:</strong> Device type, operating system, and app version.</span>
-                                </li>
-                            </ul>
-                        </div>
+      <h2>This website</h2>
+      <p>
+        purescan.io is hosted by Vercel, which processes standard server logs (such as IP address and browser type)
+        to run and secure the site. We don’t use advertising cookies.
+      </p>
 
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">3. How We Use Your Information</h2>
-                            <ul className="space-y-3 text-[#6B7280]">
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    To provide and improve our ingredient scanning service
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    To personalize your experience based on your preferences
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    To send important updates about the app and your account
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    To improve our AI models (anonymized data only)
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    To respond to customer support requests
-                                </li>
-                            </ul>
-                        </div>
+      <h2>Your rights</h2>
+      <p>
+        Under UK GDPR you can ask us what personal data we hold about you, and to correct or delete it. Because the
+        app keeps your data on your device, in practice we hold none; if you email us, we’ll keep that
+        correspondence only as long as needed to reply. You can also complain to the Information Commissioner’s
+        Office (<a href="https://ico.org.uk">ico.org.uk</a>).
+      </p>
 
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">4. Data Storage & Security</h2>
-                            <p className="text-[#6B7280] leading-relaxed">
-                                Your data is stored securely using industry-standard encryption. Scan images are processed on-device whenever possible and are not stored on our servers unless required for specific features. We implement appropriate technical and organizational measures to protect your personal data.
-                            </p>
-                        </div>
+      <h2>Children</h2>
+      <p>PureScan is not directed at children under 13.</p>
 
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">5. Data Sharing</h2>
-                            <p className="text-[#6B7280] leading-relaxed">
-                                We do not sell your personal data to third parties. We may share anonymized, aggregated data with research partners to improve food safety. We may also share data with service providers who help us operate the app, bound by confidentiality agreements.
-                            </p>
-                        </div>
-
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">6. Your Rights</h2>
-                            <p className="text-[#6B7280] leading-relaxed mb-4">You have the right to:</p>
-                            <ul className="space-y-3 text-[#6B7280]">
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    Access the personal data we hold about you
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    Request correction of inaccurate data
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    Request deletion of your data
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    Export your data in a portable format
-                                </li>
-                                <li className="flex gap-3">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                                    Opt out of marketing communications
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className="card-premium p-8">
-                            <h2 className="text-xl font-bold mb-4">7. Contact Us</h2>
-                            <p className="text-[#6B7280] leading-relaxed">
-                                If you have questions about this privacy policy or wish to exercise your rights, please contact us at:
-                            </p>
-                            <p className="mt-4 text-emerald-600 font-semibold">privacy@purescan.io</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <Footer />
-        </div>
-    );
+      <h2>Changes</h2>
+      <p>
+        If this policy changes we’ll update the date above and, for significant changes, mention it in the app’s
+        release notes.
+      </p>
+    </LegalPage>
+  );
 }

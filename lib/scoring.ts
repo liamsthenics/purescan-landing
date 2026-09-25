@@ -1,0 +1,219 @@
+// The PureScan scoring method, mirrored from the app's
+// PureScanCore/Analysis/ScoringPolicy.swift and HealthScorer.swift.
+// The app is the source of truth: if its numbers change, change them here too.
+import type { Tier } from "./tiers.ts";
+
+export type Nutrient = "fat" | "saturatedFat" | "sugars" | "salt";
+export type NutrientBand = "low" | "medium" | "high";
+export type NovaGroup = 1 | 2 | 3 | 4;
+
+export const NUTRIENTS: readonly { nutrient: Nutrient; label: string }[] = [
+  { nutrient: "fat", label: "Fat" },
+  { nutrient: "saturatedFat", label: "Saturates" },
+  { nutrient: "sugars", label: "Sugars" },
+  { nutrient: "salt", label: "Salt" },
+];
+
+export const WEIGHTS = { ingredients: 0.35, nutrition: 0.45, processing: 0.2 } as const;
+
+export const INGREDIENT_PENALTIES: Record<Tier, number> = { high: 40, moderate: 20, low: 6, none: 0 };
+
+/** UK FSA front-of-pack thresholds: low up to lowMax, high above highMin (per 100 g or 100 ml). */
+export const NUTRIENT_BANDS: Record<"food" | "drink", Record<Nutrient, { lowMax: number; highMin: number }>> = {
+  food: {
+    fat: { lowMax: 3.0, highMin: 17.5 },
+    saturatedFat: { lowMax: 1.5, highMin: 5.0 },
+    sugars: { lowMax: 5.0, highMin: 22.5 },
+    salt: { lowMax: 0.3, highMin: 1.5 },
+  },
+  drink: {
+    fat: { lowMax: 1.5, highMin: 8.75 },
+    saturatedFat: { lowMax: 0.75, highMin: 2.5 },
+    // Drinks' high sugar band follows the UK soft drinks industry levy's higher rate (8 g).
+    sugars: { lowMax: 2.5, highMin: 8.0 },
+    salt: { lowMax: 0.3, highMin: 0.75 },
+  },
+};
+
+/** Points removed from the nutrition part for a medium / high traffic light. */
+export const NUTRIENT_PENALTIES: Record<"food" | "drink", Record<Nutrient, { medium: number; high: number }>> = {
+  food: {
+    sugars: { medium: 15, high: 40 },
+    saturatedFat: { medium: 10, high: 30 },
+    salt: { medium: 10, high: 30 },
+    fat: { medium: 5, high: 20 },
+  },
+  drink: {
+    sugars: { medium: 20, high: 60 },
+    saturatedFat: { medium: 10, high: 30 },
+    salt: { medium: 10, high: 30 },
+    fat: { medium: 5, high: 20 },
+  },
+};
+
+export const MINIMUM_KNOWN_NUTRIENTS = 3;
+export const HIGH_FIBRE_GRAMS = 6;
+export const HIGH_FIBRE_BONUS = 10;
+export const HIGH_PROTEIN_GRAMS = 10;
+export const HIGH_PROTEIN_BONUS = 5;
+
+export const PROCESSING_SCORES: Record<NovaGroup, number> = { 1: 100, 2: 90, 3: 65, 4: 30 };
+
+export const PROCESSING_LABELS: Record<NovaGroup, string> = {
+  1: "Unprocessed",
+  2: "Culinary ingredient",
+  3: "Processed",
+  4: "Ultra-processed",
+};
+
+/** The app's plain-English explanation of each NOVA group. */
+export const PROCESSING_EXPLANATIONS: Record<NovaGroup, string> = {
+  1: "Whole or minimally processed food, as close to nature as it gets.",
+  2: "A basic kitchen ingredient like oil, butter, sugar or salt.",
+  3: "Made from whole foods with added salt, sugar or oil, like cheese, bread or tinned veg.",
+  4: "Made mostly from industrial ingredients rather than foods.",
+};
+
+export type CapReason =
+  | "avoidIngredient"
+  | "severalLimitIngredients"
+  | "ultraProcessedAndHighIn"
+  | "twoLimitIngredients"
+  | "highIn"
+  | "ultraProcessed"
+  | "limitIngredient"
+  | "missingNutrition";
+
+export interface CapRule {
+  reason: CapReason;
+  max: number;
+  /** When the cap applies. */
+  condition: string;
+  /** The app's "Held down: …" wording. */
+  heldDown: string;
+}
+
+/** Every cap, strictest first. The lowest applicable cap wins. */
+export const CAPS: readonly CapRule[] = [
+  { reason: "avoidIngredient", max: 30, condition: "Contains an ingredient rated Avoid", heldDown: "contains an ingredient we suggest avoiding" },
+  { reason: "severalLimitIngredients", max: 40, condition: "Three or more rated Limit", heldDown: "contains several ingredients we suggest limiting" },
+  { reason: "ultraProcessedAndHighIn", max: 45, condition: "Ultra-processed and high in sugar, salt or saturates", heldDown: "ultra-processed and high in sugars" },
+  { reason: "twoLimitIngredients", max: 50, condition: "Two rated Limit", heldDown: "contains two ingredients we suggest limiting" },
+  { reason: "highIn", max: 60, condition: "High in sugar, salt or saturates", heldDown: "high in sugars" },
+  { reason: "ultraProcessed", max: 60, condition: "Ultra-processed (NOVA 4)", heldDown: "ultra-processed" },
+  { reason: "limitIngredient", max: 65, condition: "One rated Limit", heldDown: "contains an ingredient we suggest limiting" },
+  { reason: "missingNutrition", max: 70, condition: "Nutrition information missing", heldDown: "nutrition information is missing" },
+];
+
+/** Capped products score between this fraction of the cap and the full cap. */
+export const SOFT_CAP_FLOOR = 0.4;
+
+export function capRule(reason: CapReason): CapRule {
+  const rule = CAPS.find((candidate) => candidate.reason === reason);
+  if (!rule) throw new Error(`Unknown cap: ${reason}`);
+  return rule;
+}
+
+export function softCap(cap: number, average: number): number {
+  return cap * (SOFT_CAP_FLOOR + ((1 - SOFT_CAP_FLOOR) * average) / 100);
+}
+
+export interface ProductFacts {
+  /** Tiers of every flagged additive or ingredient. */
+  findings: Tier[];
+  /** Per 100 g (food) or 100 ml (drinks); omit what's unknown. */
+  nutrition?: Partial<Record<Nutrient, number>> & { fibre?: number; protein?: number };
+  isDrink: boolean;
+  nova?: NovaGroup;
+}
+
+export interface ScoreBreakdown {
+  ingredients: number;
+  nutrition: number | null;
+  processing: number | null;
+  average: number;
+  cap: CapRule | null;
+  score: number;
+}
+
+export function bandFor(nutrient: Nutrient, amount: number, isDrink: boolean): NutrientBand {
+  const bands = NUTRIENT_BANDS[isDrink ? "drink" : "food"][nutrient];
+  if (amount <= bands.lowMax) return "low";
+  return amount > bands.highMin ? "high" : "medium";
+}
+
+function nutrientLevels(facts: ProductFacts): { nutrient: Nutrient; band: NutrientBand }[] {
+  return NUTRIENTS.flatMap(({ nutrient }) => {
+    const amount = facts.nutrition?.[nutrient];
+    if (amount === undefined || amount < 0) return [];
+    return [{ nutrient, band: bandFor(nutrient, amount, facts.isDrink) }];
+  });
+}
+
+function ingredientsPart(findings: Tier[]): number {
+  const penalty = findings.reduce((total, tier) => total + INGREDIENT_PENALTIES[tier], 0);
+  return Math.max(0, 100 - penalty);
+}
+
+function nutritionPart(facts: ProductFacts, levels: { nutrient: Nutrient; band: NutrientBand }[]): number | null {
+  if (levels.length < MINIMUM_KNOWN_NUTRIENTS) return null;
+  const penalties = NUTRIENT_PENALTIES[facts.isDrink ? "drink" : "food"];
+  let score = 100;
+  for (const { nutrient, band } of levels) {
+    if (band !== "low") score -= penalties[nutrient][band];
+  }
+  if ((facts.nutrition?.fibre ?? 0) >= HIGH_FIBRE_GRAMS) score += HIGH_FIBRE_BONUS;
+  if (!facts.isDrink && (facts.nutrition?.protein ?? 0) >= HIGH_PROTEIN_GRAMS) score += HIGH_PROTEIN_BONUS;
+  return Math.min(100, Math.max(0, score));
+}
+
+/** Whether a red traffic light holds the score down (natural fat in whole foods doesn't). */
+function countsAsHighIn(nutrient: Nutrient, facts: ProductFacts): boolean {
+  const isFat = nutrient === "fat" || nutrient === "saturatedFat";
+  if (isFat && (facts.nova === 1 || facts.nova === 2)) return false;
+  if (nutrient !== "fat") return true;
+  return (facts.nutrition?.protein ?? 0) < HIGH_PROTEIN_GRAMS;
+}
+
+function applicableCaps(facts: ProductFacts, isHighIn: boolean, hasNutrition: boolean): CapReason[] {
+  const reasons: CapReason[] = [];
+  if (!hasNutrition) reasons.push("missingNutrition");
+  if (facts.findings.includes("high")) reasons.push("avoidIngredient");
+  const limitCount = facts.findings.filter((tier) => tier === "moderate").length;
+  if (limitCount === 1) reasons.push("limitIngredient");
+  if (limitCount === 2) reasons.push("twoLimitIngredients");
+  if (limitCount >= 3) reasons.push("severalLimitIngredients");
+  if (isHighIn) reasons.push("highIn");
+  if (facts.nova === 4) reasons.push(isHighIn ? "ultraProcessedAndHighIn" : "ultraProcessed");
+  return reasons;
+}
+
+/** Scores a product exactly as the app does (for products with an ingredient list). */
+export function scoreProduct(facts: ProductFacts): ScoreBreakdown {
+  const levels = nutrientLevels(facts);
+  const ingredients = ingredientsPart(facts.findings);
+  const nutrition = nutritionPart(facts, levels);
+  const processing = facts.nova ? PROCESSING_SCORES[facts.nova] : null;
+
+  const weighted: [number, number][] = [[ingredients, WEIGHTS.ingredients]];
+  if (nutrition !== null) weighted.push([nutrition, WEIGHTS.nutrition]);
+  if (processing !== null) weighted.push([processing, WEIGHTS.processing]);
+  const totalWeight = weighted.reduce((total, [, weight]) => total + weight, 0);
+  const average = weighted.reduce((total, [value, weight]) => total + value * weight, 0) / totalWeight;
+
+  const isHighIn = levels.some(({ nutrient, band }) => band === "high" && countsAsHighIn(nutrient, facts));
+  const caps = applicableCaps(facts, isHighIn, nutrition !== null).map(capRule);
+  if (caps.length === 0) {
+    return { ingredients, nutrition, processing, average, cap: null, score: Math.round(average) };
+  }
+  const strictest = caps.reduce((lowest, rule) => (rule.max < lowest.max ? rule : lowest));
+  const capped = softCap(strictest.max, average);
+  return {
+    ingredients,
+    nutrition,
+    processing,
+    average,
+    cap: capped < average ? strictest : null,
+    score: Math.round(Math.min(average, capped)),
+  };
+}

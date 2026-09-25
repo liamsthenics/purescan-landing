@@ -1,55 +1,71 @@
-import type { Metadata } from "next";
-import { Fraunces, Outfit, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Serif, Inter } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { APP_STORE_ID, APP_STORE_LIVE, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
-const outfit = Outfit({
+// Fallback for platforms without a system UI font (the stack prefers SF Pro / Segoe UI).
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "PureScan — Know What's Really In Your Food",
-  description: "Scan any product. See a clear health score. Understand every ingredient instantly. PureScan brings ingredient transparency to your fingertips.",
-  keywords: "ingredient scanner, food scanner, health score, ingredient analysis, healthy eating, food transparency, product scanner",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME}: ${SITE_TAGLINE}`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   openGraph: {
-    title: "PureScan — Know What's Really In Your Food",
-    description: "Scan any product. See a clear health score. Understand every ingredient instantly.",
     type: "website",
-    url: "https://purescan.io",
+    siteName: SITE_NAME,
+    locale: "en_GB",
+    url: "/",
+    title: `${SITE_NAME}: ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "PureScan — Know What's Really In Your Food",
-    description: "Scan any product. See a clear health score. Understand every ingredient instantly.",
+    title: `${SITE_NAME}: ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
   },
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-  },
+  appleWebApp: { title: SITE_NAME },
+  // Safari's Smart App Banner, only once the listing exists.
+  ...(APP_STORE_LIVE ? { itunes: { appId: APP_STORE_ID } } : {}),
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F7F5F0" },
+    { media: "(prefers-color-scheme: dark)", color: "#0E1311" },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${fraunces.variable} ${outfit.variable} ${geistMono.variable} antialiased`}>
-        {children}
+    <html lang="en-GB" className={`${instrumentSerif.variable} ${inter.variable}`}>
+      <body className="min-h-dvh bg-paper text-ink">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-brand focus:px-4 focus:py-3 focus:font-semibold focus:text-on-brand"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
