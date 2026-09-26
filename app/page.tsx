@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { FaqList } from "@/components/FaqList";
-import { AdditivesSection } from "@/components/home/AdditivesSection";
-import { AlternativesSection } from "@/components/home/AlternativesSection";
-import { AskSection } from "@/components/home/AskSection";
-import { HeroSection } from "@/components/home/HeroSection";
-import { NutritionSection } from "@/components/home/NutritionSection";
-import { PricingSection } from "@/components/home/PricingSection";
-import { PrivacySection } from "@/components/home/PrivacySection";
-import { ScoreSection } from "@/components/home/ScoreSection";
-import { ShareSection } from "@/components/home/ShareSection";
-import { WidgetsSection } from "@/components/home/WidgetsSection";
+import { FaqSection } from "@/components/home/faq/FaqSection";
+import { HeroSection } from "@/components/home/hero/HeroSection";
+import { PricingSection } from "@/components/home/pricing/PricingSection";
+import { AdditiveIndexSection } from "@/components/home/sections/AdditiveIndexSection";
+import { AskSection } from "@/components/home/sections/AskSection";
+import { CompareSection } from "@/components/home/sections/CompareSection";
+import { IndependentSection } from "@/components/home/sections/IndependentSection";
+import { OneTapSection } from "@/components/home/sections/OneTapSection";
+import { ScoreSection } from "@/components/home/sections/ScoreSection";
+import { SourcesSection } from "@/components/home/sections/SourcesSection";
+import { Story } from "@/components/home/story/Story";
 import { JsonLd } from "@/components/JsonLd";
-import { SectionIntro } from "@/components/SectionIntro";
 import { HOME_FAQ, faqJsonLd } from "@/lib/faq";
 import { pageMetadata } from "@/lib/metadata";
 import {
@@ -63,27 +61,20 @@ export default function HomePage() {
     <>
       <JsonLd data={softwareApplicationJsonLd()} />
       <JsonLd data={faqJsonLd(HOME_FAQ)} />
-      <HeroSection />
-      <ScoreSection />
-      <WidgetsSection />
-      <AdditivesSection />
-      <NutritionSection />
-      <AlternativesSection />
-      <AskSection />
-      <ShareSection />
-      <PrivacySection />
-      <PricingSection />
-      <section id="faq" aria-labelledby="faq-heading" className="border-t border-separator py-20 md:py-28">
-        <div className="container-page grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-          <SectionIntro label="Questions" title="Good questions." headingId="faq-heading">
-            <p>
-              Anything else? Our <Link href="/support" className="text-link">support page</Link> has more answers and a
-              way to get in touch.
-            </p>
-          </SectionIntro>
-          <FaqList items={HOME_FAQ} />
-        </div>
-      </section>
+      <Story>
+        <HeroSection />
+        <OneTapSection />
+        <AskSection />
+        <ScoreSection />
+        <SourcesSection />
+        <CompareSection />
+        <AdditiveIndexSection />
+      </Story>
+      <div className="surface-forest">
+        <IndependentSection />
+        <PricingSection />
+      </div>
+      <FaqSection />
     </>
   );
 }

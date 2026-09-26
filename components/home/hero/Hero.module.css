@@ -1,0 +1,36 @@
+/* The colossal hero score, coloured by its verdict (set inline). From the story breakpoint up it sits behind the
+   sticky phone (it reaches past the text column into the phone rail);
+   below it, a smaller copy sits behind the inline phone. */
+
+.numeral {
+  position: absolute;
+  z-index: 0;
+  top: clamp(6.5rem, 3rem + 4.5vw, 10rem);
+  left: calc(100% - clamp(5rem, -10.35rem + 24vw, 14rem));
+  font-family: var(--font-serif);
+  font-size: clamp(26rem, 8rem + 34vw, 44rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.inlineNumeral {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: -0.04em;
+  transform: translateY(-52%);
+  font-family: var(--font-serif);
+  font-size: clamp(15rem, 72vw, 26rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}

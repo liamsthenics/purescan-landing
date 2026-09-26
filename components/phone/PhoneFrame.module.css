@@ -1,0 +1,58 @@
+/* An iPhone drawn in CSS around a real screen capture.
+   Everything scales from --frame-width, so one rule sizes the whole device. */
+
+.frame {
+  --frame-width: 280px;
+  --bezel: calc(var(--frame-width) * 0.036);
+  --button-colour: #1a1f1d;
+  position: relative;
+  width: var(--frame-width);
+  padding: var(--bezel);
+  border-radius: calc(var(--frame-width) * 0.165);
+  background: linear-gradient(150deg, #262c29 0%, #0c0f0e 38%, #0a0c0b 70%, #1d2220 100%);
+  box-shadow:
+    inset 0 0 0 1.5px #3a413e,
+    inset 0 0 0 3px #080a09,
+    inset 0 1px 1px 2px rgba(255, 255, 255, 0.06);
+}
+
+.screen {
+  position: relative;
+  aspect-ratio: var(--screen-aspect);
+  overflow: hidden;
+  border-radius: calc(var(--frame-width) * 0.13);
+  background: var(--paper);
+  /* Keeps the rounded clip crisp while the phone is rotated in 3D. */
+  isolation: isolate;
+}
+
+.button {
+  position: absolute;
+  width: calc(var(--frame-width) * 0.012);
+  border-radius: 2px;
+  background: var(--button-colour);
+}
+
+.action {
+  left: calc(var(--frame-width) * -0.009);
+  top: 17%;
+  height: 5%;
+}
+
+.volumeUp {
+  left: calc(var(--frame-width) * -0.009);
+  top: 25%;
+  height: 9%;
+}
+
+.volumeDown {
+  left: calc(var(--frame-width) * -0.009);
+  top: 36%;
+  height: 9%;
+}
+
+.side {
+  right: calc(var(--frame-width) * -0.009);
+  top: 28%;
+  height: 13%;
+}

@@ -1,0 +1,19 @@
+/* A faint serif section number sits above the eyebrow, which tucks into its foot.
+   The number is in normal flow and ends before the heading starts, so it can never overlap it. */
+
+.watermark {
+  display: block;
+  height: 0.72em;
+  margin-bottom: -0.14em;
+  font-family: var(--font-serif);
+  font-size: clamp(8rem, 4.5rem + 8.5vw, 13.5rem);
+  line-height: 0.72;
+  letter-spacing: -0.045em;
+  color: var(--watermark);
+  user-select: none;
+  pointer-events: none;
+}
+
+.eyebrow {
+  position: relative;
+}
