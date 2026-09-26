@@ -1,15 +1,12 @@
 // Ask PureScan (POST /api/chat) settings. The contract is docs/chat-api.md.
 import { APP_STORE_ID } from "../site.ts";
 
-export const CHAT_MODEL = "claude-haiku-4-5-20251001";
+/** The fastest, lowest-cost stable Gemini model; override with GEMINI_MODEL. */
+export const DEFAULT_CHAT_MODEL = "gemini-3.5-flash-lite";
 export const CHAT_MAX_OUTPUT_TOKENS = 600;
 export const CHAT_TEMPERATURE = 0.3;
-/**
- * Upstream timeout per attempt, and how many times the SDK retries. Two
- * attempts plus a streamed 600-token answer must fit in the route's maxDuration (60 s).
- */
-export const UPSTREAM_TIMEOUT_MS = 20_000;
-export const UPSTREAM_MAX_RETRIES = 1;
+/** Upstream timeout: a streamed 600-token answer must fit in the route's maxDuration (60 s). */
+export const UPSTREAM_TIMEOUT_MS = 30_000;
 
 export const MAX_REQUEST_BODY_BYTES = 32 * 1024;
 
@@ -48,7 +45,9 @@ export interface UpstashCredentials {
 export interface ChatConfig {
   /** The kill switch: false when CHAT_ENABLED is off or there is no API key. */
   enabled: boolean;
-  anthropicApiKey: string | null;
+  geminiApiKey: string | null;
+  /** Gemini model code (GEMINI_MODEL), e.g. "gemini-3.5-flash-lite". */
+  model: string;
   globalDailyLimit: number;
   upstash: UpstashCredentials | null;
   /** Key for hashing identifiers in rate-limit keys (CHAT_HASH_SECRET). Required with Upstash. */
@@ -70,18 +69,19 @@ function positiveInteger(value: string | undefined, fallback: number): number {
 }
 
 /**
- * Reads the chat settings from the environment. Chat is on only when an
- * Anthropic key is set, and CHAT_ENABLED=false turns it off regardless.
+ * Reads the chat settings from the environment. Chat is on only when a
+ * Gemini key is set, and CHAT_ENABLED=false turns it off regardless.
  */
 export function readChatConfig(environment: Environment): ChatConfig {
-  const anthropicApiKey = nonEmpty(environment.ANTHROPIC_API_KEY);
+  const geminiApiKey = nonEmpty(environment.GEMINI_API_KEY);
   const switchValue = nonEmpty(environment.CHAT_ENABLED)?.toLowerCase();
   const isSwitchedOff = switchValue !== undefined && DISABLED_VALUES.has(switchValue);
   const upstashUrl = nonEmpty(environment.UPSTASH_REDIS_REST_URL);
   const upstashToken = nonEmpty(environment.UPSTASH_REDIS_REST_TOKEN);
   return {
-    enabled: anthropicApiKey !== null && !isSwitchedOff,
-    anthropicApiKey,
+    enabled: geminiApiKey !== null && !isSwitchedOff,
+    geminiApiKey,
+    model: nonEmpty(environment.GEMINI_MODEL) ?? DEFAULT_CHAT_MODEL,
     globalDailyLimit: positiveInteger(environment.CHAT_GLOBAL_DAILY_LIMIT, RATE_LIMITS.defaultGlobalDailyLimit),
     upstash: upstashUrl && upstashToken ? { url: upstashUrl, token: upstashToken } : null,
     hashSecret: nonEmpty(environment.CHAT_HASH_SECRET),

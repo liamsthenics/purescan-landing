@@ -5,7 +5,8 @@ import { PRIVACY_EMAIL } from "@/lib/site";
 
 // Copy from content/legal.md ("Privacy policy"). Update both together.
 const LAST_UPDATED = "26 September 2026";
-const ANTHROPIC_PRIVACY_URL = "https://www.anthropic.com/legal/privacy";
+const GEMINI_TERMS_URL = "https://ai.google.dev/gemini-api/terms";
+const GOOGLE_PRIVACY_URL = "https://policies.google.com/privacy";
 
 export const metadata: Metadata = pageMetadata({
   title: "Privacy policy",
@@ -21,7 +22,7 @@ export default function PrivacyPage() {
         <strong>The short version:</strong> PureScan has no accounts and no tracking. Your scan history and
         preferences stay on your phone. To look up a product we send its barcode (and nothing about you) to Open
         Food Facts. If you use Ask PureScan, your question and the product’s details go to our server and to
-        Anthropic to write the answer, and we don’t store them.
+        Google’s Gemini API to write the answer, and we don’t store them.
       </p>
 
       <h2>Who we are</h2>
@@ -53,11 +54,12 @@ export default function PrivacyPage() {
         <li>
           <strong>Ask PureScan (Premium).</strong> When you ask a question, the app sends your question, the earlier
           messages in that conversation and the details of the product on screen (such as its name, ingredients,
-          nutrition and score) to our server at purescan.io. Our server passes them to Anthropic, which acts as our
-          processor, to generate the answer and sends the answer back to the app. PureScan doesn’t store your
-          questions or the answers and doesn’t log their content. Anthropic handles them under its commercial terms,
-          which don’t allow it to train its models on them; its privacy policy is at{" "}
-          <a href={ANTHROPIC_PRIVACY_URL}>anthropic.com/legal/privacy</a>.
+          nutrition and score) to our server at purescan.io. Our server passes them to Google’s Gemini API, which
+          acts as our processor, to generate the answer and sends the answer back to the app. PureScan doesn’t store
+          your questions or the answers and doesn’t log their content. Under the{" "}
+          <a href={GEMINI_TERMS_URL}>Gemini API terms</a> for paid services, Google doesn’t use them to improve its
+          products and logs them only for a limited time to detect and prevent misuse; see also{" "}
+          <a href={GOOGLE_PRIVACY_URL}>Google’s privacy policy</a>.
         </li>
         <li>
           <strong>Fair-use limits for Ask PureScan.</strong> To confirm you’re a subscriber, the app sends Apple’s

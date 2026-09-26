@@ -12,7 +12,7 @@ npm run lint
 npm run build
 ```
 
-The pages need no environment variables. Ask PureScan needs `ANTHROPIC_API_KEY` and reads `CHAT_ENABLED`, `CHAT_GLOBAL_DAILY_LIMIT`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` and `CHAT_HASH_SECRET` (required with Upstash); see `.env.example`.
+The pages need no environment variables. Ask PureScan needs `GEMINI_API_KEY` and reads `GEMINI_MODEL` (optional), `CHAT_ENABLED`, `CHAT_GLOBAL_DAILY_LIMIT`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` and `CHAT_HASH_SECRET` (required with Upstash); see `.env.example`.
 
 ## Where things live
 
@@ -44,7 +44,7 @@ When the app is live, set `APP_STORE_LIVE = true` in `lib/site.ts`. That turns e
 
 ## Ask PureScan
 
-`POST /api/chat` follows `docs/chat-api.md`: it checks the caller's StoreKit 2 Premium transaction with Apple's App Store Server Library (Production, then Sandbox), validates the request, applies rate limits (Upstash Redis when configured, otherwise in memory) and streams an answer from Anthropic as server-sent events. The system prompt is in `lib/chat/system-prompt.ts` and is built from the same scoring constants as the site. Message content is never logged or stored. Set `CHAT_ENABLED=false` to switch it off.
+`POST /api/chat` follows `docs/chat-api.md`: it checks the caller's StoreKit 2 Premium transaction with Apple's App Store Server Library (Production, then Sandbox), validates the request, applies rate limits (Upstash Redis when configured, otherwise in memory) and streams an answer from Google's Gemini API as server-sent events. The system prompt is in `lib/chat/system-prompt.ts` and is built from the same scoring constants as the site. Message content is never logged or stored. Set `CHAT_ENABLED=false` to switch it off.
 
 ## Copy rules
 

@@ -6,8 +6,8 @@ Last updated: 26 September 2026
 **The short version:** PureScan has no accounts and no tracking. Your scan
 history and preferences stay on your phone. To look up a product we send its
 barcode (and nothing about you) to Open Food Facts. If you use Ask PureScan,
-your question and the product's details go to our server and to Anthropic to
-write the answer, and we don't store them.
+your question and the product's details go to our server and to Google's
+Gemini API to write the answer, and we don't store them.
 
 ### Who we are
 PureScan ("we", "us") makes the PureScan app for iPhone. For anything about
@@ -29,12 +29,13 @@ your privacy, email privacy@purescan.io.
 - **Ask PureScan (Premium).** When you ask a question, the app sends your
   question, the earlier messages in that conversation and the details of the
   product on screen (such as its name, ingredients, nutrition and score) to
-  our server at purescan.io. Our server passes them to Anthropic, which acts
-  as our processor, to generate the answer and sends the answer back to the
-  app. PureScan doesn't store your questions or the answers and doesn't log
-  their content. Anthropic handles them under its commercial terms, which
-  don't allow it to train its models on them; its privacy policy is at
-  https://www.anthropic.com/legal/privacy
+  our server at purescan.io. Our server passes them to Google's Gemini API,
+  which acts as our processor, to generate the answer and sends the answer
+  back to the app. PureScan doesn't store your questions or the answers and
+  doesn't log their content. Under the Gemini API terms for paid services,
+  Google doesn't use them to improve its products and logs them only for a
+  limited time to detect and prevent misuse; see
+  https://ai.google.dev/gemini-api/terms and https://policies.google.com/privacy
 - **Fair-use limits for Ask PureScan.** To confirm you're a subscriber, the
   app sends Apple's signed record of your Premium subscription with each
   question. We check it and keep only a one-way hash of its transaction ID,

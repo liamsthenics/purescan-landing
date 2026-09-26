@@ -122,9 +122,14 @@ test("rejects unknown enums and out-of-range numbers", () => {
 test("chat is on only with an API key, and CHAT_ENABLED=false switches it off", () => {
   assert.equal(readChatConfig({}).enabled, false);
   assert.equal(readChatConfig({ CHAT_ENABLED: "true" }).enabled, false);
-  assert.equal(readChatConfig({ ANTHROPIC_API_KEY: "key" }).enabled, true);
-  assert.equal(readChatConfig({ ANTHROPIC_API_KEY: "key", CHAT_ENABLED: "false" }).enabled, false);
-  assert.equal(readChatConfig({ ANTHROPIC_API_KEY: "key", CHAT_ENABLED: "FALSE" }).enabled, false);
+  assert.equal(readChatConfig({ GEMINI_API_KEY: "key" }).enabled, true);
+  assert.equal(readChatConfig({ GEMINI_API_KEY: "key", CHAT_ENABLED: "false" }).enabled, false);
+  assert.equal(readChatConfig({ GEMINI_API_KEY: "key", CHAT_ENABLED: "FALSE" }).enabled, false);
+});
+
+test("uses the default Gemini model unless GEMINI_MODEL is set", () => {
+  assert.equal(readChatConfig({}).model, "gemini-3.5-flash-lite");
+  assert.equal(readChatConfig({ GEMINI_MODEL: " gemini-3.6-flash " }).model, "gemini-3.6-flash");
 });
 
 test("reads the hash secret", () => {

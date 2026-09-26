@@ -59,7 +59,7 @@ const NOT_FOUND: FaqItem = {
 const ASK_PURESCAN: FaqItem = {
   question: "What is Ask PureScan?",
   answer:
-    "A Premium feature for questions about the product you scanned or any ingredient. Answers are written by an AI model (Anthropic's Claude) from PureScan's data and the sources behind it. They're information, not advice, and can be incomplete or wrong, so for allergies always check the pack. Your questions aren't stored.",
+    "A Premium feature for questions about the product you scanned or any ingredient. Answers are written by an AI model (Google's Gemini) from PureScan's data and the sources behind it. They're information, not advice, and can be incomplete or wrong, so for allergies always check the pack. Your questions aren't stored.",
   link: { href: "/privacy", label: "How your questions are handled" },
 };
 

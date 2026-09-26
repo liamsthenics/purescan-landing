@@ -2,10 +2,10 @@
 // additive knowledge base through the "@/" alias.
 import { getAllAdditives } from "@/lib/additives";
 import { createAdditiveLookup } from "./additive-reference.ts";
-import { AnthropicAnswerStreamer } from "./anthropic-answer-streamer.ts";
 import { loadAppleRootCertificates } from "./apple-root-certificates.ts";
 import { createAppleTransactionVerifier } from "./apple-verifier.ts";
 import type { ChatConfig } from "./config.ts";
+import { GeminiAnswerStreamer } from "./gemini-answer-streamer.ts";
 import { createIdentifierHasher, generateHashSecret } from "./hashing.ts";
 import { createChatHandler, selectChatHandler, type ChatHandler } from "./handler.ts";
 import { ChatRateLimiter, InMemoryRateLimitStore, type RateLimitStore } from "./rate-limit.ts";
@@ -22,19 +22,19 @@ function hashSecret(config: ChatConfig): string {
   return generateHashSecret();
 }
 
-function buildEnabledHandler(config: ChatConfig, anthropicApiKey: string): ChatHandler {
+function buildEnabledHandler(config: ChatConfig, geminiApiKey: string): ChatHandler {
   return createChatHandler({
     hashIdentifier: createIdentifierHasher(hashSecret(config)),
     premiumVerifier: createAppleTransactionVerifier(loadAppleRootCertificates()),
     rateLimits: new ChatRateLimiter({ store: rateLimitStore(config), globalDailyLimit: config.globalDailyLimit }),
-    answerStreamer: new AnthropicAnswerStreamer(anthropicApiKey),
+    answerStreamer: new GeminiAnswerStreamer(geminiApiKey, config.model),
     lookupAdditive: createAdditiveLookup(getAllAdditives()),
   });
 }
 
 export function buildChatHandler(config: ChatConfig): ChatHandler {
   return selectChatHandler(config, () => {
-    if (!config.anthropicApiKey) throw new Error("Chat is enabled without an Anthropic API key");
-    return buildEnabledHandler(config, config.anthropicApiKey);
+    if (!config.geminiApiKey) throw new Error("Chat is enabled without a Gemini API key");
+    return buildEnabledHandler(config, config.geminiApiKey);
   });
 }
