@@ -22,6 +22,9 @@ export const STANDARD_DISCLAIMER =
 
 export const CONTACT_EMAIL = "hello@purescan.io";
 export const PRIVACY_EMAIL = "privacy@purescan.io";
+/** The data controller under UK GDPR: PureScan is run by an individual, not a company. */
+export const DATA_CONTROLLER_NAME = "Liam Oliver";
+export const DATA_CONTROLLER_ADDRESS = "1216 Litmus Building, Nottingham, NG1 3NZ, United Kingdom";
 
 /** App Store prices in pence (GBP). The App Store is the source of truth. */
 export const PREMIUM_MONTHLY_PENCE = 399;

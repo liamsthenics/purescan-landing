@@ -10,8 +10,10 @@ your question and the product's details go to our server and to Google's
 Gemini API to write the answer, and we don't store them.
 
 ### Who we are
-PureScan ("we", "us") makes the PureScan app for iPhone. For anything about
-your privacy, email privacy@purescan.io.
+PureScan ("we", "us") makes the PureScan app for iPhone. PureScan is run by
+Liam Oliver, who is the data controller for the personal data described in
+this policy. Postal address: 1216 Litmus Building, Nottingham, NG1 3NZ,
+United Kingdom. For anything about your privacy, email privacy@purescan.io.
 
 ### What the app does with data
 - **Barcodes and searches.** When you scan a barcode or search for a product,

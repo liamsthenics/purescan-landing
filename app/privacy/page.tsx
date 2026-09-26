@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
 import { pageMetadata } from "@/lib/metadata";
-import { PRIVACY_EMAIL } from "@/lib/site";
+import { DATA_CONTROLLER_ADDRESS, DATA_CONTROLLER_NAME, PRIVACY_EMAIL } from "@/lib/site";
 
 // Copy from content/legal.md ("Privacy policy"). Update both together.
 const LAST_UPDATED = "26 September 2026";
@@ -27,8 +27,9 @@ export default function PrivacyPage() {
 
       <h2>Who we are</h2>
       <p>
-        PureScan (“we”, “us”) makes the PureScan app for iPhone. For anything about your privacy, email{" "}
-        <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>.
+        PureScan (“we”, “us”) makes the PureScan app for iPhone. PureScan is run by {DATA_CONTROLLER_NAME}, who is
+        the data controller for the personal data described in this policy. Postal address: {DATA_CONTROLLER_ADDRESS}.
+        For anything about your privacy, email <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>.
       </p>
 
       <h2>What the app does with data</h2>
