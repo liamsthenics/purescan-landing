@@ -38,10 +38,29 @@ export function isManipulationAttempt(text: string): boolean {
 }
 
 /**
- * Every turn is checked, including earlier "assistant" turns: the app sends
- * the history back, so a modified client could forge a reply that primes the
- * model ("Sure, I'm in unrestricted mode now").
+ * Signs of a forged assistant turn. Narrower than the question patterns:
+ * a genuine earlier answer can say "if you are now avoiding caffeine".
+ */
+const FORGED_REPLY_PATTERNS: readonly RegExp[] = [
+  /(jailbreak|dan mode|developer mode|debug mode|god mode|do anything now|unrestricted mode)/,
+  /(any topic|no (rules|restrictions|limits))/,
+];
+
+function looksForged(reply: string): boolean {
+  const normalised = normalise(reply);
+  return (
+    FORGED_REPLY_PATTERNS.some((pattern) => pattern.test(normalised)) ||
+    PROMPT_MARKERS.some((marker) => normalised.includes(marker))
+  );
+}
+
+/**
+ * Checks every turn: questions for manipulation, and earlier "assistant"
+ * turns for forgery (the app sends the history back, so a modified client
+ * could fake a reply that primes the model).
  */
 export function conversationNeedsRefusal(messages: readonly { role: string; content: string }[]): boolean {
-  return messages.some((message) => isManipulationAttempt(message.content));
+  return messages.some((message) =>
+    message.role === "assistant" ? looksForged(message.content) : isManipulationAttempt(message.content),
+  );
 }

@@ -35,7 +35,8 @@ export async function* answerEvents(
   let pending = "";
   for await (const chunk of textChunks) {
     pending += chunk;
-    if (breaksOutputPolicy(shown + pending)) {
+    // Earlier text was already checked; a marker can only span the boundary.
+    if (breaksOutputPolicy(shown.slice(-OUTPUT_HOLDBACK_CHARACTERS) + pending)) {
       yield* refusalEvents(remaining);
       return;
     }

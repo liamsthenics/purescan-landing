@@ -80,9 +80,18 @@ async function handleChat(request: Request, context: ChatContext): Promise<Respo
 
 /** Attempts to manipulate the assistant never reach the model. They still count against the day. */
 async function refuseWithoutModel({ transactionHash, remainingToday }: Allowance, context: ChatContext): Promise<Response> {
-  await context.rateLimits.recordRefusal(transactionHash);
+  await recordRefusalSafely(transactionHash, context);
   const body = refusalEvents(remainingToday).map(formatSseEvent).join("");
   return new Response(body, { headers: SSE_HEADERS });
+}
+
+/** Best effort: a rate-store outage must never turn a refusal into an error. */
+async function recordRefusalSafely(transactionHash: string, context: ChatContext): Promise<void> {
+  try {
+    await context.rateLimits.recordRefusal(transactionHash);
+  } catch (error) {
+    context.logger("refusal_not_recorded", error);
+  }
 }
 
 /** Counts refusals as they stream, so persistent off-topic use is paused. */
@@ -150,7 +159,7 @@ async function streamAnswer(
   });
   const events = countingRefusals(answerEvents(textChunks, remainingToday), async () => {
     context.logger("answer_refused");
-    await context.rateLimits.recordRefusal(transactionHash);
+    await recordRefusalSafely(transactionHash, context);
   });
 
   // Wait for the first event so an upstream failure can still be a 503, before any headers are sent.

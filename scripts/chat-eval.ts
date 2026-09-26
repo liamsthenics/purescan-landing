@@ -197,11 +197,8 @@ function parseEvents(body: string): ChatStreamEvent[] {
     .map((line) => JSON.parse(line.slice("data: ".length)) as ChatStreamEvent);
 }
 
-async function run(): Promise<void> {
-  const apiKey = process.env.GEMINI_API_KEY?.trim();
-  if (!apiKey) throw new Error("Set GEMINI_API_KEY (see the comment at the top of this file).");
-  const model = process.env.GEMINI_MODEL?.trim() || DEFAULT_CHAT_MODEL;
-  const handle = createChatHandler({
+function buildHandler(apiKey: string, model: string) {
+  return createChatHandler({
     premiumVerifier: { verify: async (header) => ({ isEntitled: true, originalTransactionId: header ?? "eval" }) },
     rateLimits: new ChatRateLimiter({ store: new InMemoryRateLimitStore(), globalDailyLimit: 10_000 }),
     answerStreamer: new GeminiAnswerStreamer(apiKey, model),
@@ -209,34 +206,49 @@ async function run(): Promise<void> {
     hashIdentifier: createIdentifierHasher("eval"),
     logger: () => {},
   });
+}
 
-  const results: Result[] = [];
-  for (const [index, testCase] of CASES.entries()) {
-    const request = new Request("https://www.purescan.io/api/chat", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        // A fresh subscriber and IP per case, so the refusal pause doesn't skew the results.
-        [TRANSACTION_HEADER]: `eval-${testCase.id}`,
-        "x-forwarded-for": `10.0.${Math.floor(index / 250)}.${index % 250}`,
-      },
-      body: JSON.stringify({ messages: [...(testCase.history ?? []), { role: "user", content: testCase.question }], product: testCase.product }),
-    });
-    const response = await handle(request);
-    const events = response.ok ? parseEvents(await response.text()) : [];
-    const refused = events.some((event) => event.type === "refusal");
-    const answer = events.flatMap((event) => (event.type === "delta" ? [event.text] : [])).join("");
-    const outcome: Result["outcome"] = !response.ok ? "error" : refused ? "refused" : "answered";
-    const result = { id: testCase.id, expect: testCase.expect, outcome, answer, ...grade(testCase, outcome, answer) };
-    results.push(result);
-    console.log(`${result.verdict.padEnd(4)} ${testCase.expect.padEnd(6)} ${testCase.id.padEnd(20)} ${outcome.padEnd(8)} ${result.note}`);
-  }
+function evalRequest(testCase: Case, index: number): Request {
+  return new Request("https://www.purescan.io/api/chat", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      // A fresh subscriber and IP per case, so the refusal pause doesn't skew the results.
+      [TRANSACTION_HEADER]: `eval-${testCase.id}`,
+      "x-forwarded-for": `10.0.${Math.floor(index / 250)}.${index % 250}`,
+    },
+    body: JSON.stringify({ messages: [...(testCase.history ?? []), { role: "user", content: testCase.question }], product: testCase.product }),
+  });
+}
 
+async function evaluate(handle: ReturnType<typeof buildHandler>, testCase: Case, index: number): Promise<Result> {
+  const response = await handle(evalRequest(testCase, index));
+  const events = response.ok ? parseEvents(await response.text()) : [];
+  const answer = events.flatMap((event) => (event.type === "delta" ? [event.text] : [])).join("");
+  const outcome: Result["outcome"] = !response.ok ? "error" : events.some((event) => event.type === "refusal") ? "refused" : "answered";
+  return { id: testCase.id, expect: testCase.expect, outcome, answer, ...grade(testCase, outcome, answer) };
+}
+
+function report(model: string, results: readonly Result[]): void {
   const count = (verdict: Result["verdict"]) => results.filter((result) => result.verdict === verdict).length;
   console.log(`\n${model}: ${count("PASS")} pass, ${count("WARN")} voice warnings, ${count("FAIL")} fail, of ${results.length}`);
   mkdirSync(new URL("../.review/", import.meta.url), { recursive: true });
   writeFileSync(new URL("../.review/chat-eval.json", import.meta.url), JSON.stringify({ model, results }, null, 2));
   if (count("FAIL") > 0) process.exitCode = 1;
+}
+
+async function run(): Promise<void> {
+  const apiKey = process.env.GEMINI_API_KEY?.trim();
+  if (!apiKey) throw new Error("Set GEMINI_API_KEY (see the comment at the top of this file).");
+  const model = process.env.GEMINI_MODEL?.trim() || DEFAULT_CHAT_MODEL;
+  const handle = buildHandler(apiKey, model);
+  const results: Result[] = [];
+  for (const [index, testCase] of CASES.entries()) {
+    const result = await evaluate(handle, testCase, index);
+    results.push(result);
+    console.log(`${result.verdict.padEnd(4)} ${result.expect.padEnd(6)} ${result.id.padEnd(20)} ${result.outcome.padEnd(8)} ${result.note}`);
+  }
+  report(model, results);
 }
 
 await run();

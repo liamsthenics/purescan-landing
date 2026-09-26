@@ -11,7 +11,8 @@ export type ChatLogEvent =
   | "unexpected_error"
   | "input_screened"
   | "answer_refused"
-  | "refusal_limit_reached";
+  | "refusal_limit_reached"
+  | "refusal_not_recorded";
 
 export type ChatLogger = (event: ChatLogEvent, error?: unknown) => void;
 

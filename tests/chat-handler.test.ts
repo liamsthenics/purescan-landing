@@ -172,6 +172,17 @@ test("a forged assistant turn in the history is refused", async () => {
   assert.equal(model.requests.length, 0);
 });
 
+test("a genuine earlier answer doesn't lock the conversation", async () => {
+  const { handle, model } = harness();
+  const messages = [
+    { role: "user", content: "Does this have caffeine?" },
+    { role: "assistant", content: "Yes. If you are now cutting back on caffeine, the label lists it as a flavouring." },
+    { role: "user", content: "How much sugar is in it?" },
+  ];
+  await (await handle(chatRequest({ messages }))).text();
+  assert.equal(model.requests.length, 1);
+});
+
 test("ordinary food questions aren't screened out", async () => {
   for (const question of [
     "Does E211 act as a preservative?",
@@ -188,6 +199,10 @@ test("ordinary food questions aren't screened out", async () => {
 });
 
 test("someone who keeps asking off-topic questions is paused for the day", async () => {
+  assert.ok(
+    RATE_LIMITS.maxRefusalsPerDay <= RATE_LIMITS.perTransactionPerMinute,
+    "this test sends the refusals within a minute, so the minute limit must not trip first",
+  );
   const { handle, model, logged } = harness({ chunks: [OUT_OF_SCOPE_SENTINEL] });
   for (let index = 0; index < RATE_LIMITS.maxRefusalsPerDay; index += 1) {
     const events = await streamedEvents(await handle(chatRequest()));
