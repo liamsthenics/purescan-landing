@@ -40,6 +40,11 @@ export const PRICES = {
   yearlyPerMonth: formatPounds(Math.round(PREMIUM_YEARLY_PENCE / MONTHS_PER_YEAR)),
 } as const;
 
+/** Shared trial/price/cancellation sentence, shown on the pricing section and the support page. */
+export const TRIAL_DISCLOSURE =
+  `${FREE_TRIAL_DAYS}-day free trial for new subscribers, then ${PRICES.yearly} a year or ${PRICES.monthly} a month. ` +
+  "Cancel any time in your Apple Account settings.";
+
 export const FREE_HISTORY_LIMIT = 30;
 
 export const OPEN_FOOD_FACTS_URL = "https://world.openfoodfacts.org";

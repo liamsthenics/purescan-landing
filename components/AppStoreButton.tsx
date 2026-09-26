@@ -18,19 +18,24 @@ export function AppStoreButton({ size = "large", tone = "default", className }: 
 
   if (!APP_STORE_LIVE) {
     const colours = isInverse ? "bg-on-brand text-brand" : "bg-brand text-on-brand";
+    const link = (
+      <a
+        href={TESTFLIGHT_URL}
+        rel="noopener"
+        className={
+          isSmall
+            ? `inline-flex h-9 items-center rounded-xl px-4 text-[14px] font-semibold ${colours}`
+            : `button-primary ${isInverse ? "!bg-on-brand !text-brand" : ""}`
+        }
+      >
+        {isSmall ? "Join the beta" : "Join the public beta"}
+      </a>
+    );
+    // The small size sits in a single-line, fixed-height nav slot, so it skips the caption.
+    if (isSmall) return <span className={className}>{link}</span>;
     return (
       <span className={`inline-flex flex-col items-start gap-2 ${className ?? ""}`}>
-        <a
-          href={TESTFLIGHT_URL}
-          rel="noopener"
-          className={
-            isSmall
-              ? `inline-flex h-9 items-center rounded-xl px-4 text-[14px] font-semibold ${colours}`
-              : `button-primary ${isInverse ? "!bg-on-brand !text-brand" : ""}`
-          }
-        >
-          Join the public beta
-        </a>
+        {link}
         <span className={`text-[12px] ${isInverse ? "text-on-brand/75" : "text-secondary"}`}>
           Coming soon to the App Store
         </span>
