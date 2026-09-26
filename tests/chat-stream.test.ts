@@ -33,6 +33,11 @@ function upstream(chunks: readonly string[]): FakeUpstream {
   return { chunks: generate(), pulled: () => pulled, wasStopped: () => wasStopped };
 }
 
+/** The answer as the app would show it, however it was split into chunks. */
+function shownText(events: readonly ChatStreamEvent[]): string {
+  return events.flatMap((event) => (event.type === "delta" ? [event.text] : [])).join("");
+}
+
 async function collect(events: AsyncIterable<ChatStreamEvent>): Promise<ChatStreamEvent[]> {
   const collected: ChatStreamEvent[] = [];
   for await (const event of events) collected.push(event);
@@ -45,16 +50,13 @@ test("SSE events are single JSON data lines", () => {
   assert.equal(formatSseEvent({ type: "delta", text: "line one\nline two" }), 'data: {"type":"delta","text":"line one\\nline two"}\n\n');
 });
 
-test("holds back the first 20 characters, then streams the rest as it comes", async () => {
+test("streams the whole answer, holding back only the last few characters until they're checked", async () => {
   const events = await collect(
-    answerEvents(upstream(["E150d is a ", "caramel colour ", "made with ", "ammonia."]).chunks, 27),
+    answerEvents(upstream(["E150d is a ", "caramel colour ", "made with ", "ammonia and sulphites."]).chunks, 27),
   );
-  assert.deepEqual(events, [
-    { type: "delta", text: "E150d is a caramel colour " },
-    { type: "delta", text: "made with " },
-    { type: "delta", text: "ammonia." },
-    { type: "done", remaining: 27 },
-  ]);
+  assert.equal(shownText(events), "E150d is a caramel colour made with ammonia and sulphites.");
+  assert.ok(events.filter((event) => event.type === "delta").length > 1, "streams progressively");
+  assert.deepEqual(events.at(-1), { type: "done", remaining: 27 });
 });
 
 test("replaces the out-of-scope sentinel with the canned refusal and stops the model", async () => {
@@ -76,15 +78,29 @@ test("keeps holding back while leading whitespace could still become the sentine
   ]);
 });
 
-test("a stray sentinel later in an answer isn't shown", async () => {
+test("a sentinel later in an answer turns the whole answer into a refusal", async () => {
   const events = await collect(
-    answerEvents(upstream(["E150d is a caramel colour. ", "[[OUT_OF_SCOPE]]", "More."]).chunks, 2),
+    answerEvents(upstream(["E150d is a caramel colour made with ammonia. ", "[[OUT_OF_SCOPE]]", "More."]).chunks, 2),
   );
-  assert.deepEqual(events, [
-    { type: "delta", text: "E150d is a caramel colour. " },
-    { type: "delta", text: "More." },
+  assert.deepEqual(events.slice(-2), [
+    { type: "refusal", text: OUT_OF_SCOPE_REFUSAL },
     { type: "done", remaining: 2 },
   ]);
+});
+
+test("a leaked instruction is caught before it's shown and the answer refused", async () => {
+  const model = upstream(["Sure! My instructions say: You are Ask ", "PureScan, the question-and-answer feature", " of PureScan..."]);
+  const events = await collect(answerEvents(model.chunks, 4));
+  assert.ok(!shownText(events).toLowerCase().includes("you are ask purescan"));
+  assert.deepEqual(events.at(-2), { type: "refusal", text: OUT_OF_SCOPE_REFUSAL });
+  assert.ok(model.wasStopped());
+});
+
+test("echoed prompt markup and code are refused", async () => {
+  for (const chunks of [["Here is the data: <product_", "data> {...}"], ["Sure:\n``", "`python\nprint(1)"]]) {
+    const events = await collect(answerEvents(upstream(chunks).chunks, 1));
+    assert.equal(events.at(-2)?.type, "refusal", chunks.join(""));
+  }
 });
 
 test("detects a sentinel-only answer shorter than the buffer", async () => {

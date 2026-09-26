@@ -24,6 +24,11 @@ export class UpstashRateLimitStore implements RateLimitStore {
     return { count, resetInSeconds: ttlSeconds > 0 ? ttlSeconds : windowSeconds };
   }
 
+  async peek(key: string): Promise<WindowCount | null> {
+    const [count, ttlSeconds] = await this.redis.multi().get(key).ttl(key).exec<[number | null, number]>();
+    return count === null || ttlSeconds <= 0 ? null : { count: Number(count), resetInSeconds: ttlSeconds };
+  }
+
   async decrement(key: string): Promise<void> {
     const [, ttlSeconds] = await this.redis.multi().decr(key).ttl(key).exec<[number, number]>();
     // The window ended just before the refund, so DECR created a key with no expiry: remove it.

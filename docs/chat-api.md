@@ -54,7 +54,9 @@ data: {"type":"done","remaining":27}
 ```
 
 When the question is out of scope the stream is a single
-`{"type":"refusal","text":"<canned message>"}` then `done`.
+`{"type":"refusal","text":"<canned message>"}` then `done`. A refusal can also
+arrive after some deltas (the output guard caught something mid-answer): it
+replaces everything shown for that answer.
 
 Errors are JSON `{ "error": "<code>", "message": "<user-facing text>" }`:
 
@@ -80,7 +82,20 @@ Errors are JSON `{ "error": "<code>", "message": "<user-facing text>" }`:
    (inform, never advise; no medical advice; cite the evidence PureScan uses);
    out-of-scope → reply exactly `[[OUT_OF_SCOPE]]`, which the server swaps for the
    canned refusal.
-5. No message content is logged or stored. Kill switch `CHAT_ENABLED=false`.
+5. Input screen (`lib/chat/input-screen.ts`): every turn, including earlier
+   assistant turns (the client could forge them), is checked for attempts to
+   change the role, reveal the prompt or inject prompt markup; those are
+   refused without calling the model.
+6. Output guard (`lib/chat/output-guard.ts`): answers stream with the last few
+   characters held back; the sentinel, prompt leaks, prompt markup or code
+   anywhere in an answer turn it into the refusal.
+7. Google content filters: harassment, hate and sexual content blocked at low,
+   dangerous content at medium. A blocked question or answer gets the refusal.
+8. Refusal pause: after 8 refused questions in a day a subscriber gets
+   `429 rate_limited` until the day resets.
+9. No message content is logged or stored. Kill switch `CHAT_ENABLED=false`.
+10. Red-team check: `npm run eval:chat` (needs `GEMINI_API_KEY`) runs ~55 attack
+    and ordinary questions through the real handler and model and grades them.
 
 ## Environment
 

@@ -20,6 +20,8 @@ export interface RateLimitStore {
   increment(key: string, windowSeconds: number): Promise<WindowCount>;
   /** Gives back one request counted in the current window (no-op if the window has ended). */
   decrement(key: string): Promise<void>;
+  /** The current window's count without adding to it, or null if there is no open window. */
+  peek(key: string): Promise<WindowCount | null>;
 }
 
 interface StoredWindow {
@@ -53,6 +55,13 @@ export class InMemoryRateLimitStore implements RateLimitStore {
     window.count += 1;
     this.windows.set(key, window);
     this.evictWhenFull(nowMs);
+    return { count: window.count, resetInSeconds: Math.ceil((window.expiresAtMs - nowMs) / MILLISECONDS_PER_SECOND) };
+  }
+
+  async peek(key: string): Promise<WindowCount | null> {
+    const nowMs = this.now();
+    const window = this.windows.get(key);
+    if (!window || window.expiresAtMs <= nowMs) return null;
     return { count: window.count, resetInSeconds: Math.ceil((window.expiresAtMs - nowMs) / MILLISECONDS_PER_SECOND) };
   }
 
@@ -100,6 +109,9 @@ export interface ChatRateLimits {
   checkTransaction(transactionHash: string): Promise<TransactionDecision>;
   /** Gives back an allowed question that couldn't be answered (the upstream failed). */
   refundTransaction(transactionHash: string): Promise<void>;
+  /** Someone who keeps asking out-of-scope questions is paused until the day resets. */
+  checkRefusals(transactionHash: string): Promise<ClientDecision>;
+  recordRefusal(transactionHash: string): Promise<void>;
 }
 
 export interface ChatRateLimiterOptions {
@@ -153,6 +165,21 @@ export class ChatRateLimiter implements ChatRateLimits {
 
   async refundTransaction(transactionHash: string): Promise<void> {
     await Promise.all([this.store.decrement(this.dayKey(transactionHash)), this.store.decrement(this.globalKey())]);
+  }
+
+  async checkRefusals(transactionHash: string): Promise<ClientDecision> {
+    const refusals = await this.store.peek(this.refusalKey(transactionHash));
+    return refusals && refusals.count >= RATE_LIMITS.maxRefusalsPerDay
+      ? { isAllowed: false, retryAfterSeconds: refusals.resetInSeconds }
+      : { isAllowed: true };
+  }
+
+  async recordRefusal(transactionHash: string): Promise<void> {
+    await this.store.increment(this.refusalKey(transactionHash), SECONDS_PER_DAY);
+  }
+
+  private refusalKey(transactionHash: string): string {
+    return `${KEY_PREFIX}:tx:refusals:${transactionHash}`;
   }
 
   private dayKey(transactionHash: string): string {

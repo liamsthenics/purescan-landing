@@ -1,12 +1,13 @@
 // POST /api/chat ("Ask PureScan"), implementing docs/chat-api.md. Every
 // dependency is injected so the whole flow can be tested without a network.
 import { findENumbers, referencedAdditives, type AdditiveLookup } from "./additive-reference.ts";
-import { answerEvents } from "./answer-events.ts";
+import { answerEvents, refusalEvents } from "./answer-events.ts";
 import type { AnswerStreamer, ModelMessage } from "./answer-streamer.ts";
 import { MAX_REQUEST_BODY_BYTES, type ChatConfig } from "./config.ts";
 import type { EntitlementFailure, PremiumVerifier } from "./entitlement.ts";
 import type { IdentifierHasher } from "./hashing.ts";
 import { clientIpAddress, errorResponse, readBodyWithLimit } from "./http.ts";
+import { conversationNeedsRefusal } from "./input-screen.ts";
 import { consoleChatLogger, type ChatLogger } from "./log.ts";
 import type { ChatRateLimits } from "./rate-limit.ts";
 import { SSE_HEADERS, formatSseEvent, type ChatStreamEvent } from "./sse.ts";
@@ -58,13 +59,41 @@ async function handleChat(request: Request, context: ChatContext): Promise<Respo
   if (!entitlement.isEntitled) return entitlementFailureResponse(entitlement.failure, context.logger);
 
   const transactionHash = context.hashIdentifier(entitlement.originalTransactionId);
+  const refusals = await context.rateLimits.checkRefusals(transactionHash);
+  if (!refusals.isAllowed) {
+    context.logger("refusal_limit_reached");
+    return errorResponse("rate_limited", refusals.retryAfterSeconds);
+  }
   const decision = await context.rateLimits.checkTransaction(transactionHash);
   if (decision.outcome === "rate_limited") return errorResponse("rate_limited", decision.retryAfterSeconds);
   if (decision.outcome === "capacity_reached") {
     context.logger("global_cap_reached");
     return errorResponse("unavailable");
   }
-  return streamAnswer(request, chatRequest, { transactionHash, remainingToday: decision.remainingToday }, context);
+  const allowance = { transactionHash, remainingToday: decision.remainingToday };
+  if (conversationNeedsRefusal(chatRequest.messages)) {
+    context.logger("input_screened");
+    return refuseWithoutModel(allowance, context);
+  }
+  return streamAnswer(request, chatRequest, allowance, context);
+}
+
+/** Attempts to manipulate the assistant never reach the model. They still count against the day. */
+async function refuseWithoutModel({ transactionHash, remainingToday }: Allowance, context: ChatContext): Promise<Response> {
+  await context.rateLimits.recordRefusal(transactionHash);
+  const body = refusalEvents(remainingToday).map(formatSseEvent).join("");
+  return new Response(body, { headers: SSE_HEADERS });
+}
+
+/** Counts refusals as they stream, so persistent off-topic use is paused. */
+async function* countingRefusals(
+  events: AsyncGenerator<ChatStreamEvent>,
+  onRefusal: () => Promise<void>,
+): AsyncGenerator<ChatStreamEvent> {
+  for await (const event of events) {
+    if (event.type === "refusal") await onRefusal();
+    yield event;
+  }
 }
 
 async function readChatRequest(request: Request): Promise<ChatRequest | null> {
@@ -119,7 +148,10 @@ async function streamAnswer(
     messages: toModelMessages(chatRequest.messages),
     signal: request.signal,
   });
-  const events = answerEvents(textChunks, remainingToday);
+  const events = countingRefusals(answerEvents(textChunks, remainingToday), async () => {
+    context.logger("answer_refused");
+    await context.rateLimits.recordRefusal(transactionHash);
+  });
 
   // Wait for the first event so an upstream failure can still be a 503, before any headers are sent.
   let first: IteratorResult<ChatStreamEvent>;

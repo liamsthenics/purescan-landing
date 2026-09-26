@@ -118,3 +118,13 @@ test("the global daily cap switches chat off for everyone until the next UTC day
   clock.advance(DAY_MS);
   assert.equal((await limits.checkTransaction("c")).outcome, "allowed");
 });
+
+test("refusals are counted per subscriber and pause chat once the daily limit is reached", async () => {
+  const limiter = new ChatRateLimiter({ store: new InMemoryRateLimitStore(), globalDailyLimit: 100 });
+  for (let index = 0; index < RATE_LIMITS.maxRefusalsPerDay - 1; index += 1) await limiter.recordRefusal("tx-a");
+  assert.deepEqual(await limiter.checkRefusals("tx-a"), { isAllowed: true });
+  await limiter.recordRefusal("tx-a");
+  const decision = await limiter.checkRefusals("tx-a");
+  assert.equal(decision.isAllowed, false);
+  assert.deepEqual(await limiter.checkRefusals("tx-b"), { isAllowed: true }, "other subscribers are unaffected");
+});

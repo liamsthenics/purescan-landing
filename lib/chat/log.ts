@@ -8,7 +8,10 @@ export type ChatLogEvent =
   | "global_cap_reached"
   | "upstream_failed"
   | "upstream_stream_failed"
-  | "unexpected_error";
+  | "unexpected_error"
+  | "input_screened"
+  | "answer_refused"
+  | "refusal_limit_reached";
 
 export type ChatLogger = (event: ChatLogEvent, error?: unknown) => void;
 

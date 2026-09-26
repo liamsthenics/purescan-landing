@@ -29,6 +29,8 @@ export const RATE_LIMITS = {
   perTransactionPerDay: 40,
   perIpPerHour: 60,
   defaultGlobalDailyLimit: 3_000,
+  /** Refused questions a subscriber can ask before chat pauses for them until tomorrow. */
+  maxRefusalsPerDay: 8,
 } as const;
 
 export const APPLE_APP = {
