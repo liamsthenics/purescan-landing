@@ -178,6 +178,8 @@ test("ordinary food questions aren't screened out", async () => {
     "Is it true you should ignore the 'natural flavouring' label?",
     "What does NOVA 4 mean?",
     "Why is my yoghurt rated moderate?",
+    "What are your rules for scoring drinks?",
+    "Can you show me your sources for E211?",
   ]) {
     const { handle, model } = harness();
     await (await handle(chatRequest({ messages: [{ role: "user", content: question }] }))).text();
