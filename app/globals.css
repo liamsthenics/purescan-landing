@@ -28,6 +28,37 @@
 
   --phone-bezel: #121614;
   --shadow-float: 0 1px 2px rgba(20, 32, 26, 0.04), 0 24px 60px -12px rgba(20, 32, 26, 0.18);
+
+  /* Layout and motion, shared by CSS and the scroll story. */
+  --site-header-height: 64px;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --story-pose-duration: 1100ms;
+  --story-fade-duration: 650ms;
+
+  /* Editorial "honest instrument" palette (homepage, header and footer). */
+  --hairline: rgba(20, 32, 26, 0.16);
+  --watermark: rgba(20, 32, 26, 0.06);
+  --pill: #14201a;
+  --on-pill: #f7f5f0;
+  --forest: #1b3c34;
+  --on-forest: #f7f5f0;
+  --on-forest-muted: rgba(247, 245, 240, 0.74);
+  --forest-hairline: rgba(247, 245, 240, 0.18);
+  --mint: #8fcfb9;
+  --on-mint: #14201a;
+  /* Forest as a mark on the page (e.g. the score bar); lifted in dark mode so it doesn't vanish. */
+  --forest-mark: #1b3c34;
+  /* The four-segment tier rule, bad to great. Decorative only: always paired with numbers or words. */
+  --rule-bad: #e07a6b;
+  --rule-poor: #e3a062;
+  --rule-okay: #d8c36a;
+  --rule-great: #93c9a0;
+  /* Verdict colours dark enough for text on paper: amber for large text (3:1), the others for small text (4.5:1). */
+  --okay-text: #a87300;
+  --poor-text: #b4510f;
+  --great-text: #177a41;
+  /* Paper grain: fractal noise at a few percent, tiled. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +84,15 @@
 
     --phone-bezel: #050706;
     --shadow-float: 0 1px 2px rgba(0, 0, 0, 0.3), 0 24px 60px -12px rgba(0, 0, 0, 0.6);
+
+    --hairline: rgba(247, 245, 240, 0.16);
+    --watermark: rgba(247, 245, 240, 0.06);
+    --pill: #f7f5f0;
+    --on-pill: #14201a;
+    --okay-text: #e2a83a;
+    --poor-text: #f08a4b;
+    --great-text: #4fbf7e;
+    --forest-mark: #4d8a78;
   }
 }
 
@@ -72,10 +112,22 @@
   --color-poor: var(--poor);
   --color-bad: var(--bad);
   --color-none: var(--none);
+  --color-hairline: var(--hairline);
+  --color-forest: var(--forest);
+  --color-on-forest: var(--on-forest);
+  --color-on-forest-muted: var(--on-forest-muted);
+  --color-forest-hairline: var(--forest-hairline);
+  --color-mint: var(--mint);
+  --color-on-mint: var(--on-mint);
+  --color-pill: var(--pill);
+  --color-on-pill: var(--on-pill);
+
+  /* Below this the sticky story phone gives way to inline phones (see Story.module.css). */
+  --breakpoint-story: 60rem;
 
   --font-serif: var(--font-instrument-serif), "Instrument Serif", Georgia, serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", var(--font-inter), Inter, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 @layer base {
@@ -83,10 +135,11 @@
     background: var(--paper);
     color: var(--ink);
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 88px;
+    scroll-padding-top: calc(var(--site-header-height) + 24px);
   }
 
   body {
+    background-image: var(--grain);
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.5;
@@ -176,6 +229,71 @@
     color: var(--secondary);
   }
 
+  /* Editorial display type: Instrument Serif at display sizes only. */
+  .type-hero {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(3.25rem, 1.05rem + 6.1vw, 7.25rem);
+    line-height: 0.93;
+    letter-spacing: -0.028em;
+  }
+
+  .type-section {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.625rem, 1.55rem + 3.3vw, 4.875rem);
+    line-height: 0.98;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  .type-body-lg {
+    font-size: clamp(1.0625rem, 0.98rem + 0.3vw, 1.1875rem);
+    line-height: 1.58;
+    color: color-mix(in srgb, var(--ink) 84%, transparent);
+    text-wrap: pretty;
+  }
+
+  /* Small uppercase mono: eyebrows, meta and chips. */
+  .type-mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .container-wide {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .container-wide {
+      padding-inline: 40px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-wide {
+      padding-inline: 64px;
+    }
+  }
+
+  /* Full-bleed forest band with paper text. Focus rings turn mint so they stay visible. */
+  .surface-forest {
+    background-color: var(--forest);
+    background-image: var(--grain);
+    color: var(--on-forest);
+  }
+
+  .surface-forest :focus-visible {
+    outline-color: var(--mint);
+  }
+
   .e-number {
     font-family: var(--font-mono);
     font-weight: 500;
@@ -187,15 +305,6 @@
     background: var(--surface);
     border-radius: 20px;
     box-shadow: 0 0 0 0.5px var(--card-ring);
-  }
-
-  /* App screens (share cards, compare, chat) are paper sheets, like the app, not white cards. */
-  .app-sheet {
-    border-radius: 22px;
-    background: var(--paper);
-    box-shadow:
-      0 0 0 0.5px var(--chip-ring),
-      var(--shadow-float);
   }
 
   .hairline-ring {

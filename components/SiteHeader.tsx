@@ -1,31 +1,31 @@
 import Link from "next/link";
 import { PRIMARY_NAV } from "@/lib/navigation";
-import { AppStoreButton } from "./AppStoreButton";
+import { DownloadPill } from "./DownloadPill";
 import { MobileMenu } from "./MobileMenu";
-import { Wordmark } from "./Wordmark";
+import { SerifWordmark } from "./SerifWordmark";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-separator bg-paper/85 backdrop-blur-md supports-[backdrop-filter]:bg-paper/75">
-      <div className="container-page flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="rounded-md" aria-label="PureScan home">
-          <Wordmark size={22} />
+    <header className="sticky top-0 z-40 border-b border-hairline bg-paper/85 backdrop-blur-md supports-[backdrop-filter]:bg-paper/75">
+      <div className="container-wide grid h-16 grid-cols-[1fr_auto] items-center gap-6 md:grid-cols-[1fr_auto_1fr]">
+        <Link href="/" className="justify-self-start rounded-md" aria-label="PureScan home">
+          <SerifWordmark />
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 md:flex lg:gap-3">
           {PRIMARY_NAV.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-[15px] font-medium text-secondary transition-colors hover:text-ink"
+              className="type-mono rounded-full px-3 py-2 text-[11.5px] text-secondary transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden md:block">
-          <AppStoreButton size="small" />
+        <div className="hidden justify-self-end md:block">
+          <DownloadPill />
         </div>
-        <MobileMenu links={PRIMARY_NAV} />
+        <MobileMenu links={PRIMARY_NAV} action={<DownloadPill className="w-full" />} />
       </div>
     </header>
   );

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Serif, Inter } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { APP_STORE_ID, APP_STORE_LIVE, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
@@ -10,6 +10,14 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-instrument-serif",
+  display: "swap",
+});
+
+// Eyebrows, meta and E-numbers: a web font so they look the same on every platform.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -55,7 +63,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={`${instrumentSerif.variable} ${inter.variable}`}>
+    <html lang="en-GB" className={`${instrumentSerif.variable} ${plexMono.variable} ${inter.variable}`}>
       <body className="min-h-dvh bg-paper text-ink">
         <a
           href="#main"
