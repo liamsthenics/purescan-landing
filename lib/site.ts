@@ -4,8 +4,11 @@
 export const APP_STORE_LIVE = false;
 export const APP_STORE_ID = "6757192930";
 export const APP_STORE_URL = `https://apps.apple.com/gb/app/id${APP_STORE_ID}`;
+/** Public TestFlight beta, shown in place of the App Store link until APP_STORE_LIVE is true. */
+export const TESTFLIGHT_URL = "https://testflight.apple.com/join/bR8UXnCy";
 
-export const SITE_URL = "https://purescan.io";
+// The apex (purescan.io) redirects to www; canonical URLs use www so they resolve without a redirect hop.
+export const SITE_URL = "https://www.purescan.io";
 export const SITE_NAME = "PureScan";
 export const SITE_TAGLINE = "The honest truth about what's in your food.";
 /** The second half of the positioning line in docs/voice.md. */
@@ -23,6 +26,8 @@ export const PRIVACY_EMAIL = "privacy@purescan.io";
 /** App Store prices in pence (GBP). The App Store is the source of truth. */
 export const PREMIUM_MONTHLY_PENCE = 399;
 export const PREMIUM_YEARLY_PENCE = 2799;
+/** Length of the introductory offer for new subscribers. The App Store is the source of truth. */
+export const FREE_TRIAL_DAYS = 3;
 const MONTHS_PER_YEAR = 12;
 
 export function formatPounds(pence: number): string {

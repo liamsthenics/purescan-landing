@@ -19,7 +19,7 @@ const FOLLOW_UP_QUESTIONS = ["What does ultra-processed mean?", "How much sugar 
 const POINTS = [
   "Grounded in PureScan’s additive ratings, scores and sources",
   "Information, not advice: what you do with it is up to you",
-  "Your questions aren’t stored",
+  "PureScan doesn’t store your questions",
 ];
 
 function ExampleAnswer() {

@@ -42,7 +42,7 @@ export default function TermsPage() {
         </li>
         <li>
           <strong>Subscriptions.</strong> PureScan Premium is an auto-renewing subscription sold through Apple. Payment
-          is charged to your Apple ID at confirmation of purchase (or when any free trial ends). It renews
+          is charged to your Apple Account at confirmation of purchase (or when any free trial ends). It renews
           automatically unless you cancel at least 24 hours before the end of the current period. Manage or cancel in
           your App Store account settings (<Link href="/support#subscriptions">here’s how</Link>). Apple’s Standard
           EULA also applies: <a href={APPLE_EULA_URL}>apple.com/legal/internet-services/itunes/dev/stdeula</a>

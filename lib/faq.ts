@@ -33,7 +33,7 @@ const DATA_SOURCE: FaqItem = {
 const PRIVACY: FaqItem = {
   question: "Do I need an account? What do you store?",
   answer:
-    "No account is needed. Your scan history and preferences stay on your phone and we never receive them. To look up a product, the app sends only its barcode to Open Food Facts, with nothing about you. If you use Ask PureScan, your question and the product's details are sent to answer it and aren't stored. The app has no analytics, advertising or tracking.",
+    "No account is needed. Your scan history and preferences stay on your phone and we never receive them. To look up a product, the app sends only its barcode to Open Food Facts, with nothing about you. If you use Ask PureScan, your question and the product's details are sent to answer it. PureScan doesn't store your questions. The app has no analytics, advertising or tracking.",
   link: { href: "/privacy", label: "Read the privacy policy" },
 };
 
@@ -59,7 +59,7 @@ const NOT_FOUND: FaqItem = {
 const ASK_PURESCAN: FaqItem = {
   question: "What is Ask PureScan?",
   answer:
-    "A Premium feature for questions about the product you scanned or any ingredient. Answers are written by an AI model (Google's Gemini) from PureScan's data and the sources behind it. They're information, not advice, and can be incomplete or wrong, so for allergies always check the pack. Your questions aren't stored.",
+    "A Premium feature for questions about the product you scanned or any ingredient. Answers are written by an AI model (Google's Gemini) from PureScan's data and the sources behind it. They're information, not advice, and can be incomplete or wrong, so for allergies always check the pack. PureScan doesn't store your questions.",
   link: { href: "/privacy", label: "How your questions are handled" },
 };
 

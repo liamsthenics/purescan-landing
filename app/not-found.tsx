@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ScoreNumeral } from "@/components/score/ScoreNumeral";
 import { ScoreRuler } from "@/components/score/ScoreRuler";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Page not found",
+  description: "This page doesn't exist. Try the additive index, or head back to the PureScan homepage.",
+  path: "/404",
+});
 
 export default function NotFound() {
   return (

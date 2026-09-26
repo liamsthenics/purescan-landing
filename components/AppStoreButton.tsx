@@ -1,4 +1,4 @@
-import { APP_STORE_LIVE, APP_STORE_URL } from "@/lib/site";
+import { APP_STORE_LIVE, APP_STORE_URL, TESTFLIGHT_URL } from "@/lib/site";
 
 interface AppStoreButtonProps {
   size?: "large" | "small";
@@ -7,8 +7,9 @@ interface AppStoreButtonProps {
   className?: string;
 }
 
-// Until APP_STORE_LIVE is flipped this renders a quiet, non-interactive
-// "Coming soon" note instead of a link to a listing that doesn't exist yet.
+// Until APP_STORE_LIVE is flipped this links to the public TestFlight beta
+// instead of a listing that doesn't exist yet, with a quiet note that the
+// App Store listing itself is still coming.
 // When the app is live, consider swapping in Apple's official badge artwork
 // (developer.apple.com/app-store/marketing/guidelines).
 export function AppStoreButton({ size = "large", tone = "default", className }: AppStoreButtonProps) {
@@ -16,15 +17,24 @@ export function AppStoreButton({ size = "large", tone = "default", className }: 
   const isInverse = tone === "inverse";
 
   if (!APP_STORE_LIVE) {
+    const colours = isInverse ? "bg-on-brand text-brand" : "bg-brand text-on-brand";
     return (
-      <p
-        className={`inline-flex items-center gap-2 rounded-full font-semibold ${
-          isInverse ? "bg-on-brand/15 text-on-brand" : "bg-surface-tint text-ink"
-        } ${isSmall ? "h-9 px-4 text-[14px]" : "h-[54px] px-6 text-[16px]"} ${className ?? ""}`}
-      >
-        <span className={`h-2 w-2 rounded-full ${isInverse ? "bg-on-brand" : "bg-brand"}`} aria-hidden="true" />
-        Coming soon to the App Store
-      </p>
+      <span className={`inline-flex flex-col items-start gap-2 ${className ?? ""}`}>
+        <a
+          href={TESTFLIGHT_URL}
+          rel="noopener"
+          className={
+            isSmall
+              ? `inline-flex h-9 items-center rounded-xl px-4 text-[14px] font-semibold ${colours}`
+              : `button-primary ${isInverse ? "!bg-on-brand !text-brand" : ""}`
+          }
+        >
+          Join the public beta
+        </a>
+        <span className={`text-[12px] ${isInverse ? "text-on-brand/75" : "text-secondary"}`}>
+          Coming soon to the App Store
+        </span>
+      </span>
     );
   }
 

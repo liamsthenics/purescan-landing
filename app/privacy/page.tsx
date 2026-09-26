@@ -11,7 +11,7 @@ const GOOGLE_PRIVACY_URL = "https://policies.google.com/privacy";
 export const metadata: Metadata = pageMetadata({
   title: "Privacy policy",
   description:
-    "PureScan has no accounts and no tracking. Your scan history and preferences stay on your phone; to look up a product we send only its barcode to Open Food Facts. Ask PureScan questions aren't stored.",
+    "PureScan has no accounts and no tracking. Your scan history and preferences stay on your phone; to look up a product we send only its barcode to Open Food Facts. PureScan doesn't store your Ask PureScan questions.",
   path: "/privacy",
 });
 
@@ -43,6 +43,10 @@ export default function PrivacyPage() {
         <li>
           <strong>Scan history and preferences</strong> (allergens, diet, watch list) are stored only on your device.
           We never receive them. Deleting the app, or using “Clear scan history”, deletes them.
+        </li>
+        <li>
+          <strong>Widgets.</strong> The Recent scans widget shows the names and scores of your latest scans on your
+          Home Screen. That data comes from your on-device scan history and stays on your device.
         </li>
         <li>
           <strong>Label photos.</strong> If a product isn’t in the database you can photograph its ingredients. The

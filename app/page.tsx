@@ -10,6 +10,7 @@ import { PricingSection } from "@/components/home/PricingSection";
 import { PrivacySection } from "@/components/home/PrivacySection";
 import { ScoreSection } from "@/components/home/ScoreSection";
 import { ShareSection } from "@/components/home/ShareSection";
+import { WidgetsSection } from "@/components/home/WidgetsSection";
 import { JsonLd } from "@/components/JsonLd";
 import { SectionIntro } from "@/components/SectionIntro";
 import { HOME_FAQ, faqJsonLd } from "@/lib/faq";
@@ -64,6 +65,7 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd(HOME_FAQ)} />
       <HeroSection />
       <ScoreSection />
+      <WidgetsSection />
       <AdditivesSection />
       <NutritionSection />
       <AlternativesSection />

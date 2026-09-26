@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FREE_HISTORY_LIMIT, PRICES } from "@/lib/site";
+import { FREE_HISTORY_LIMIT, FREE_TRIAL_DAYS, PRICES } from "@/lib/site";
 import { AppStoreButton } from "../AppStoreButton";
 import { CheckIcon } from "../icons";
 import { SectionIntro } from "../SectionIntro";
@@ -71,8 +71,8 @@ export function PricingSection() {
         <div className="mx-auto mt-10 flex max-w-2xl flex-col items-center text-center">
           <AppStoreButton />
           <p className="mt-6 text-[14px] leading-relaxed text-secondary">
-            Prices in pounds sterling. Any free trial, and its terms, is shown in the App Store before you subscribe.
-            Subscriptions renew automatically; cancel any time in your iPhone’s Settings.{" "}
+            {FREE_TRIAL_DAYS}-day free trial for new subscribers, then {PRICES.yearly} a year or {PRICES.monthly} a
+            month. Cancel any time in your Apple Account settings.{" "}
             <Link href="/support#subscriptions" className="text-link font-medium">
               How to manage your subscription
             </Link>

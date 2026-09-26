@@ -1,6 +1,6 @@
 {
- "version": "2026.09.1",
- "generated": "2026-09-25",
+ "version": "2026.09.3",
+ "generated": "2026-09-26",
  "additives": {
   "en:e100": {
    "code": "E100",
@@ -343,7 +343,7 @@
   },
   "en:e124": {
    "code": "E124",
-   "name": "Ponceau 4r",
+   "name": "Ponceau 4R",
    "functions": [
     "Colour"
    ],
@@ -439,7 +439,7 @@
   },
   "en:e131": {
    "code": "E131",
-   "name": "Patent blue v",
+   "name": "Patent Blue V",
    "functions": [],
    "tier": "moderate",
    "summary": "A synthetic colour that is not permitted in the US.",
@@ -650,7 +650,7 @@
   },
   "en:e142": {
    "code": "E142",
-   "name": "Green s",
+   "name": "Green S",
    "functions": [],
    "tier": "low",
    "summary": "A synthetic colour. It is permitted in the UK, EU and US, but adds nothing but colour.",
@@ -897,7 +897,7 @@
   },
   "en:e151": {
    "code": "E151",
-   "name": "Brilliant black bn",
+   "name": "Brilliant Black BN",
    "functions": [
     "Colour"
    ],
@@ -955,9 +955,14 @@
    "tier": "low",
    "summary": "Propylene glycol is a solvent used to carry flavours and keep foods moist.",
    "reasons": [
-    "Permitted at food levels; very high intakes, mostly from medicines, have caused side effects"
+    "EFSA re-evaluated it in 2018 and set an acceptable daily intake"
    ],
-   "sources": [],
+   "sources": [
+    {
+     "title": "EFSA: propane-1,2-diol (E 1520) re-evaluation (2018)",
+     "url": "https://doi.org/10.2903/j.efsa.2018.5235"
+    }
+   ],
    "kidsWarning": false,
    "efsaUrl": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2018.5235"
   },
@@ -991,7 +996,7 @@
   },
   "en:e155": {
    "code": "E155",
-   "name": "Brown ht",
+   "name": "Brown HT",
    "functions": [
     "Colour"
    ],
@@ -1427,7 +1432,7 @@
   },
   "en:e180": {
    "code": "E180",
-   "name": "Litholrubine bk",
+   "name": "Litholrubine BK",
    "functions": [],
    "tier": "none",
    "efsaUrl": "http://dx.doi.org/10.2903/j.efsa.2010.1586"
@@ -2423,7 +2428,7 @@
   },
   "en:e319": {
    "code": "E319",
-   "name": "Tertiary-butylhydroquinone (tbhq)",
+   "name": "Tertiary-butylhydroquinone (TBHQ)",
    "functions": [
     "Antioxidant"
    ],
@@ -2444,7 +2449,7 @@
   },
   "en:e320": {
    "code": "E320",
-   "name": "Butylated hydroxyanisole (bha)",
+   "name": "Butylated hydroxyanisole (BHA)",
    "functions": [
     "Antioxidant"
    ],
@@ -3825,7 +3830,7 @@
   },
   "en:e440i": {
    "code": "E440",
-   "name": "E440i - non-amidated pectines",
+   "name": "Non-amidated pectins",
    "functions": [
     "Emulsifier",
     "Stabiliser",
@@ -4551,7 +4556,7 @@
   },
   "en:e478": {
    "code": "E478",
-   "name": "Lactylated fatty acid esters of glycerol and propane-1",
+   "name": "Lactylated fatty acid esters of glycerol and propane-1,2-diol",
    "functions": [],
    "tier": "none"
   },
@@ -5847,7 +5852,7 @@
   },
   "en:e915": {
    "code": "E915",
-   "name": "Esters of Colophane",
+   "name": "Esters of colophony",
    "functions": [],
    "tier": "none"
   },
@@ -6106,7 +6111,7 @@
   },
   "en:e950": {
    "code": "E950",
-   "name": "Acesulfame k",
+   "name": "Acesulfame K",
    "functions": [
     "Sweetener"
    ],
@@ -6292,7 +6297,7 @@
   },
   "en:e960b": {
    "code": "E960b",
-   "name": "Rebaudioside from multiple gene donors expressed in Yarrowia lipolityca",
+   "name": "Rebaudioside from multiple gene donors expressed in Yarrowia lipolytica",
    "functions": [
     "Sweetener"
    ],

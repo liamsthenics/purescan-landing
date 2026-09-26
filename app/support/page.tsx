@@ -5,7 +5,7 @@ import { ExternalLinkIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { SUPPORT_FAQ, faqJsonLd } from "@/lib/faq";
 import { pageMetadata } from "@/lib/metadata";
-import { CONTACT_EMAIL, FREE_HISTORY_LIMIT, PRIVACY_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, FREE_HISTORY_LIMIT, FREE_TRIAL_DAYS, PRICES, PRIVACY_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Support and help",
@@ -125,8 +125,8 @@ export default function SupportPage() {
             <div className="card p-6">
               <h3 className="text-[17px] font-semibold">Free trials</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-secondary">
-                If a free trial is offered, the App Store shows its length and terms before you subscribe. Cancel
-                before it ends and you won’t be charged.
+                {FREE_TRIAL_DAYS}-day free trial for new subscribers, then {PRICES.yearly} a year or {PRICES.monthly}{" "}
+                a month. Cancel any time in your Apple Account settings and you won’t be charged.
               </p>
             </div>
           </div>

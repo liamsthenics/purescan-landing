@@ -23,6 +23,9 @@ your privacy, email privacy@purescan.io.
 - **Scan history and preferences** (allergens, diet, watch list) are stored
   only on your device. We never receive them. Deleting the app, or using
   "Clear scan history", deletes them.
+- **Widgets.** The Recent scans widget shows the names and scores of your
+  latest scans on your Home Screen. That data comes from your on-device scan
+  history and stays on your device.
 - **Label photos.** If a product isn't in the database you can photograph its
   ingredients. The photo is read on your device and isn't uploaded or stored.
 - **Camera.** Used only to read barcodes and labels while the scanner is open.
@@ -88,7 +91,7 @@ Last updated: 26 September 2026
    using our published method (see "How PureScan scores food" in the app).
    They're not a regulatory judgement, and no brand can pay to change them.
 5. **Subscriptions.** PureScan Premium is an auto-renewing subscription sold
-   through Apple. Payment is charged to your Apple ID at confirmation of
+   through Apple. Payment is charged to your Apple Account at confirmation of
    purchase (or when any free trial ends). It renews automatically unless you
    cancel at least 24 hours before the end of the current period. Manage or
    cancel in your App Store account settings. Apple's Standard EULA also

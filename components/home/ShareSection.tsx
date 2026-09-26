@@ -90,7 +90,7 @@ export function ShareSection() {
       <div className="container-page grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <SectionIntro label="Share" title="Share what you find." headingId="share-heading">
           <p>
-            Turn any result or comparison into a clean card for a Story or a post. Each card shows the score on the
+            Turn any result or comparison into a simple card for a Story or a post. Each card shows the score on the
             PureScan scale and the facts behind it, so the people you share it with can see why.
           </p>
         </SectionIntro>
