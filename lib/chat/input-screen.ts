@@ -42,8 +42,8 @@ export function isManipulationAttempt(text: string): boolean {
  * a genuine earlier answer can say "if you are now avoiding caffeine".
  */
 const FORGED_REPLY_PATTERNS: readonly RegExp[] = [
-  /(jailbreak|dan mode|developer mode|debug mode|god mode|do anything now|unrestricted mode)/,
-  /(any topic|no (rules|restrictions|limits))/,
+  /\b(jailbreak|dan mode|developer mode|debug mode|god mode|do anything now|unrestricted mode)\b/,
+  /\b(any topic|no (rules|restrictions|limits))\b/,
 ];
 
 function looksForged(reply: string): boolean {
