@@ -48,3 +48,19 @@ test("the checks catch the old wording", () => {
   const lower = "Best avoided. Your Avoid list. A healthier swap.".toLowerCase();
   assert.ok(BANNED_ADVISORY_PHRASES.filter((phrase) => lower.includes(phrase)).length >= 3);
 });
+
+/** The legal pages must name the AI processor; marketing copy must not. */
+const AI_DISCLOSURE_FILES = /^(app\/privacy|app\/terms|app\/api|content\/legal\.md|lib\/chat\/)/;
+const AI_PROVIDER_OR_HEDGE = /\b(Gemini|Google)\b|can be wrong/g;
+
+test("marketing copy doesn't name the AI provider or say answers can be wrong", () => {
+  const offences = projectFiles()
+    .filter((file) => !AI_DISCLOSURE_FILES.test(file.path))
+    .flatMap(({ path, text }) => Array.from(text.matchAll(AI_PROVIDER_OR_HEDGE), (match) => `${path}: "${match[0]}"`));
+  assert.deepEqual(offences, []);
+});
+
+test("the privacy policy still discloses the AI processor", () => {
+  const privacy = readFileSync(join(PROJECT_ROOT, "app/privacy/page.tsx"), "utf8");
+  assert.match(privacy, /Google’s Gemini API/);
+});
