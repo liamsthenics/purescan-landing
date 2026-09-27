@@ -6,7 +6,7 @@ import { FIZZBROOK_COLA, ORCHARD_LANE_PRESSE } from "../lib/examples.ts";
 test("caps are listed strictest first with the app's maximums", () => {
   assert.deepEqual(
     CAPS.map((rule) => rule.max),
-    [30, 40, 45, 50, 60, 60, 65, 70],
+    [30, 40, 45, 50, 60, 60, 65, 70, 70, 70],
   );
 });
 
@@ -64,6 +64,27 @@ test("missing nutrition caps the score at 70", () => {
   assert.equal(result.nutrition, null);
   assert.equal(result.cap?.reason, "missingNutrition");
   assert.equal(result.score, 70);
+});
+
+test("missing salt caps the score at 70, like the app", () => {
+  const result = scoreProduct({
+    findings: [],
+    nutrition: { fat: 2, saturatedFat: 0.4, sugars: 3, protein: 9 },
+    isDrink: false,
+    nova: 3,
+  });
+  assert.equal(result.cap?.reason, "incompleteNutrition");
+  assert.ok(result.score <= 70);
+});
+
+test("missing salt doesn't cap a whole food", () => {
+  const oats = scoreProduct({ findings: [], nutrition: { fat: 8, saturatedFat: 1.5, sugars: 1, protein: 11 }, isDrink: false, nova: 1 });
+  assert.notEqual(oats.cap?.reason, "incompleteNutrition");
+});
+
+test("missing saturates doesn't cap a drink with no fat", () => {
+  const result = scoreProduct({ findings: [], nutrition: { fat: 0, sugars: 4.5, salt: 0.05 }, isDrink: true, nova: 4 });
+  assert.notEqual(result.cap?.reason, "incompleteNutrition");
 });
 
 test("a cap note names only the red lights that caused the cap", async () => {

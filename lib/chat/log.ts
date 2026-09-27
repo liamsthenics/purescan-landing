@@ -20,7 +20,12 @@ function errorName(error: unknown): string {
   return error instanceof Error ? error.name : "unknown";
 }
 
-export const consoleChatLogger: ChatLogger = (event, error) => {
-  const suffix = error === undefined ? "" : ` (${errorName(error)})`;
-  console.warn(`[ask-purescan] ${event}${suffix}`);
-};
+/** A logger that writes only the event name and the error's class name, tagged with `[prefix]`. */
+export function createConsoleLogger<Event extends string>(prefix: string): (event: Event, error?: unknown) => void {
+  return (event, error) => {
+    const suffix = error === undefined ? "" : ` (${errorName(error)})`;
+    console.warn(`[${prefix}] ${event}${suffix}`);
+  };
+}
+
+export const consoleChatLogger: ChatLogger = createConsoleLogger<ChatLogEvent>("ask-purescan");

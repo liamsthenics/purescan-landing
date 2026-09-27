@@ -2,9 +2,9 @@
 // expire with their window, so nothing identifying is kept beyond a day.
 import { RATE_LIMITS } from "./config.ts";
 
-const SECONDS_PER_MINUTE = 60;
-const SECONDS_PER_HOUR = 3_600;
-const SECONDS_PER_DAY = 86_400;
+export const SECONDS_PER_MINUTE = 60;
+export const SECONDS_PER_HOUR = 3_600;
+export const SECONDS_PER_DAY = 86_400;
 const MILLISECONDS_PER_SECOND = 1_000;
 const KEY_PREFIX = "purescan:chat";
 
@@ -99,7 +99,7 @@ export type TransactionDecision =
   | { outcome: "capacity_reached" };
 
 /** The daily key for the global cap, e.g. "2026-09-26" (UTC). */
-function utcDay(nowMs: number): string {
+export function utcDay(nowMs: number): string {
   return new Date(nowMs).toISOString().slice(0, 10);
 }
 

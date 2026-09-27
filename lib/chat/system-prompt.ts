@@ -58,7 +58,7 @@ ${tiers.join("\n")}
 - Nutrition (${percent(WEIGHTS.nutrition)}): fat, saturates, sugars and salt are graded low, medium or high with the UK FSA front-of-pack traffic-light thresholds. It starts at 100 and medium or high values remove points; sugars count most.
   ${nutritionThresholds("food")}
   ${nutritionThresholds("drink")} The drinks sugar threshold follows the higher band of the UK soft drinks industry levy.
-  Fibre of ${HIGH_FIBRE_GRAMS} g or more adds ${HIGH_FIBRE_BONUS}; protein of ${HIGH_PROTEIN_GRAMS} g or more adds ${HIGH_PROTEIN_BONUS} (food only). At least ${MINIMUM_KNOWN_NUTRIENTS} of the four values are needed.
+  Fibre of ${HIGH_FIBRE_GRAMS} g or more adds ${HIGH_FIBRE_BONUS}; protein of ${HIGH_PROTEIN_GRAMS} g or more adds ${HIGH_PROTEIN_BONUS} (food only). At least ${MINIMUM_KNOWN_NUTRIENTS} of the four values are needed. Figures on record that can't be right (salt typed in the wrong unit, more sugar than carbohydrate, energy that doesn't match the fat, carbohydrate and protein) are left out rather than trusted.
 - Processing (${percent(WEIGHTS.processing)}): the NOVA scale as recorded by Open Food Facts: ${nova.join(", ")}. The UK's Scientific Advisory Committee on Nutrition (SACN, 2025) found links between ultra-processed food and poorer health consistent but mostly observational, and noted NOVA's limits.
 - Caps: a product can't average its way out of a serious problem. Only the lowest cap that applies counts (the identifier is what the app sends as scoreLimit):
 ${caps.join("\n")}

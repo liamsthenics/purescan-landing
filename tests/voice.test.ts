@@ -50,7 +50,7 @@ test("the checks catch the old wording", () => {
 });
 
 /** The legal pages must name the AI processor; marketing copy must not. */
-const AI_DISCLOSURE_FILES = /^(app\/privacy|app\/terms|app\/api|content\/legal\.md|lib\/chat\/)/;
+const AI_DISCLOSURE_FILES = /^(app\/privacy|app\/terms|app\/api|content\/legal\.md|lib\/(chat|label)\/)/;
 const AI_PROVIDER_OR_HEDGE = /\b(Gemini|Google)\b|can be wrong/g;
 
 test("marketing copy doesn't name the AI provider or say answers can be wrong", () => {

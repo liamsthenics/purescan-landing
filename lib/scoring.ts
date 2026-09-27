@@ -82,7 +82,9 @@ export type CapReason =
   | "highIn"
   | "ultraProcessed"
   | "moderateIngredient"
-  | "missingNutrition";
+  | "missingNutrition"
+  | "unreliableNutrition"
+  | "incompleteNutrition";
 
 export interface CapRule {
   reason: CapReason;
@@ -103,6 +105,8 @@ export const CAPS: readonly CapRule[] = [
   { reason: "ultraProcessed", max: 60, condition: "Ultra-processed (NOVA 4)", capReason: "ultra-processed" },
   { reason: "moderateIngredient", max: 65, condition: "One of moderate concern", capReason: "contains 1 ingredient of moderate concern" },
   { reason: "missingNutrition", max: 70, condition: "Nutrition information missing", capReason: "nutrition information is missing" },
+  { reason: "unreliableNutrition", max: 70, condition: "Nutrition figures that don't add up", capReason: "nutrition information on record doesn't add up" },
+  { reason: "incompleteNutrition", max: 70, condition: "Salt, sugar or saturates not on record", capReason: "nutrition information is incomplete" },
 ];
 
 /** "Capped at 40", the start of every cap note. */
@@ -132,7 +136,7 @@ export interface ProductFacts {
   /** Tiers of every flagged additive or ingredient. */
   findings: Tier[];
   /** Per 100 g (food) or 100 ml (drinks); omit what's unknown. */
-  nutrition?: Partial<Record<Nutrient, number>> & { fibre?: number; protein?: number };
+  nutrition?: Partial<Record<Nutrient, number>> & { fibre?: number; protein?: number; carbohydrates?: number };
   isDrink: boolean;
   nova?: NovaGroup;
 }
@@ -185,9 +189,36 @@ export function countsAsHighIn(nutrient: Nutrient, facts: ProductFacts): boolean
   return (facts.nutrition?.protein ?? 0) < HIGH_PROTEIN_GRAMS;
 }
 
-function applicableCaps(facts: ProductFacts, isHighIn: boolean, hasNutrition: boolean): CapReason[] {
+/**
+ * Traffic-light nutrients not on record that could be high. Saturates can't
+ * exceed fat and sugars can't exceed carbohydrate, so a known low parent rules
+ * the missing one out. (The app also sets aside figures that can't be right,
+ * e.g. salt typed in the wrong unit, and caps with "unreliableNutrition" when
+ * the whole panel doesn't add up; examples here are hand-checked, so that
+ * data check isn't mirrored.)
+ */
+export function unknownNutrientsThatCouldBeHigh(facts: ProductFacts): Nutrient[] {
+  const nutrition = facts.nutrition ?? {};
+  const bands = NUTRIENT_BANDS[facts.isDrink ? "drink" : "food"];
+  return NUTRIENTS.map(({ nutrient }) => nutrient).filter((nutrient) => {
+    if (nutrition[nutrient] !== undefined) return false;
+    if (nutrient === "saturatedFat") return (nutrition.fat ?? Infinity) > bands.saturatedFat.highMin;
+    if (nutrient === "sugars") return (nutrition.carbohydrates ?? Infinity) > bands.sugars.highMin;
+    return true;
+  });
+}
+
+function applicableCaps(
+  facts: ProductFacts,
+  isHighIn: boolean,
+  hasNutrition: boolean,
+  unknownNutrients: Nutrient[],
+): CapReason[] {
   const reasons: CapReason[] = [];
+  // Whole foods and kitchen ingredients (NOVA 1-2) have nothing added, so a missing figure can't hide a red light.
+  const isWholeFood = facts.nova === 1 || facts.nova === 2;
   if (!hasNutrition) reasons.push("missingNutrition");
+  else if (unknownNutrients.length > 0 && !isWholeFood) reasons.push("incompleteNutrition");
   if (facts.findings.includes("high")) reasons.push("highConcernIngredient");
   const moderateCount = facts.findings.filter((tier) => tier === "moderate").length;
   if (moderateCount === 1) reasons.push("moderateIngredient");
@@ -212,7 +243,7 @@ export function scoreProduct(facts: ProductFacts): ScoreBreakdown {
   const average = weighted.reduce((total, [value, weight]) => total + value * weight, 0) / totalWeight;
 
   const isHighIn = levels.some(({ nutrient, band }) => band === "high" && countsAsHighIn(nutrient, facts));
-  const caps = applicableCaps(facts, isHighIn, nutrition !== null).map(capRule);
+  const caps = applicableCaps(facts, isHighIn, nutrition !== null, unknownNutrientsThatCouldBeHigh(facts)).map(capRule);
   if (caps.length === 0) {
     return { ingredients, nutrition, processing, average, cap: null, score: Math.round(average) };
   }
