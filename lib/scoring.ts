@@ -2,6 +2,7 @@
 // PureScanCore/Analysis/ScoringPolicy.swift and HealthScorer.swift.
 // The app is the source of truth: if its numbers change, change them here too.
 import type { Tier } from "./tiers.ts";
+import { VERDICTS_ON_SCALE, verdictFor } from "./verdict.ts";
 
 export type Nutrient = "fat" | "saturatedFat" | "sugars" | "salt";
 export type NutrientBand = "low" | "medium" | "high";
@@ -81,10 +82,7 @@ export type CapReason =
   | "twoModerateIngredients"
   | "highIn"
   | "ultraProcessed"
-  | "moderateIngredient"
-  | "missingNutrition"
-  | "unreliableNutrition"
-  | "incompleteNutrition";
+  | "moderateIngredient";
 
 export interface CapRule {
   reason: CapReason;
@@ -104,9 +102,6 @@ export const CAPS: readonly CapRule[] = [
   { reason: "highIn", max: 60, condition: "High in sugar, salt or saturates", capReason: "high in sugar, salt or saturates" },
   { reason: "ultraProcessed", max: 60, condition: "Ultra-processed (NOVA 4)", capReason: "ultra-processed" },
   { reason: "moderateIngredient", max: 65, condition: "One of moderate concern", capReason: "contains 1 ingredient of moderate concern" },
-  { reason: "missingNutrition", max: 70, condition: "Nutrition information missing", capReason: "nutrition information is missing" },
-  { reason: "unreliableNutrition", max: 70, condition: "Nutrition figures that don't add up", capReason: "nutrition information on record doesn't add up" },
-  { reason: "incompleteNutrition", max: 70, condition: "Salt, sugar or saturates not on record", capReason: "nutrition information is incomplete" },
 ];
 
 /** "Capped at 40", the start of every cap note. */
@@ -132,11 +127,13 @@ export function softCap(cap: number, average: number): number {
   return cap * (SOFT_CAP_FLOOR + ((1 - SOFT_CAP_FLOOR) * average) / 100);
 }
 
+export type NutritionFacts = Partial<Record<Nutrient, number>> & { fibre?: number; protein?: number; carbohydrates?: number };
+
 export interface ProductFacts {
   /** Tiers of every flagged additive or ingredient. */
   findings: Tier[];
   /** Per 100 g (food) or 100 ml (drinks); omit what's unknown. */
-  nutrition?: Partial<Record<Nutrient, number>> & { fibre?: number; protein?: number; carbohydrates?: number };
+  nutrition?: NutritionFacts;
   isDrink: boolean;
   nova?: NovaGroup;
 }
@@ -193,9 +190,8 @@ export function countsAsHighIn(nutrient: Nutrient, facts: ProductFacts): boolean
  * Traffic-light nutrients not on record that could be high. Saturates can't
  * exceed fat and sugars can't exceed carbohydrate, so a known low parent rules
  * the missing one out. (The app also sets aside figures that can't be right,
- * e.g. salt typed in the wrong unit, and caps with "unreliableNutrition" when
- * the whole panel doesn't add up; examples here are hand-checked, so that
- * data check isn't mirrored.)
+ * e.g. salt typed in the wrong unit, before scoring; examples here are
+ * hand-checked, so that data check isn't mirrored.)
  */
 export function unknownNutrientsThatCouldBeHigh(facts: ProductFacts): Nutrient[] {
   const nutrition = facts.nutrition ?? {};
@@ -208,17 +204,8 @@ export function unknownNutrientsThatCouldBeHigh(facts: ProductFacts): Nutrient[]
   });
 }
 
-function applicableCaps(
-  facts: ProductFacts,
-  isHighIn: boolean,
-  hasNutrition: boolean,
-  unknownNutrients: Nutrient[],
-): CapReason[] {
+function applicableCaps(facts: ProductFacts, isHighIn: boolean): CapReason[] {
   const reasons: CapReason[] = [];
-  // Whole foods and kitchen ingredients (NOVA 1-2) have nothing added, so a missing figure can't hide a red light.
-  const isWholeFood = facts.nova === 1 || facts.nova === 2;
-  if (!hasNutrition) reasons.push("missingNutrition");
-  else if (unknownNutrients.length > 0 && !isWholeFood) reasons.push("incompleteNutrition");
   if (facts.findings.includes("high")) reasons.push("highConcernIngredient");
   const moderateCount = facts.findings.filter((tier) => tier === "moderate").length;
   if (moderateCount === 1) reasons.push("moderateIngredient");
@@ -243,7 +230,7 @@ export function scoreProduct(facts: ProductFacts): ScoreBreakdown {
   const average = weighted.reduce((total, [value, weight]) => total + value * weight, 0) / totalWeight;
 
   const isHighIn = levels.some(({ nutrient, band }) => band === "high" && countsAsHighIn(nutrient, facts));
-  const caps = applicableCaps(facts, isHighIn, nutrition !== null, unknownNutrientsThatCouldBeHigh(facts)).map(capRule);
+  const caps = applicableCaps(facts, isHighIn).map(capRule);
   if (caps.length === 0) {
     return { ingredients, nutrition, processing, average, cap: null, score: Math.round(average) };
   }
@@ -256,5 +243,136 @@ export function scoreProduct(facts: ProductFacts): ScoreBreakdown {
     average,
     cap: capped < average ? strictest : null,
     score: Math.round(Math.min(average, capped)),
+  };
+}
+
+// --- Data confidence ---------------------------------------------------
+// Missing or wrong nutrition never caps a score (see scoreProduct above);
+// instead every result gets a deterministic confidence, mirroring the app's
+// PureScanCore/Analysis/DataConfidence.swift.
+
+export type DataConfidenceStatus = "complete" | "incomplete" | "suspect";
+
+/** A "what-if" re-score this many points lower than the real score is suspect on its own. */
+export const SUSPECT_SCORE_DROP = 8;
+/** A smaller drop is enough to be suspect once a signal also points to a hidden problem. */
+export const SUSPECT_SCORE_DROP_WITH_SIGNAL = 3;
+/** How many of a product's first ingredients count towards a nutrient's own ingredient being "prominent". */
+export const PROMINENT_INGREDIENT_COUNT = 3;
+
+/** A missing nutrient's typical amount for the product's kind of food, e.g. from UK Open Food Facts. */
+export interface TypicalAmount {
+  /** Median amount, used to fill the gap for the what-if re-score. */
+  median: number;
+  /** Upper quartile amount, used to test whether a quarter of that kind of food is high in it. */
+  upperQuartile: number;
+}
+
+export interface DataConfidenceOptions {
+  /** Typical figures for the product's kind of food, keyed by the nutrients that are missing. Omit what isn't known. */
+  typical?: Partial<Record<Nutrient, TypicalAmount>>;
+  /** Nutrients whose own ingredient (salt, sugar, or an oil or fat) is among the product's first PROMINENT_INGREDIENT_COUNT ingredients. */
+  prominentIngredients?: readonly Nutrient[];
+}
+
+/** Something that suggests a gap is hiding a problem rather than nothing in particular. */
+export type ConfidenceSignal =
+  | { kind: "oftenHigh"; nutrient: Nutrient }
+  | { kind: "prominentIngredient"; nutrient: Nutrient }
+  | { kind: "ultraProcessed" };
+
+export interface DataConfidenceGap {
+  nutrient: Nutrient;
+  /** The typical figure for this gap, when one is known. */
+  typical: TypicalAmount | null;
+  /** The band the fill (typical median, or the cautious stand-in) falls in; null when the gap couldn't be filled at all. */
+  band: NutrientBand | null;
+}
+
+export interface DataConfidenceResult {
+  status: DataConfidenceStatus;
+  /** The traffic-light nutrients missing from the record. Empty when status is "complete". */
+  gaps: readonly DataConfidenceGap[];
+  /** What the product would score with every fillable gap filled in; null when none could be filled. */
+  estimatedScore: number | null;
+  /** Why a suspect result probably flatters the product. Empty unless status is "suspect". */
+  signals: readonly ConfidenceSignal[];
+}
+
+function verdictRank(score: number): number {
+  return VERDICTS_ON_SCALE.indexOf(verdictFor(score));
+}
+
+/**
+ * Decides a product's data confidence with a "what-if" re-score: each gap is
+ * filled with the typical figure for its kind of food or, failing that, a
+ * cautious stand-in when the ingredient list points to it, and re-scored. If
+ * that would drop the verdict band, or the score by SUSPECT_SCORE_DROP (or
+ * SUSPECT_SCORE_DROP_WITH_SIGNAL once a signal agrees), the result is
+ * suspect rather than merely incomplete. The website has no per-category
+ * typical figures, so callers supply them via `options`.
+ */
+export function assessDataConfidence(facts: ProductFacts, options: DataConfidenceOptions = {}): DataConfidenceResult {
+  // Whole foods and kitchen ingredients (NOVA 1-2) have nothing added, so a missing figure can't hide a red
+  // light, as long as there's still enough of the panel left to score. Their fat never counts at all.
+  const isWholeFood = facts.nova === 1 || facts.nova === 2;
+  const missing = unknownNutrientsThatCouldBeHigh(facts).filter(
+    (nutrient) => !(isWholeFood && (nutrient === "fat" || nutrient === "saturatedFat")),
+  );
+  if (missing.length === 0) return { status: "complete", gaps: [], estimatedScore: null, signals: [] };
+
+  if (isWholeFood && nutritionPart(facts, nutrientLevels(facts)) !== null) {
+    return { status: "complete", gaps: [], estimatedScore: null, signals: [] };
+  }
+
+  const bands = NUTRIENT_BANDS[facts.isDrink ? "drink" : "food"];
+  const prominent = new Set(options.prominentIngredients ?? []);
+  const gaps: DataConfidenceGap[] = missing.map((nutrient) => {
+    const typical = options.typical?.[nutrient] ?? null;
+    const amount = typical ? typical.median : prominent.has(nutrient) ? bands[nutrient].highMin : null;
+    return { nutrient, typical, band: amount === null ? null : bandFor(nutrient, amount, facts.isDrink) };
+  });
+
+  const fillable = gaps.filter((gap): gap is DataConfidenceGap & { band: NutrientBand } => gap.band !== null);
+  if (fillable.length === 0) return { status: "incomplete", gaps, estimatedScore: null, signals: [] };
+
+  const filledNutrition: NutritionFacts = { ...facts.nutrition };
+  for (const gap of fillable) {
+    filledNutrition[gap.nutrient] = gap.typical ? gap.typical.median : bands[gap.nutrient].highMin;
+  }
+  // Saturates can't exceed fat, nor sugars carbohydrate: a typical figure is capped by the product's own record.
+  if (filledNutrition.fat !== undefined && filledNutrition.saturatedFat !== undefined) {
+    filledNutrition.saturatedFat = Math.min(filledNutrition.saturatedFat, filledNutrition.fat);
+  }
+  if (filledNutrition.carbohydrates !== undefined && filledNutrition.sugars !== undefined) {
+    filledNutrition.sugars = Math.min(filledNutrition.sugars, filledNutrition.carbohydrates);
+  }
+
+  const actualScore = scoreProduct(facts).score;
+  const estimatedScore = scoreProduct({ ...facts, nutrition: filledNutrition }).score;
+
+  const signals: ConfidenceSignal[] = fillable.flatMap((gap) => {
+    const oftenHigh: ConfidenceSignal[] =
+      gap.typical && bandFor(gap.nutrient, gap.typical.upperQuartile, facts.isDrink) === "high"
+        ? [{ kind: "oftenHigh", nutrient: gap.nutrient }]
+        : [];
+    const prominentSignal: ConfidenceSignal[] = prominent.has(gap.nutrient)
+      ? [{ kind: "prominentIngredient", nutrient: gap.nutrient }]
+      : [];
+    return [...oftenHigh, ...prominentSignal];
+  });
+  if (facts.nova === 4) signals.push({ kind: "ultraProcessed" });
+
+  const hasCostlyGap = fillable.some((gap) => gap.band !== "low");
+  const drop = actualScore - estimatedScore;
+  const threshold = signals.length === 0 ? SUSPECT_SCORE_DROP : SUSPECT_SCORE_DROP_WITH_SIGNAL;
+  const dropsABand = verdictRank(estimatedScore) < verdictRank(actualScore);
+
+  const isSuspect = hasCostlyGap && drop > 0 && (dropsABand || drop >= threshold);
+  return {
+    status: isSuspect ? "suspect" : "incomplete",
+    gaps,
+    estimatedScore,
+    signals: isSuspect ? signals : [],
   };
 }

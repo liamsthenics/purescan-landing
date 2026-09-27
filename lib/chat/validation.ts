@@ -35,6 +35,12 @@ const nutrientSchema = z.object({
   band: z.enum(["low", "medium", "high"]).nullish(),
 });
 
+const dataConfidenceSchema = z.object({
+  status: z.enum(["complete", "incomplete", "suspect"]),
+  note: singleLine(REQUEST_LIMITS.dataConfidenceNoteMaxCharacters).nullish(),
+  estimatedScore: z.number().int().min(SCORE_MIN).max(SCORE_MAX).nullish(),
+});
+
 const productSchema = z.object({
   barcode: singleLine(REQUEST_LIMITS.barcodeMaxCharacters).nullish(),
   name: singleLine(REQUEST_LIMITS.shortTextMaxCharacters).nullish(),
@@ -51,6 +57,7 @@ const productSchema = z.object({
   findings: z.array(findingSchema).max(REQUEST_LIMITS.maxFindings).nullish(),
   nutrients: z.array(nutrientSchema).max(REQUEST_LIMITS.maxNutrients).nullish(),
   isBeverage: z.boolean().nullish(),
+  dataConfidence: dataConfidenceSchema.nullish(),
 });
 
 const MESSAGE_LIMITS = {

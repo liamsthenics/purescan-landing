@@ -32,6 +32,7 @@ export const REQUEST_LIMITS = {
   shortTextMaxCharacters: 200,
   barcodeMaxCharacters: 32,
   codeMaxCharacters: 16,
+  dataConfidenceNoteMaxCharacters: 300,
 } as const;
 
 export const RATE_LIMITS = {

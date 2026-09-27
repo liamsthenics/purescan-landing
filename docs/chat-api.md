@@ -32,12 +32,19 @@ and requires: productId in `com.purescan.app.premium.{monthly,yearly}`,
     "ingredientsText": "Carbonated water, sugar, …",
     "findings": [ { "code": "E150d", "name": "Sulphite ammonia caramel", "tier": "moderate", "reasons": ["…"] } ],
     "nutrients": [ { "nutrient": "sugars", "amount": 10.6, "band": "high" } ],
-    "isBeverage": true
+    "isBeverage": true,
+    "dataConfidence": { "status": "complete", "note": null, "estimatedScore": null }
   }
 }
 ```
 
 - `product` is optional (general questions from the You tab).
+- `dataConfidence` says whether the nutrition behind the score is complete.
+  `status` is `complete`, `incomplete` (a figure is missing or can't be right)
+  or `suspect` (with typical figures for its kind of food it would score lower;
+  the app then sends `verdict: null` and shows the score as "Unconfirmed").
+  `note` (≤ 300 characters) is the sentence shown by the score and
+  `estimatedScore` the what-if score. Missing data never caps a score.
 - Limits (reject with 400 `invalid_request` when exceeded): at most 12 messages,
   alternating, last one from `user`; user messages ≤ 500 characters, assistant
   messages ≤ 2,000; `ingredientsText` ≤ 2,000; ≤ 30 findings (≤ 5 reasons each,

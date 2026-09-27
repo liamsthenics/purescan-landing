@@ -183,8 +183,8 @@ export default function HowWeScorePage() {
         <p>
           Fibre of {HIGH_FIBRE_GRAMS} g or more per 100 g adds {HIGH_FIBRE_BONUS} points, and protein of{" "}
           {HIGH_PROTEIN_GRAMS} g or more adds {HIGH_PROTEIN_BONUS} (food only). This part is capped at 100. We need
-          at least {MINIMUM_KNOWN_NUTRIENTS} of the four traffic-light values; otherwise nutrition is left out and a
-          cap applies (see below).
+          at least {MINIMUM_KNOWN_NUTRIENTS} of the four traffic-light values; otherwise nutrition is left out of the
+          score and the other parts are re-weighted. Missing data is never a reason to score lower (see below).
         </p>
       </MethodSection>
 
@@ -214,11 +214,25 @@ export default function HowWeScorePage() {
         </p>
         <p>
           An ingredient of high concern caps any product at {highConcernCap}, whatever else is in it. There are{" "}
-          {CAPS.length} caps in all.
+          {CAPS.length} caps in all. Missing nutrition figures are never one of them (see below).
         </p>
       </MethodSection>
 
-      <MethodSection id="soft-caps" number="06" title="Soft caps">
+      <MethodSection id="missing-data" number="06" title="Missing data">
+        <p>
+          Open Food Facts is built by volunteers, so figures are sometimes missing or typed wrong. Missing data
+          never lowers or caps a score: we score what’s on record and say what isn’t.
+        </p>
+        <p>
+          “Our data looks incomplete” means a figure is missing or can’t be right. “Something doesn’t look right”
+          means the gap probably flatters the product: with the amount typical for its kind of food (the median of
+          UK products on Open Food Facts), it would score lower. That score is shown as unconfirmed rather than
+          Great, and incomplete products are never suggested as alternatives. A photo of the nutrition panel fills
+          the gap straight away.
+        </p>
+      </MethodSection>
+
+      <MethodSection id="soft-caps" number="07" title="Soft caps">
         <p>
           Caps are soft, so capped products keep their order: a better product under the same cap still scores
           higher. A capped product scores between {Math.round(SOFT_CAP_FLOOR * 100)}% of the cap (if everything else
@@ -231,7 +245,7 @@ export default function HowWeScorePage() {
         <WorkedExample />
       </MethodSection>
 
-      <MethodSection id="verdicts" number="07" title="Verdicts">
+      <MethodSection id="verdicts" number="08" title="Verdicts">
         <p>
           Every score falls into one of four bands, each with a fixed headline. A verdict rates the product, not the
           person, and what you do with it is up to you.
@@ -239,7 +253,7 @@ export default function HowWeScorePage() {
         <VerdictBands />
       </MethodSection>
 
-      <MethodSection id="personal" number="08" title="What never changes a score">
+      <MethodSection id="personal" number="09" title="What never changes a score">
         <p>
           Your allergens, diet and watch list add personal alerts to a result, but they never change the score. That
           way a score means the same thing to everyone, and you can compare notes with anyone.
@@ -250,7 +264,7 @@ export default function HowWeScorePage() {
         </p>
       </MethodSection>
 
-      <MethodSection id="sources" number="09" title="Sources">
+      <MethodSection id="sources" number="10" title="Sources">
         <p>Where the data and thresholds come from. Each additive page lists its own sources too.</p>
         <SourcesList />
       </MethodSection>

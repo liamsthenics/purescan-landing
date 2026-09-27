@@ -19,6 +19,7 @@ const CONTRACT_EXAMPLE = {
     findings: [{ code: "E150d", name: "Sulphite ammonia caramel", tier: "moderate", reasons: ["…"] }],
     nutrients: [{ nutrient: "sugars", amount: 10.6, band: "high" }],
     isBeverage: true,
+    dataConfidence: { status: "complete", note: null, estimatedScore: null },
   },
 };
 
@@ -108,6 +109,42 @@ test("enforces product limits", () => {
   assert.equal(parseChatRequest(withProduct({ findings: [{ ...finding, reasons: [longReason] }] })), null);
 });
 
+test("accepts a suspect data confidence with its note and estimated score", () => {
+  const request = parseChatRequest(
+    withProduct({
+      verdict: null,
+      dataConfidence: {
+        status: "suspect",
+        note: "For crisps, 1.2 g of salt per 100 g is typical, but none is on record. With a typical amount it would score about 75.",
+        estimatedScore: 75,
+      },
+    }),
+  );
+  assert.equal(request?.product?.dataConfidence?.status, "suspect");
+  assert.equal(request?.product?.dataConfidence?.estimatedScore, 75);
+});
+
+test("data confidence is optional and its fields nullish", () => {
+  assert.ok(parseChatRequest(withProduct({ dataConfidence: undefined })));
+  assert.ok(parseChatRequest(withProduct({ dataConfidence: { status: "incomplete", note: null, estimatedScore: null } })));
+});
+
+test("enforces data confidence limits", () => {
+  const tooLongNote = "x".repeat(REQUEST_LIMITS.dataConfidenceNoteMaxCharacters + 1);
+  assert.equal(
+    parseChatRequest(withProduct({ dataConfidence: { status: "incomplete", note: tooLongNote } })),
+    null,
+  );
+  assert.equal(
+    parseChatRequest(withProduct({ dataConfidence: { status: "suspect", estimatedScore: 101 } })),
+    null,
+  );
+  assert.equal(
+    parseChatRequest(withProduct({ dataConfidence: { status: "suspect", estimatedScore: -1 } })),
+    null,
+  );
+});
+
 test("rejects unknown enums and out-of-range numbers", () => {
   assert.equal(parseChatRequest(withProduct({ verdict: "terrible" })), null);
   assert.equal(parseChatRequest(withProduct({ score: 101 })), null);
@@ -117,6 +154,7 @@ test("rejects unknown enums and out-of-range numbers", () => {
     parseChatRequest(withProduct({ findings: [{ name: "X", tier: "avoid" }] })),
     null,
   );
+  assert.equal(parseChatRequest(withProduct({ dataConfidence: { status: "unconfirmed" } })), null);
 });
 
 test("chat is on only with an API key, and CHAT_ENABLED=false switches it off", () => {
