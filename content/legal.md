@@ -1,13 +1,13 @@
 # PureScan legal copy (v2 app) — source for /privacy and /terms
 
 ## Privacy policy
-Last updated: 26 September 2026
+Last updated: 5 October 2026
 
 **The short version:** PureScan has no accounts and no tracking. Your scan
 history and preferences stay on your phone. To look up a product we send its
-barcode (and nothing about you) to Open Food Facts. If you use Ask PureScan,
-your question and the product's details go to our server and to Google's
-Gemini API to write the answer, and we don't store them.
+barcode (and nothing about you) to Open Food Facts. If you have a label photo
+read, or use Ask PureScan, the photo or your question goes to our server and to
+Google's Gemini API, and we don't store it.
 
 ### Who we are
 PureScan ("we", "us") makes the PureScan app for iPhone. PureScan is run by
@@ -28,8 +28,28 @@ United Kingdom. For anything about your privacy, email privacy@purescan.io.
 - **Widgets.** The Recent scans widget shows the names and scores of your
   latest scans on your Home Screen. That data comes from your on-device scan
   history and stays on your device.
-- **Label photos.** If a product isn't in the database you can photograph its
-  ingredients. The photo is read on your device and isn't uploaded or stored.
+- **Label photos.** If a product's ingredients or nutrition are missing or look
+  wrong, you can photograph its label. The first time, the app asks whether the
+  photo may be read by AI. If you agree, the photo goes to our server and to
+  Google's Gemini API (as our processor, on the terms described under Ask
+  PureScan below), which reads the printed ingredients and nutrition. PureScan
+  doesn't keep the photo. What was read from the label is saved against the
+  product's barcode so the next person to scan it gets it straight away; it
+  contains nothing about you. If you decline, an ingredients photo is read on
+  your device and isn't uploaded.
+- **Sharing label photos with Open Food Facts (optional, off by default).** If
+  you turn this on, your label photos are also uploaded to Open Food Facts,
+  where they become public under the Creative Commons Attribution-ShareAlike
+  licence and help fix the product for everyone. They're sent from PureScan's
+  account with a random identifier for your device, never your name or any
+  account of yours.
+- **Proving requests come from the app.** To stop our AI label reading being
+  misused, the app uses Apple's App Attest: your iPhone creates a key that
+  proves requests come from the genuine PureScan app. We store only that key's
+  public part, filed under a one-way hash, and a counter, for up to a year after
+  it's last used. It can't be linked to your Apple ID and says nothing else
+  about you. Label photo reads are also counted per device and per hashed IP
+  address to enforce daily limits.
 - **Camera.** Used only to read barcodes and labels while the scanner is open.
 - **Ask PureScan (Premium).** When you ask a question, the app sends your
   question, the earlier messages in that conversation and the details of the
@@ -61,8 +81,8 @@ advertising cookies.
 ### Your rights
 Under UK GDPR you can ask us what personal data we hold about you, and to
 correct or delete it. Because the app keeps your data on your device and we
-don't store Ask PureScan conversations, in practice we hold none beyond the
-short-lived hashes described above; if you email us, we'll keep that correspondence only as
+don't store label photos or Ask PureScan conversations, in practice we hold
+none beyond the hashes and App Attest key described above; if you email us, we'll keep that correspondence only as
 long as needed to reply. You can also complain to the Information
 Commissioner's Office (ico.org.uk).
 
@@ -74,7 +94,7 @@ If this policy changes we'll update the date above and, for significant
 changes, mention it in the app's release notes.
 
 ## Terms of use
-Last updated: 26 September 2026
+Last updated: 5 October 2026
 
 1. **What PureScan is.** PureScan explains what's in food using public data
    and published research. It gives general information, **not medical or

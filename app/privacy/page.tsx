@@ -4,14 +4,14 @@ import { pageMetadata } from "@/lib/metadata";
 import { DATA_CONTROLLER_ADDRESS, DATA_CONTROLLER_NAME, PRIVACY_EMAIL } from "@/lib/site";
 
 // Copy from content/legal.md ("Privacy policy"). Update both together.
-const LAST_UPDATED = "26 September 2026";
+const LAST_UPDATED = "5 October 2026";
 const GEMINI_TERMS_URL = "https://ai.google.dev/gemini-api/terms";
 const GOOGLE_PRIVACY_URL = "https://policies.google.com/privacy";
 
 export const metadata: Metadata = pageMetadata({
   title: "Privacy policy",
   description:
-    "PureScan has no accounts and no tracking. Your scan history and preferences stay on your phone; to look up a product we send only its barcode to Open Food Facts. PureScan doesn't store your Ask PureScan questions.",
+    "PureScan has no accounts and no tracking. Your scan history and preferences stay on your phone; to look up a product we send only its barcode to Open Food Facts. Label photos you choose to have read, and Ask PureScan questions, go to our server and Google’s Gemini API, and PureScan doesn't keep them.",
   path: "/privacy",
 });
 
@@ -21,8 +21,8 @@ export default function PrivacyPage() {
       <p className="card !mt-0 px-6 py-5 !text-ink">
         <strong>The short version:</strong> PureScan has no accounts and no tracking. Your scan history and
         preferences stay on your phone. To look up a product we send its barcode (and nothing about you) to Open
-        Food Facts. If you use Ask PureScan, your question and the product’s details go to our server and to
-        Google’s Gemini API to write the answer, and we don’t store them.
+        Food Facts. If you have a label photo read, or use Ask PureScan, the photo or your question goes to our
+        server and to Google’s Gemini API, and we don’t store it.
       </p>
 
       <h2>Who we are</h2>
@@ -50,8 +50,26 @@ export default function PrivacyPage() {
           Home Screen. That data comes from your on-device scan history and stays on your device.
         </li>
         <li>
-          <strong>Label photos.</strong> If a product isn’t in the database you can photograph its ingredients. The
-          photo is read on your device and isn’t uploaded or stored.
+          <strong>Label photos.</strong> If a product’s ingredients or nutrition are missing or look wrong, you can
+          photograph its label. The first time, the app asks whether the photo may be read by AI. If you agree, the
+          photo goes to our server and to Google’s Gemini API (as our processor, on the terms described under Ask
+          PureScan below), which reads the printed ingredients and nutrition. PureScan doesn’t keep the photo. What
+          was read from the label is saved against the product’s barcode so the next person to scan it gets it
+          straight away; it contains nothing about you. If you decline, an ingredients photo is read on your device
+          and isn’t uploaded.
+        </li>
+        <li>
+          <strong>Sharing label photos with Open Food Facts (optional, off by default).</strong> If you turn this
+          on, your label photos are also uploaded to Open Food Facts, where they become public under the Creative
+          Commons Attribution-ShareAlike licence and help fix the product for everyone. They’re sent from PureScan’s
+          account with a random identifier for your device, never your name or any account of yours.
+        </li>
+        <li>
+          <strong>Proving requests come from the app.</strong> To stop our AI label reading being misused, the app
+          uses Apple’s App Attest: your iPhone creates a key that proves requests come from the genuine PureScan
+          app. We store only that key’s public part, filed under a one-way hash, and a counter, for up to a year
+          after it’s last used. It can’t be linked to your Apple ID and says nothing else about you. Label photo
+          reads are also counted per device and per hashed IP address to enforce daily limits.
         </li>
         <li>
           <strong>Camera.</strong> Used only to read barcodes and labels while the scanner is open.
@@ -92,8 +110,8 @@ export default function PrivacyPage() {
       <h2>Your rights</h2>
       <p>
         Under UK GDPR you can ask us what personal data we hold about you, and to correct or delete it. Because the
-        app keeps your data on your device and we don’t store Ask PureScan conversations, in practice we hold none
-        beyond the short-lived hashes described above; if you email us, we’ll keep that
+        app keeps your data on your device and we don’t store label photos or Ask PureScan conversations, in
+        practice we hold none beyond the hashes and App Attest key described above; if you email us, we’ll keep that
         correspondence only as long as needed to reply. You can also complain to the Information Commissioner’s
         Office (<a href="https://ico.org.uk">ico.org.uk</a>).
       </p>
